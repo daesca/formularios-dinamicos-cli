@@ -28,10 +28,9 @@
 
         </div>
 
-        <div>
+        <div v-show="selected != ''">
 
             <button @click="saveOption = true">Guardar elemento</button>
-            <span v-if="saveOption">Si funciona el boolean</span>
 
         </div>
 

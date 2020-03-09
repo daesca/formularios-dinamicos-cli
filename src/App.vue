@@ -14,7 +14,7 @@
                       <!-- <fruits-f></fruits-f> -->
                   </div>
                   <div id="resultElementsForm">
-
+                    <edit-section-component></edit-section-component>
                   </div>
               </div>
               <div id="right-side" class="col-6">
@@ -33,13 +33,15 @@
 // import HelloWorld from './components/HelloWorld.vue';
 import creationSectionComponent from './components/containerComponents/creationSectionComponent';
 import resultSectionComponent from './components/containerComponents/resultSectionComponent';
+import editSectionComponent from './components/containerComponents/editSectionComponent'
 
 export default {
   name: 'App',
   components: {
     // HelloWorld,
     'creation-section-component': creationSectionComponent,
-    'result-section-component': resultSectionComponent
+    'result-section-component': resultSectionComponent,
+    'edit-section-component': editSectionComponent
   }
 }
 </script>
