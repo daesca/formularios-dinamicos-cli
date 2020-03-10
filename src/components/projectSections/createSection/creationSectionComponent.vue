@@ -18,8 +18,8 @@
 
         <hr>
 
-
-
+        <defaulted v-show="selected == ''"></defaulted>
+        
         <div v-if="selected != ''">
 
             <component :is="selected" :activateSaveOption="saveOption" @send-option="saveElement"></component>
@@ -28,24 +28,30 @@
 
         </div>
 
-        <div v-show="selected != ''">
+        <div v-show="selected != ''" class="text-right">
 
-            <button @click="saveOption = true">Guardar elemento</button>
+            <button @click="saveOption = true" class="btn btn-primary mr-1">Guardar elemento</button>
+            <button @click="selected = ''" class="btn btn-secondary">Cancelar</button>
 
         </div>
+
+        <br>
+
+        <hr>
 
     </div>
 
 </template>
 <script>
-
-    import textBox from '../customFormElements/textBox';
-    import textField from '../customFormElements/textField';
+    import defaulted from './default';
+    import textBox from './customFormElements/textBox';
+    import textField from './customFormElements/textField';
 
     export default {
         components:{
             textBox,
-            textField
+            textField,
+            defaulted
         },
         data(){
             return{
@@ -71,9 +77,16 @@
 
                 this.saveOption = false;
 
+                this.selected = '';
+
                 // configForm.push(configElement);
 
-            }
+            },
+            // cancelCreation(){
+
+            //     this.selected = '';
+
+            // }
 
         }
     }

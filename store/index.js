@@ -24,13 +24,19 @@ export const store = new Vuex.Store({
 
             state.configForm.push(value)
 
+        },
+        deleteElementForm(state, index) {
+
+            state.configForm.splice(index, 1);
+
         }
 
     },
     getters: {
 
         avalibleFormElemets: (state) => state.avalibleFormElemets,
-        configForm: (state) => state.configForm
+        configForm: (state) => state.configForm,
+        nameTypeElement: (state, keyObject) => state.avalibleFormElemets[keyObject],
 
     }
 

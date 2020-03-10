@@ -31,9 +31,10 @@
 
 <script>
 // import HelloWorld from './components/HelloWorld.vue';
-import creationSectionComponent from './components/containerComponents/creationSectionComponent';
-import resultSectionComponent from './components/containerComponents/resultSectionComponent';
-import editSectionComponent from './components/containerComponents/editSectionComponent'
+
+import creationSectionComponent from './components/projectSections/createSection/creationSectionComponent';
+import editSectionComponent from './components/projectSections/editSection/editSectionComponent'
+import resultSectionComponent from './components/projectSections/resultSection/resultSectionComponent';
 
 export default {
   name: 'App',

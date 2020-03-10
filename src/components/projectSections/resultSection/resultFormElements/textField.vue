@@ -1,8 +1,8 @@
 <template>
-    <div id="textField-result-container">
+    <div class="form-group">
 
         <label for="resultado">Este es el resultado: {{ options.title }}</label>
-        <input type="text" name="resultado">
+        <input type="text" name="resultado" class="form-control">
 
     </div>
 </template>
