@@ -1,7 +1,7 @@
 <template>
     <div class="form-group">
 
-        <label for="resultado">Este es el resultado: {{ options.title }}</label>
+        <label for="resultado"><strong>{{ options.titulo }}</strong></label>
         <textarea name="" id="" cols="30" rows="10" class="form-control"></textarea>
 
     </div>

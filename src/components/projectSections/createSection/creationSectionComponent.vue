@@ -37,8 +37,6 @@
 
         <br>
 
-        <hr>
-
     </div>
 
 </template>
@@ -69,15 +67,21 @@
         },
         methods:{
 
-            saveElement(configElement) {
+            saveElement(val) {
 
-                console.log("Esta entrando en el metodo", configElement);
+                if(val != false){
 
-                this.$store.commit('addElementForm', configElement);
+                    console.log("Esta entrando en el metodo", val);
+
+                    this.$store.commit('addElementForm', val);
+                      
+                    this.selected = '';
+
+                }
 
                 this.saveOption = false;
+                
 
-                this.selected = '';
 
                 // configForm.push(configElement);
 

@@ -25,6 +25,11 @@ export const store = new Vuex.Store({
             state.configForm.push(value)
 
         },
+        editElementForm(state, value) {
+            console.log("Esto es el value", value);
+            state.configForm[value.keyarray].options = value.options
+
+        },
         deleteElementForm(state, index) {
 
             state.configForm.splice(index, 1);

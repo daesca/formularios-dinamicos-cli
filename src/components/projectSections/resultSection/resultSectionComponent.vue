@@ -10,7 +10,7 @@
         </ul> -->
 
         <form>
-            <component v-for="(value, key, index) in $store.getters.configForm" :is="value.type" :key="index"></component>
+            <component v-for="(value, key, index) in $store.getters.configForm" :is="value.type" :options="value.options" :key="index"></component>
 
                 <!-- <component :is="value.type" :options="value.options"></component> -->
         </form>

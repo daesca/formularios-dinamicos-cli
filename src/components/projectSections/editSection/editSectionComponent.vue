@@ -4,8 +4,7 @@
         <ul>
             <li v-for="(value, key) in $store.getters.configForm" :key="key" :value="key" >
                 <strong>Index del elemento: {{ key }} </strong>
-            
-                <edit-single-component :options="value.options" :keyarray="key"></edit-single-component>
+                <edit-single-component :options="value.options" :type="value.type" :keyarray="key"></edit-single-component>
 
             </li>
         </ul>

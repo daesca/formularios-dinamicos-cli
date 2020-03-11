@@ -5,19 +5,20 @@
 
         <div class="container-fluid">
 
-          <div class="row">
+          <div class="row min-height-800px">
 
               <div id="left-side" class="col-6">
-                  <div id="addConfigElementsForm">
+                  <div id="addConfigFormElements" class="min-height-400px">
                       <creation-section-component></creation-section-component>
                       <!-- <fruity></fruity> -->
                       <!-- <fruits-f></fruits-f> -->
                   </div>
-                  <div id="resultElementsForm">
+                  <hr>
+                  <div id="editFormElements" class="min-height-400px">
                     <edit-section-component></edit-section-component>
                   </div>
               </div>
-              <div id="right-side" class="col-6">
+              <div id="right-side" class="col-6 border-left">
                   <div id="resultForm">
                     <result-section-component></result-section-component>
                   </div>
@@ -48,5 +49,67 @@ export default {
 </script>
 
 <style>
+  /* #addConfigFormElements{
+
+    overflow-y: scroll;
+
+  }
+
+  #editFormElements{
+
+    overflow-y: scroll;
+
+  } */
+
+  .text-error{
+
+    color:red;
+    font-weight: bold;
+
+  }
+
+  .default-box{
+
+    height: 350px;
+    overflow-y: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+
+  }
+
+  .min-height-800px{
+
+    min-height: 800px;
+
+  }
+  .border-left{
+
+    border-left: 1px solid #ccc;
+
+  }
+  .min-height-400px{
+
+    min-height: 400px;
+
+  }
+
+  .slide-fade-enter-active {
+  transition: all .3s ease;
+  }
+  .slide-fade-leave-active {
+    transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  }
+  .slide-fade-enter, .slide-fade-leave-to
+  /* .slide-fade-leave-active below version 2.1.8 */ {
+    transform: translateX(10px);
+    opacity: 0;
+  }
+
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity .5s;
+  }
+  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+  }
 
 </style>

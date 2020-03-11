@@ -1,8 +1,8 @@
 <template>
     <div class="form-group">
 
-        <label for="resultado">Este es el resultado: {{ options.title }}</label>
-        <input type="text" name="resultado" class="form-control">
+        <label for="resultado"><strong>{{ options.titulo }} </strong></label>
+        <input type="text" name="resultado" class="form-control" :placeholder="options.placeholder">
 
     </div>
 </template>
