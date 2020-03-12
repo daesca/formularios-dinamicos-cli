@@ -6,7 +6,7 @@
         <div class="container-fluid">
 
           <div class="row min-height-800px">
-
+            <!-- <button @click="checkPlugin" >Probar plugin</button> -->
               <div id="left-side" class="col-6">
                   <div id="addConfigFormElements" class="min-height-400px">
                       <creation-section-component></creation-section-component>
@@ -44,7 +44,16 @@ export default {
     'creation-section-component': creationSectionComponent,
     'result-section-component': resultSectionComponent,
     'edit-section-component': editSectionComponent
-  }
+  },
+  // methods:{
+
+  //   checkPlugin(){
+
+  //     this.$globalFunctions.testCode();
+
+  //   }
+
+  // }
 }
 </script>
 

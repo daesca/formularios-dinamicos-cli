@@ -1,6 +1,6 @@
 <template>
     <div id="resultSectionComponent-container">
-        <h3 class="text-center">Resultado</h3>
+        <h3 class="text-center">{{ $languages.resultSectionTitle }}</h3>
         <!-- <ul>
             <ol v-for="(value, key, index) in $store.getters.configForm" :key="index" :value="key" >
 

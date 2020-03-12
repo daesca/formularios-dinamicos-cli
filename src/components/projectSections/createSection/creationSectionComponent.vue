@@ -1,7 +1,7 @@
 <template>
     <div id="creationSectionComponent-container">
 
-        <h3 class="text-center">Creacion de elementos</h3>
+        <h3 class="text-center">{{ $languages.creationSectionTitle }}</h3>
 
         Selected: {{ selected }}
 
@@ -9,7 +9,7 @@
 
         <select v-model="selected">
                 
-            <option disabled value="">Seleccione una opcion</option>
+            <option disabled value="">{{ $languages.defaultSelect }}</option>
             <option v-for="(value, key, index) in $store.getters.avalibleFormElemets" :key="index" :value="key">{{ value }}</option>
 
         </select>
@@ -30,8 +30,8 @@
 
         <div v-show="selected != ''" class="text-right">
 
-            <button @click="saveOption = true" class="btn btn-primary mr-1">Guardar elemento</button>
-            <button @click="selected = ''" class="btn btn-secondary">Cancelar</button>
+            <button @click="saveOption = true" class="btn btn-primary mr-1">{{ $languages.saveButtonText }}</button>
+            <button @click="selected = ''" class="btn btn-secondary">{{ $languages.cancelButtonText }}</button>
 
         </div>
 
@@ -42,14 +42,15 @@
 </template>
 <script>
     import defaulted from './default';
-    import textBox from './customFormElements/textBox';
-    import textField from './customFormElements/textField';
+    import { textBox, textField } from '../../../importGroups/createSection/createElementsImports';
+    // import textBox from './customFormElements/textBox';
+    // import textField from './customFormElements/textField';
 
     export default {
         components:{
+            defaulted,
             textBox,
             textField,
-            defaulted
         },
         data(){
             return{

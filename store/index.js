@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex);
 
-export const store = new Vuex.Store({
+const store = new Vuex.Store({
 
     state: {
         avalibleFormElemets: {
@@ -41,8 +41,9 @@ export const store = new Vuex.Store({
 
         avalibleFormElemets: (state) => state.avalibleFormElemets,
         configForm: (state) => state.configForm,
-        nameTypeElement: (state, keyObject) => state.avalibleFormElemets[keyObject],
 
     }
 
 });
+
+export default store

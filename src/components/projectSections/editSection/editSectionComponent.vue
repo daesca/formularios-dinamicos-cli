@@ -1,6 +1,6 @@
 <template>
     <div id="editSectionComponent-container">
-        <h3 class="text-center">Editor de elementos</h3>
+        <h3 class="text-center">{{ $languages.editSectionTitle}}</h3>
         <ul>
             <li v-for="(value, key) in $store.getters.configForm" :key="key" :value="key" >
                 <strong>Index del elemento: {{ key }} </strong>

@@ -1,7 +1,7 @@
 <template>
   <div id="textBoxConfig-container" class="default-box">
     <div class="form-group">
-      <label for="title">Ingrese un titulo o encabezado</label>
+      <label for="title">{{ $languages.titleLabelForm }}</label>
       <input
         type="text"
         class="form-control"
@@ -9,25 +9,15 @@
         v-model="options.titulo"
       />
       <transition name="slide-fade">
-      
-        <small v-show="errors.titulo.showError" class="text-error">{{ errors.titulo.msg }}</small>
-
+        <div v-if="errors.state != true && errors.titulo">
+          <small v-show="errors.titulo.showError" class="text-error">{{ errors.titulo.msg }}</small>
+        </div>
       </transition>
     </div>
 
-    <!-- <div class="form-group">
-      <label for="placeHolder">Agregue un placeholder a la caja de texto</label>
-      <input
-        type="text"
-        class="form-control"
-        name="placeHolder"
-        v-model="options.placeHolder"
-      />
-    </div> -->
-
     <div class="form-group">
       <label for="valueElement"
-        >Ingrese un valor para este elemento de encuesta</label
+        >{{ $languages.valueLabelForm }}</label
       >
       <input
         type="text"
@@ -36,9 +26,9 @@
         v-model="options.peso"
       />
       <transition name="slide-fade">
-      
-        <small v-show="errors.peso.showError" class="text-error">{{ errors.peso.msg }}</small>
-
+        <div v-if="errors.state != true && errors.peso">
+          <small v-show="errors.peso.showError" class="text-error">{{ errors.peso.msg }}</small>
+        </div>
       </transition>
     </div>
   </div>
@@ -55,42 +45,37 @@ export default {
         peso: 0
       },
       errors:{
-        titulo:{
+        state: true
+        // titulo:{
           
-          msg: "Este campo no puede estar vacío",
-          showError: false
+        //   msg: "Este campo no puede estar vacío",
+        //   showError: false
 
-        },
-        peso:{
-          msg: "Este campo no puede estar vacío",
-          showError: false
+        // },
+        // peso:{
+        //   msg: "Este campo no puede estar vacío",
+        //   showError: false
 
-        }
+        // }
 
       }
     };
   },
   methods:{
 
-    fieldsEmpty(){
+    validateFields(){
 
-      let allClear = true;
+      // let resultValidate = this.$globalFunctions.fieldsEmpty(this.options);
+      let resultValidate = this.$globalFunctions.fieldsEmpty(this.options);
+      console.log(resultValidate);
 
-      if(!this.options.titulo){
-        console.log('Error en titulo');
-        this.errors.titulo.showError = true;
-        allClear = false;
-
+      for (let key in resultValidate) {
+       
+        this.errors[key] = resultValidate[key];
+        
       }
-
-      if(!this.options.peso){
-        console.log('Error en peso');
-        this.errors.peso.showError = true;
-        allClear = false;
-
-      }
-
-      return allClear;
+      this.errors.state = resultValidate.state;
+      return resultValidate.state;
 
     }
 
@@ -99,9 +84,7 @@ export default {
     activateSaveOption: function(val) {
       
       if (val) {
-      console.log("El watcher esta funcionando", val);
-        if (this.fieldsEmpty()){
-          console.log("Entra al if");
+        if (this.validateFields()){
           let configElement = {
             type: this.type,
             options: this.options
@@ -109,7 +92,6 @@ export default {
 
           return this.$emit("send-option", configElement);
         }else{
-          console.log("Entra al else");
           return this.$emit("send-option", false);
 
         }

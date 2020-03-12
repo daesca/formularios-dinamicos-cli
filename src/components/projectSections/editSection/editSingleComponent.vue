@@ -2,7 +2,7 @@
   <div id="editSingleComponent-container">
     <div id="title">
       <strong>Titulo:</strong> {{ options.titulo }} <br />
-      <strong>Tipo: </strong>{{ type }} <br>
+      <strong>Tipo: </strong>{{ $languages[type]}} <br>
       <strong>Peso: </strong> {{ options.peso }}
     </div>
     <div id="edit-buttons" class="text-right">
@@ -68,8 +68,10 @@
 </template>
 <script>
 
-import textBox from './editFormElements/textBox';
-import textField from './editFormElements/textField';
+// import textBox from './editFormElements/textBox';
+// import textField from './editFormElements/textField';
+
+import { textBox, textField } from '../../../importGroups/editSection/editElementsImports'
 
 export default {
 
