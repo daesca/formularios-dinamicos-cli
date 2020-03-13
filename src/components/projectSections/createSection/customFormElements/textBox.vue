@@ -8,11 +8,17 @@
         name="title"
         v-model="options.titulo"
       />
-      <transition name="slide-fade">
-        <div v-if="errors.state != true && errors.titulo">
-          <small v-show="errors.titulo.showError" class="text-error">{{ errors.titulo.msg }}</small>
+        <!-- <div v-show="errors.titulo.showError">
+              Se muestra el error
+              <small v-show="errors.titulo.showError" class="text-error">{{ errors.titulo.msg }}</small>
+
+        </div> -->
+
+          <div id="tituloMensajesError">
+              Se muestra el error
+              <!-- <small v-show="errors.titulo.showError" class="text-error">{{ errors.titulo.msg }}</small> -->
+
         </div>
-      </transition>
     </div>
 
     <div class="form-group">
@@ -25,11 +31,16 @@
         name="valueElement"
         v-model="options.peso"
       />
-      <transition name="slide-fade">
-        <div v-if="errors.state != true && errors.peso">
-          <small v-show="errors.peso.showError" class="text-error">{{ errors.peso.msg }}</small>
+      <!-- <div v-show="errors.peso.showError">
+            se muestra el error
+            <small class="text-error">{{ errors.peso.msg }}</small>
+      </div> -->
+
+      <div v-if="errors.peso">
+              Se muestra el error
+              <!-- <small v-show="errors.titulo.showError" class="text-error">{{ errors.titulo.msg }}</small> -->
+
         </div>
-      </transition>
     </div>
   </div>
 </template>
@@ -42,21 +53,21 @@ export default {
       type: "textBox",
       options: {
         titulo: null,
-        peso: 0
+        peso: '0'
       },
       errors:{
-        state: true
-        // titulo:{
+        // state: true,
+        titulo:{
           
-        //   msg: "Este campo no puede estar vacío",
+          msg: "t",
+          showError: false
+
+        },
+        // peso:{
+        //   msg: "",
         //   showError: false
 
         // },
-        // peso:{
-        //   msg: "Este campo no puede estar vacío",
-        //   showError: false
-
-        // }
 
       }
     };
@@ -64,17 +75,19 @@ export default {
   methods:{
 
     validateFields(){
-
+      
       // let resultValidate = this.$globalFunctions.fieldsEmpty(this.options);
       let resultValidate = this.$globalFunctions.fieldsEmpty(this.options);
-      console.log(resultValidate);
-
+      // console.log(resultValidate);
+      document.getElementById("tituloMensajesError").innerHTML = "";
       for (let key in resultValidate) {
-       
-        this.errors[key] = resultValidate[key];
+        
+        //this.errors[key] = 
+        document.getElementById(key+"MensajesError").innerHTML = resultValidate[key].msg
         
       }
       this.errors.state = resultValidate.state;
+      console.log('Estado de la validacion', resultValidate.state);
       return resultValidate.state;
 
     }
@@ -91,6 +104,7 @@ export default {
           };
 
           return this.$emit("send-option", configElement);
+
         }else{
           return this.$emit("send-option", false);
 

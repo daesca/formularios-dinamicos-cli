@@ -38,21 +38,21 @@ export default {
       type: "textField",
       options: {
         titulo: null,
-        peso: 0
+        peso: '0'
       },
       errors:{
-        state: true
-        // titulo:{
+        // state: true,
+        titulo:{
           
-        //   msg: "Este campo no puede estar vacío",
-        //   showError: false
+          msg: "",
+          showError: false,
 
-        // },
-        // peso:{
-        //   msg: "Este campo no puede estar vacío",
-        //   showError: false
+        },
+        peso:{
+          msg: "",
+          showError: false,
 
-        // }
+        }
 
       }
     };

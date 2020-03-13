@@ -4,25 +4,29 @@ const globalFunctions = {
 
     fieldsEmpty(fields) {
 
+        // console.log(fields);
+
         let defaultMsg = textos.messageErrorFieldEmpty;
 
         let result = {};
-
-        //let error = {};
 
         let state = true;
 
         for (let key in fields) {
 
+            result[key] = {
+
+                msg: "",
+                showError: false
+
+            }
+
             if (fields[key] == null || fields[key] == '' || fields[key] == undefined) {
 
-                result[key] = {
+                console.log("Campo a validar", fields[key]);
 
-                    msg: defaultMsg,
-                    showError: true
-
-                }
-
+                result[key].msg = defaultMsg;
+                result[key].showError = true;
 
 
                 if (state != false) {

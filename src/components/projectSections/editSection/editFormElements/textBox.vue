@@ -15,11 +15,7 @@
             </div>
             <div class="modal-body">
 
-                <transition name="slide-fade">
-                    <div v-if="showAlertMessage" class="alert alert-success" role="alert">
-                        Elemento editado exitosamente
-                    </div>
-                </transition>
+            <alerts :msg="$languages.messageErrorFieldEmpty" :type="1" :showAlert="showAlertMessage"></alerts>
 
                 <div id="textBox-edit-container">
 
@@ -72,9 +68,16 @@
               
 </template>
 <script>
+
+import { alerts } from '../../../../importGroups/utilities/index';
 export default {
 
     props:['keyarray','options'],
+    components: {
+
+        alerts
+
+    },
     data(){
 
         return{
