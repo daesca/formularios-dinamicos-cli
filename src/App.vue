@@ -70,6 +70,18 @@ export default {
 
   } */
 
+  .error-block{
+
+    display:none;
+    color: red;
+
+  }
+
+  .show{
+
+    display:block !important;
+
+  }
   .text-error{
 
     color:red;
