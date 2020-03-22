@@ -42,27 +42,24 @@
 </template>
 <script>
     import defaulted from './default';
-    import { textBox, textField } from '../../../importGroups/createSection/createElementsImports';
+    import * as configComponents from '../../../importGroups/createSection/createElementsImports';
     // import textBox from './customFormElements/textBox';
     // import textField from './customFormElements/textField';
 
     export default {
         components:{
             defaulted,
-            textBox,
-            textField,
+            'textBox': configComponents.textBox,
+            'textField': configComponents.textField,
+            'selectField': configComponents.selectField,
+            'checkField': configComponents.checkField,
+            'radioField': configComponents.radioField,
         },
         data(){
             return{
 
                 selected: '',
                 saveOption: false,
-                avalibleFormElemets: {
-
-                    TextBox: "Caja de Texto",
-                    TextField: "Campo de texto"
-
-                }
 
             }
         },
@@ -72,7 +69,7 @@
 
                 if(val != false){
 
-                    console.log("Esta entrando en el metodo", val);
+                    // console.log("Esta entrando en el metodo", val);
 
                     this.$store.commit('addElementForm', val);
                       

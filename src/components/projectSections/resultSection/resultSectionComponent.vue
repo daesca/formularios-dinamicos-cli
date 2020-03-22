@@ -10,7 +10,7 @@
         </ul> -->
 
         <form>
-            <component v-for="(value, key, index) in $store.getters.configForm" :is="value.type" :options="value.options" :key="index"></component>
+            <component v-for="(value, key, index) in $store.getters.configForm" :is="value.type" :options="value.options" :key="index" :keyarray="index"></component>
 
                 <!-- <component :is="value.type" :options="value.options"></component> -->
         </form>
@@ -20,13 +20,18 @@
 </template>
 <script>
 
-    import textField from './resultFormElements/textField';
-    import textBox from './resultFormElements/textBox';
+    // import textField from './resultFormElements/textField';
+    // import textBox from './resultFormElements/textBox';
+
+    import * as resultComponents from '../../../importGroups/resultSection/resultElementsImports'
 
     export default {
         components:{
-            textField,
-            textBox
+            'textBox': resultComponents.textBox,
+            'textField': resultComponents.textField,
+            'selectField': resultComponents.selectField,
+            'checkField': resultComponents.checkField,
+            'radioField': resultComponents.radioField,
         }
 
     }

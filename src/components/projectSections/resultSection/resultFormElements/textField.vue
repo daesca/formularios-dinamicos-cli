@@ -2,14 +2,14 @@
     <div class="form-group">
 
         <label for="resultado"><strong>{{ options.titulo }} </strong></label>
-        <input type="text" name="resultado" class="form-control" :placeholder="options.placeholder">
-
+        <input type="text" :name="'element-' + keyarray" class="form-control" :placeholder="options.placeholder">
+        <hr>
     </div>
 </template>
 <script>
 export default {
 
-    props:['options']
+    props:['keyarray', 'options']
     
 }
 </script>

@@ -3,11 +3,7 @@
     <div class="form-group">
       <label for="title">{{ $languages.titleLabelForm }}</label><br />
       <input type="text" class="form-control" name="title" v-model="options.titulo" required/>
-            <transition name="slide-fade">
-        <div v-if="errors.state != true && errors.titulo">
-          <small v-show="errors.titulo.showError" class="text-error">{{ errors.titulo.msg }}</small>
-        </div>
-      </transition>
+      <div id="error-titulo" class="error-block"></div>
     </div>
 
     <div class="form-group">
@@ -21,11 +17,7 @@
         min="0"
         max="100"
       />
-      <transition name="slide-fade">
-        <div v-if="errors.state != true && errors.peso">
-          <small v-show="errors.peso.showError" class="text-error">{{ errors.peso.msg }}</small>
-        </div>
-      </transition>
+      <div id="error-peso" class="error-block"></div>
     </div>
 
   </div>
@@ -40,40 +32,22 @@ export default {
         titulo: null,
         peso: '0'
       },
-      errors:{
-        // state: true,
-        titulo:{
-          
-          msg: "",
-          showError: false,
 
-        },
-        peso:{
-          msg: "",
-          showError: false,
-
-        }
-
-      }
     };
   },
   methods:{
 
     validateFields(){
 
-      // let resultValidate = this.$globalFunctions.fieldsEmpty(this.options);
-      let resultValidate = this.$globalFunctions.fieldsEmpty(this.options);
-      console.log(resultValidate);
+      let resultValidate = this.$globalFunctions.emptyFields(this.options);
 
-      for (let key in resultValidate) {
-       
-        this.errors[key] = resultValidate[key];
-        
-      }
-      this.errors.state = resultValidate.state;
+      this.$globalFunctions.showErrors(resultValidate.emptyFields, this.$languages.errorFieldEmptyMessage);
+
+      // console.log('Estado de la validacion', resultValidate.state);
       return resultValidate.state;
 
     }
+    
 
   },
   watch: {

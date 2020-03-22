@@ -8,8 +8,11 @@ const store = new Vuex.Store({
     state: {
         avalibleFormElemets: {
 
-            textBox: "Caja de Texto",
-            textField: "Campo de texto"
+            textBox: 'Caja de Texto',
+            textField: 'Campo de texto',
+            selectField: 'Lista de opciones',
+            checkField: 'Selección multiple',
+            radioField: 'Única opción',
 
         },
         configForm: [

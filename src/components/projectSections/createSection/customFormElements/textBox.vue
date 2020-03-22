@@ -8,17 +8,9 @@
         name="title"
         v-model="options.titulo"
       />
-        <!-- <div v-show="errors.titulo.showError">
-              Se muestra el error
-              <small v-show="errors.titulo.showError" class="text-error">{{ errors.titulo.msg }}</small>
 
-        </div> -->
+        <div id="error-titulo" class="error-block"></div>
 
-          <div id="error-titulo" class="error-block">
-              Se muestra el error de titulo
-              <!-- <small v-show="errors.titulo.showError" class="text-error">{{ errors.titulo.msg }}</small> -->
-
-        </div>
     </div>
 
     <div class="form-group">
@@ -31,16 +23,8 @@
         name="valueElement"
         v-model="options.peso"
       />
-      <!-- <div v-show="errors.peso.showError">
-            se muestra el error
-            <small class="text-error">{{ errors.peso.msg }}</small>
-      </div> -->
 
-      <div id="error-peso" class="error-block">
-              Se muestra el error de peso
-              <!-- <small v-show="errors.titulo.showError" class="text-error">{{ errors.titulo.msg }}</small> -->
-
-        </div>
+      <div id="error-peso" class="error-block"></div>
     </div>
   </div>
 </template>
@@ -55,51 +39,17 @@ export default {
         titulo: null,
         peso: '0'
       },
-      errors:{
-        // state: true,
-        titulo:{
-          
-          msg: "t",
-          showError: false
-
-        },
-        // peso:{
-        //   msg: "",
-        //   showError: false
-
-        // },
-
-      }
     };
   },
   methods:{
 
     validateFields(){
-      
-      // let resultValidate = this.$globalFunctions.fieldsEmpty(this.options);
-      let resultValidate = this.$globalFunctions.fieldsEmpty(this.options);
-      // console.log(resultValidate);
-      // console.log(document.getElementsByClassName('error-block'));
-      // document.getElementsByClassName('error-block').classList.remove("show");
 
-      for(let blocks = 0; blocks < document.getElementsByClassName('error-block').length; blocks ++){
-        // console.log(document.getElementsByClassName('error-block')[blocks]);
-        document.getElementsByClassName('error-block')[blocks].classList.add('show');
+      let resultValidate = this.$globalFunctions.emptyFields(this.options);
 
-      }
+      this.$globalFunctions.showErrors(resultValidate.emptyFields, this.$languages.errorFieldEmptyMessage);
 
-      for (let key in resultValidate) {
-        
-        let elementError = document.getElementById("error-" + key);
-        elementError.innerHTML = resultValidate[key].msg;
-        elementError.classList.add('show');
-
-        //this.errors[key] = 
-        // document.getElementById(key+"MensajesError").innerHTML = resultValidate[key].msg
-        
-      }
-      this.errors.state = resultValidate.state;
-      console.log('Estado de la validacion', resultValidate.state);
+      // console.log('Estado de la validacion', resultValidate.state);
       return resultValidate.state;
 
     }

@@ -32,12 +32,37 @@
 
 <script>
 // import HelloWorld from './components/HelloWorld.vue';
-
+// import JQ from "jquery";
 import creationSectionComponent from './components/projectSections/createSection/creationSectionComponent';
 import editSectionComponent from './components/projectSections/editSection/editSectionComponent'
 import resultSectionComponent from './components/projectSections/resultSection/resultSectionComponent';
 
 export default {
+  //   head: {
+  //     script: [
+  //         { 
+            
+  //           src: 'https://code.jquery.com/jquery-3.4.1.slim.min.js',
+  //           integrity: 'sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n',
+  //           crossorigin: 'anonymous' 
+          
+  //         },
+  //         {
+  //           src:"https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js",
+  //           integrity:"sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo",
+  //           crossorigin:"anonymous"
+
+
+  //         },
+  //         {
+  //           src:"https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js",
+  //           integrity:"sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6", 
+  //           crossorigin:"anonymous"
+
+  //         }
+              
+  //     ]
+  // },
   name: 'App',
   components: {
     // HelloWorld,
@@ -91,7 +116,7 @@ export default {
 
   .default-box{
 
-    height: 350px;
+    height: 400px;
     overflow-y: auto;
     padding-left: 15px;
     padding-right: 15px;

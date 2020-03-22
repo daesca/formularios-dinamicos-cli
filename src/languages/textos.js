@@ -1,10 +1,14 @@
 const textos = {
     //Type elements
-    textBox: "Caja de Texto",
-    textField: "Campo de texto",
+    textBox: 'Caja de Texto',
+    textField: 'Campo de texto',
+    selectField: 'Lista de opciones',
+    checkField: 'Selección multiple',
+    radioField: 'Única opción',
 
-    //Error messages
-    messageErrorFieldEmpty: "Este campo no debe estar vacío",
+    //Alerts messages
+    editSuccessMessage: 'Edición realizada correctamente',
+    errorFieldEmptyMessage: 'Este campo no debe estar vacío',
 
     //Section titles
     creationSectionTitle: 'Agregar elementos',
@@ -14,6 +18,10 @@ const textos = {
     //General Input Labels 
     titleLabelForm: 'Título',
     valueLabelForm: 'Peso',
+    typeLabelForm: 'Tipo',
+    elementsLabelForm: 'Elementos del campo',
+    textElementLabelForm: 'Texto',
+    valueElementLabelForm: 'Valor',
 
     //Button texts
     acceptButtonText: 'Aceptar',
@@ -21,11 +29,19 @@ const textos = {
     cancelButtonText: 'Cancelar',
     editButtonText: 'Editar',
     deleteButtonText: 'Eliminar',
+    addButtonText: 'Agregar',
 
     //Creation section texts
 
     defaultSelect: 'Seleccione una opción',
     defaultComponentText: 'Elija un elemento para configurar y agregar',
+
+    //Modal text
+    editModalTitle: 'Editar elemento',
+
+    //-------------------
+
+    selectDefaultOptionText: 'Seleccione una opción',
 
 
 }
