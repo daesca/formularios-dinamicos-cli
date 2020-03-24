@@ -24,7 +24,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <!-- <tr>
                         <th scope="row">0</th>
                         <td>Campaña creada 1</td>
                         <td>Tecnologia e Informacion</td>
@@ -36,12 +36,17 @@
                             <router-link to="/main/editCampaign" class="btn btn-info mr-2">{{ $languages.editButtonText }}</router-link>
                             <button @click="deleteCampaign(index)" class="btn btn-danger">{{ $languages.deleteButtonText }}</button>
                         </td>
-                    </tr>
+                    </tr> -->
                     <tr v-for="(value, index) in $store.getters.createdCampaigns" :key="index">
                         <th scope="row">{{ index }}</th>
                         <td>{{ value.title }}</td>
+                        <td>{{ value.category }}</td>
+                        <td>{{ value.dateInit }}</td>
+                        <td>{{ value.dateFinal }}</td>
+                        <td>{{ value.totalAspirants }}</td>
                         <td>
-                            <router-link to="/main/editCampaign" class="btn btn-info">{{ $languages.editButtonText }}</router-link>
+                            <router-link to="/main/formsCreate" class="btn btn-success mr-2"> {{ $languages.createFormText }} </router-link>
+                            <router-link :to="{path: '/main/editCampaign/' + index, params:{ keyarray: index } }" class="btn btn-info mr-2">{{ $languages.editButtonText }}</router-link>
                             <button @click="deleteCampaign(index)" class="btn btn-danger">{{ $languages.deleteButtonText }}</button>
                         </td>
                     </tr>

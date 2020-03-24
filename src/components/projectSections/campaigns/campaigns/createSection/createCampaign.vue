@@ -21,7 +21,7 @@
             <div id="error-dateInit" class="error-block"></div>
         </div>
         <div class="form-group">
-            <label for="dateFinal">Fecha fin</label>
+            <label for="dateFinal">Fecha Fin</label>
             <input type="date" name="dateFinal" class="form-control" v-model="campaignInfo.dateFinal"/>
             <div id="error-dateFinal" class="error-block"></div>
         </div>
@@ -30,16 +30,6 @@
             <input type="number" min="1" name="totalAspirants" class="form-control" v-model="campaignInfo.totalAspirants"/>
             <div id="error-totalAspirants" class="error-block"></div>
         </div>
-        <div class="form-group">
-            <label for="formAssociated">Asocie un formulario</label>
-            <span v-if="$store.getters.createdForms.length == 0" style="color: red">No existen formularios</span>
-            <select v-else name="formAssociated" class="form-control" v-model="campaignInfo.formAssociated">
-                <option selected>Seleccione una opcion</option>
-                <option v-for="(value, index) in $store.getters.createdForms" :key="index" :value="index">{{ value.title }}</option>
-                <!-- <option value="1">Categoria 2</option>
-                <option value="2">Categoria 3</option> -->
-            </select>
-        </div> 
         <div>
             <button class="btn btn-success" @click="saveOption()">{{ $languages.saveButtonText }}</button>
             <button class="btn btn-default" @click="cancelOption()">{{ $languages.cancelButtonText }}</button>
@@ -58,7 +48,6 @@ export default {
                 dateInit: '',
                 dateFinal: '',
                 totalAspirants: '1',
-                formAssociated: '',
             }
         }
 
@@ -85,13 +74,11 @@ export default {
         },
         saveOption(){
 
-            console.log("Entrando al save");
-
             if(this.validateFields()){
 
-                this.$store.commit('addCampaigns', this.campaignInfo);
+                this.$store.commit('addCampaign', this.campaignInfo);
                 
-                this.$router.go('main/campaigns');
+                return this.$router.push('campaigns');
 
             }
 
@@ -99,7 +86,7 @@ export default {
         },
         cancelOption(){
 
-            this.$router.go('main/campaigns');
+            return this.$router.push('campaigns');
 
         }
 

@@ -137,7 +137,7 @@ export default {
                 type: this.type,
                 options: this.options
             };
-
+            console.log("ConfigElement Select", configElement);
             return this.$emit("send-option", configElement);
 
             }else{

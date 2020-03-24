@@ -2,12 +2,12 @@
     <div id="resultSectionComponent-container">
         <h3 class="text-center">{{ $languages.resultSectionTitle }}</h3>
         <form>
-            <component v-for="(value, key, index) in $store.getters.configForm" :is="value.type" :options="value.options" :key="index" :keyarray="index"></component>
+            <component v-for="(value, key, index) in $store.getters.configFormLast" :is="value.type" :options="value.options" :key="index" :keyarray="index"></component>
 
                 <!-- <component :is="value.type" :options="value.options"></component> -->
         </form>
-        <div v-if="$store.getters.configForm.length > 0" class="text-right">
-            <button class="btn btn-info mr-1" >{{ $languages.saveButtonText }}</button>
+        <div v-if="$store.getters.configFormLast.length > 0" class="text-right">
+            <button class="btn btn-info mr-1" data-toggle="modal" data-target="#saveFormModal">{{ $languages.saveButtonText }}</button>
         </div>
         <div
             class="modal fade"
@@ -28,7 +28,7 @@
                         <div class="form-group">
                                 
                             <label for="titleForm">{{ $languages.saveModalTitleForm }}</label>
-                            <input type="text" name="titleForm" v-model="titleForm">
+                            <input type="text" name="titleForm" class="form-control" v-model="titleForm">
                             <div id="error-titleForm" class="error-block"></div>
                         </div>
 
@@ -89,14 +89,15 @@
             },
             saveForm(){
 
-                console.log("Entrando al metodo");
-
-                this.$JQ("#saveFormModal").modal('show');
-
                 if(this.titleForm != ''){
 
                     this.$store.commit('addForms', this.titleForm);
-                    return this.$router.go('main/campaigns');
+                    
+                    this.$JQ('#saveFormModal').modal('hide');
+
+                    document.getElementsByClassName('modal-backdrop')[0].remove();
+
+                    return this.$router.push('campaigns');
 
                 }else{
 

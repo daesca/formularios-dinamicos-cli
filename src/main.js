@@ -4,6 +4,7 @@ import globalFunctions from './utilities/globalFunctions';
 import store from '../store';
 import textos from './languages/textos';
 import router from './router/index.js';
+let Bootstrap = require('bootstrap');
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Vue.use(globalFunctions);

@@ -16,23 +16,28 @@ const store = new Vuex.Store({
 
         },
         countForms: 0,
-        configForm: [
-
-
-        ],
+        configForm: {
+            0: []
+        },
         createdForms: [
 
         ],
-        createdCampaigns: [
-
-        ],
+        createdCampaigns: [{
+            title: 'Campaña creada 1',
+            category: '1',
+            dateInit: '2020-01-01',
+            dateFinal: '2020-12-01',
+            totalAspirants: '100',
+        }],
 
     },
     mutations: {
 
         addElementForm(state, value) {
 
-            state.configForm.push(value)
+            console.log(value);
+
+            state.configForm[state.countForms].push(value)
 
         },
         addForms(state, value) {
@@ -44,6 +49,8 @@ const store = new Vuex.Store({
 
             }
 
+            state.countForms++;
+
         },
         addCampaign(state, value) {
 
@@ -52,11 +59,11 @@ const store = new Vuex.Store({
         },
         editElementForm(state, value) {
 
-            state.configForm[value.keyarray].options = value.options
+            state.configForm[state.countForms][value.keyarray].options = value.options
 
         },
-        editCampaing(state, value) {
-
+        editCampaign(state, value) {
+            console.log("editCampaign", value);
             state.createdCampaigns[value.keyarray] = value.mutableCampaignInfo
 
         },
@@ -74,8 +81,14 @@ const store = new Vuex.Store({
     },
     getters: {
 
+        countForms: (state) => state.countForms,
         avalibleFormElemets: (state) => state.avalibleFormElemets,
         configForm: (state) => state.configForm,
+        configFormLast: (state) => {
+
+            return state.configForm[state.countForms];
+
+        },
         createdForms: (state) => state.createdForms,
         createdCampaigns: (state) => state.createdCampaigns,
 

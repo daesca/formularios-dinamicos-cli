@@ -2,7 +2,7 @@
     <div id="editSectionComponent-container">
         <h3 class="text-center">{{ $languages.editSectionTitle}}</h3>
         <ul>
-            <li v-for="(value, key) in $store.getters.configForm" :key="key" :value="key" >
+            <li v-for="(value, key) in $store.getters.configFormLast" :key="key" :value="key" >
                 <strong>Index del elemento: {{ key }} </strong>
                 <edit-single-component :options="value.options" :type="value.type" :keyarray="key"></edit-single-component>
 
@@ -22,6 +22,13 @@ export default {
 
        'edit-single-component': editSingleComponent
 
+   },
+   data(){
+
+       return{
+
+           datos: this.$store.getters.configFormLast
+       }
    }
     
 }

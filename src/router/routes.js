@@ -39,7 +39,7 @@ const routes = [
             },
             {
 
-                path: 'editCampaign',
+                path: 'editCampaign/:keyarray',
                 component: editCampaign,
                 props: true
 

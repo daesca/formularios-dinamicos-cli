@@ -9,7 +9,7 @@
       <button
         class="btn btn-info mr-1"
         data-toggle="modal"
-        data-target="#editModal"
+        :data-target="'#editModal' + keyarray"
       >
         {{ $languages.editButtonText }}
 
@@ -20,7 +20,7 @@
     <!-- Modal -->
     <div
       class="modal fade"
-      id="editModal"
+      :id="'editModal' + keyarray"
       data-backdrop="static" 
       tabindex="-1" 
       role="dialog" 
@@ -130,7 +130,7 @@ export default {
             self.showAlertMessage = false; 
         }, 3000);
 
-        this.closeModal("#editModal");
+        this.closeModal("#editModal" + this.keyarray);
               
       }
       this.editSaveOption = false;
@@ -156,7 +156,7 @@ export default {
       this.$store.commit("deleteElementForm", this.keyarray);
     },
     closeModal(idModal){
-
+        
         this.$JQ(idModal).modal('hide');
 
         document.getElementsByClassName('modal-backdrop')[0].remove();

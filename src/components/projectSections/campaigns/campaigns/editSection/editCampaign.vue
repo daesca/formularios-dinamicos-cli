@@ -30,16 +30,6 @@
             <input type="number" min="1" name="totalAspirants" class="form-control" v-model="mutableCampaignInfo.totalAspirants"/>
             <div id="error-totalAspirants" class="error-block"></div>
         </div>
-        <div class="form-group">
-            <label for="formAssociated">Asocie un formulario</label>
-            <span v-if="$store.getters.createdForms.length == 0" style="color: red">No existen formularios</span>
-            <select v-else name="formAssociated" class="form-control" v-model="mutableCampaignInfo.formAssociated">
-                <option selected>Seleccione una opcion</option>
-                <option v-for="(value, index) in $store.getters.createdForms" :key="index" :value="index">{{ value.title }}</option>
-                <!-- <option value="1">Categoria 2</option>
-                <option value="2">Categoria 3</option> -->
-            </select>
-        </div> 
         <div>
             <button class="btn btn-success" @click="saveOption">{{ $languages.saveButtonText }}</button>
             <button class="btn btn-default" @click="cancelOption">{{ $languages.cancelButtonText }}</button>
@@ -98,9 +88,9 @@ export default {
 
                 }
 
-                this.$store.commit('editCampaign', this.editOptions);
+                this.$store.commit('editCampaign', editOptions);
                 
-                this.$router.go('main/campaigns');
+                return this.$router.go(-1);
                 
             }
 
@@ -108,7 +98,7 @@ export default {
         },
         cancelOption(){
 
-            this.$router.go('main/campaigns');
+            return this.$router.go(-1);
 
         }
 
