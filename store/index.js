@@ -57,6 +57,11 @@ const store = new Vuex.Store({
             state.createdCampaigns.push(value)
 
         },
+        copyCampaign(state, index) {
+
+            state.createdCampaigns.push(state.createdCampaigns[index]);
+
+        },
         editElementForm(state, value) {
 
             state.configForm[state.countForms][value.keyarray].options = value.options

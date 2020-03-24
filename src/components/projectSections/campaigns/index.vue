@@ -47,6 +47,7 @@
                         <td>
                             <router-link to="/main/formsCreate" class="btn btn-success mr-2"> {{ $languages.createFormText }} </router-link>
                             <router-link :to="{path: '/main/editCampaign/' + index, params:{ keyarray: index } }" class="btn btn-info mr-2">{{ $languages.editButtonText }}</router-link>
+                            <button @click="copyCampaign(index)" class="btn btn-warning mr-2">Copiar</button>
                             <button @click="deleteCampaign(index)" class="btn btn-danger">{{ $languages.deleteButtonText }}</button>
                         </td>
                     </tr>
@@ -71,6 +72,11 @@
 export default {
     methods:{
 
+        copyCampaign(index){
+
+            this.$store.commit('copyCampaign', index);
+
+        },
         deleteCampaign(index){
 
             this.$store.commit('deleteCampaign', index);
