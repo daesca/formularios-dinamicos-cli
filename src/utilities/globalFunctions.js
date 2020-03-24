@@ -100,7 +100,7 @@ const globalFunctions = {
     },
     emptyFieldsSCRStructure(basicInfo, elements, editMode = false, indexGlobal = 0) {
 
-        console.log("Index global: ", indexGlobal);
+        // console.log("Index global: ", indexGlobal);
 
         // console.log("Informacion Basica", basicInfo);
         // console.log("Elementos: ", elements);

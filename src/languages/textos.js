@@ -1,4 +1,7 @@
 const textos = {
+
+    welcomeLoginMessageText: 'Bienvenido a la plataforma de pre-inscripciones',
+
     //Type elements
     textBox: 'Caja de Texto',
     textField: 'Campo de texto',
@@ -22,6 +25,7 @@ const textos = {
     elementsLabelForm: 'Elementos del campo',
     textElementLabelForm: 'Texto',
     valueElementLabelForm: 'Valor',
+    saveModalTitleForm: 'Titulo del formulario',
 
     //Button texts
     acceptButtonText: 'Aceptar',
@@ -30,6 +34,8 @@ const textos = {
     editButtonText: 'Editar',
     deleteButtonText: 'Eliminar',
     addButtonText: 'Agregar',
+    createCampaignText: 'Crear campaña',
+    createFormText: 'Crear Formulario',
 
     //Creation section texts
 
@@ -42,6 +48,11 @@ const textos = {
     //-------------------
 
     selectDefaultOptionText: 'Seleccione una opción',
+
+    //-------
+
+    noCampaignsAvalible: 'No hay campañas disponibles'
+
 
 
 }

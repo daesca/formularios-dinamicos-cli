@@ -1,84 +1,20 @@
 <template>
   <div id="app">
-    <!-- <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-
-        <div class="container-fluid">
-
-          <div class="row min-height-800px">
-            <!-- <button @click="checkPlugin" >Probar plugin</button> -->
-              <div id="left-side" class="col-6">
-                  <div id="addConfigFormElements" class="min-height-400px">
-                      <creation-section-component></creation-section-component>
-                      <!-- <fruity></fruity> -->
-                      <!-- <fruits-f></fruits-f> -->
-                  </div>
-                  <hr>
-                  <div id="editFormElements" class="min-height-400px">
-                    <edit-section-component></edit-section-component>
-                  </div>
-              </div>
-              <div id="right-side" class="col-6 border-left">
-                  <div id="resultForm">
-                    <result-section-component></result-section-component>
-                  </div>
-              </div>
-
-          </div>
-
-      </div>
+    <router-view name="loginView"></router-view>
+    <router-view name="main"></router-view>
   </div>
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue';
-// import JQ from "jquery";
-import creationSectionComponent from './components/projectSections/createSection/creationSectionComponent';
-import editSectionComponent from './components/projectSections/editSection/editSectionComponent'
-import resultSectionComponent from './components/projectSections/resultSection/resultSectionComponent';
+
 
 export default {
-  //   head: {
-  //     script: [
-  //         { 
-            
-  //           src: 'https://code.jquery.com/jquery-3.4.1.slim.min.js',
-  //           integrity: 'sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n',
-  //           crossorigin: 'anonymous' 
-          
-  //         },
-  //         {
-  //           src:"https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js",
-  //           integrity:"sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo",
-  //           crossorigin:"anonymous"
 
-
-  //         },
-  //         {
-  //           src:"https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js",
-  //           integrity:"sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6", 
-  //           crossorigin:"anonymous"
-
-  //         }
-              
-  //     ]
-  // },
   name: 'App',
   components: {
-    // HelloWorld,
-    'creation-section-component': creationSectionComponent,
-    'result-section-component': resultSectionComponent,
-    'edit-section-component': editSectionComponent
+
   },
-  // methods:{
 
-  //   checkPlugin(){
-
-  //     this.$globalFunctions.testCode();
-
-  //   }
-
-  // }
 }
 </script>
 

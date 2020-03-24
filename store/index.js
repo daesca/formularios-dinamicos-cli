@@ -15,10 +15,17 @@ const store = new Vuex.Store({
             radioField: 'Única opción',
 
         },
+        countForms: 0,
         configForm: [
 
 
-        ]
+        ],
+        createdForms: [
+
+        ],
+        createdCampaigns: [
+
+        ],
 
     },
     mutations: {
@@ -28,22 +35,49 @@ const store = new Vuex.Store({
             state.configForm.push(value)
 
         },
+        addForms(state, value) {
+
+            state.createdForms[state.countForms] = {
+
+                indexConfigForm: state.countForms,
+                titleForm: value.tituloForm,
+
+            }
+
+        },
+        addCampaign(state, value) {
+
+            state.createdCampaigns.push(value)
+
+        },
         editElementForm(state, value) {
-            console.log("Esto es el value", value);
+
             state.configForm[value.keyarray].options = value.options
+
+        },
+        editCampaing(state, value) {
+
+            state.createdCampaigns[value.keyarray] = value.mutableCampaignInfo
 
         },
         deleteElementForm(state, index) {
 
             state.configForm.splice(index, 1);
 
-        }
+        },
+        deleteCampaign(state, index) {
+
+            state.createdCampaigns.splice(index, 1);
+
+        },
 
     },
     getters: {
 
         avalibleFormElemets: (state) => state.avalibleFormElemets,
         configForm: (state) => state.configForm,
+        createdForms: (state) => state.createdForms,
+        createdCampaigns: (state) => state.createdCampaigns,
 
     }
 

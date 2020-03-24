@@ -42,7 +42,7 @@
 </template>
 <script>
     import defaulted from './default';
-    import * as configComponents from '../../../importGroups/createSection/createElementsImports';
+    import * as configComponents from '../../../../../importGroups/campaigns/forms/createSection/createElementsImports';
     // import textBox from './customFormElements/textBox';
     // import textField from './customFormElements/textField';
 

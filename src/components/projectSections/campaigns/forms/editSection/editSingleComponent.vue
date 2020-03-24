@@ -59,9 +59,7 @@
             </div>
         </div>
       </div> 
-      <!-- <div :id="'alerts-item-' + keyarray" class="error-block"></div>
-      <component :is="type" :options="options" :keyarray="keyarray" :idmodal="idModal"></component> -->
-
+      
     </div>
     <!-- <div id="alert-toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="3000">
       <div class="toast-header">
@@ -80,8 +78,8 @@
 </template>
 <script>
 
-import * as configComponents from '../../../importGroups/editSection/editElementsImports'
-import * as utilitiesComponents from '../../../importGroups/utilities/index';
+import * as configComponents from '../../../../../importGroups/campaigns/forms/editSection/editElementsImports'
+import * as utilitiesComponents from '../../../../../importGroups/utilities/index';
 
 export default {
 
