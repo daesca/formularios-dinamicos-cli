@@ -6,11 +6,15 @@ import textos from './languages/textos';
 import router from './router/index.js';
 let Bootstrap = require('bootstrap');
 import 'bootstrap/dist/css/bootstrap.min.css';
+import VueResource from 'vue-resource';
+import configRoot from './api/config';
 
-// Vue.use(globalFunctions);
+Vue.use(VueResource);
+
 Vue.prototype.$globalFunctions = globalFunctions;
 Vue.prototype.$languages = textos;
 Vue.prototype.$JQ = require('jquery');
+Vue.http.options = configRoot;
 
 Vue.config.productionTip = false
 

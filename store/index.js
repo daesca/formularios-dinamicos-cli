@@ -17,12 +17,18 @@ const store = new Vuex.Store({
         },
         countForms: 0,
         configForm: {
-            0: []
+            0: [{
+
+                options: { "titulo": "Campaña creada 1 editado", "peso": "25" },
+                type: 'textBox',
+
+            }]
         },
         createdForms: [
 
         ],
         createdCampaigns: [{
+            code: '25896',
             title: 'Campaña creada 1',
             category: '1',
             dateInit: '2020-01-01',

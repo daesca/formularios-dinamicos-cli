@@ -2,13 +2,13 @@
     <div id="create-campaign-container" class="container">
         <div class="form-group">
             <label for="title">Nombre</label>
-            <input type="text" name="title" class="form-control" v-model="mutableCampaignInfo.title"/>
-            <div id="error-title" class="error-block"></div>
+            <input type="text" name="title" class="form-control" v-model="mutableCampaignInfo.name"/>
+            <div id="error-name" class="error-block"></div>
         </div>
         <div class="form-group">
             <label for="category">Area de conocimiento</label>
             <select name="category" class="form-control" v-model="mutableCampaignInfo.category">
-                <option selected>Seleccione una opcion</option>
+                <option value="" selected>Seleccione una opcion</option>
                 <option value="0">Categoria 1</option>
                 <option value="1">Categoria 2</option>
                 <option value="2">Categoria 3</option>
@@ -17,12 +17,12 @@
         </div>
         <div class="form-group">
             <label for="dateInit">Fecha Inicio</label>
-            <input type="date" name="dateInit" class="form-control" v-model="mutableCampaignInfo.dateInit"/>
+            <input type="date" name="dateInit" class="form-control" v-model="mutableCampaignInfo.startDate"/>
             <div id="error-dateInit" class="error-block"></div>
         </div>
         <div class="form-group">
             <label for="dateFinal">Fecha fin</label>
-            <input type="date" name="dateFinal" class="form-control" v-model="mutableCampaignInfo.dateFinal"/>
+            <input type="date" name="dateFinal" class="form-control" v-model="mutableCampaignInfo.finalDate"/>
             <div id="error-dateFinal" class="error-block"></div>
         </div>
         <div class="form-group">
@@ -42,7 +42,7 @@ export default {
     data(){
 
         return{
-             mutableCampaignInfo: JSON.parse(JSON.stringify(this.$store.getters.createdCampaigns[this.keyarray])),  
+             mutableCampaignInfo: '',  
 
             // campaignInfo:{    
             //     title:'',
@@ -55,19 +55,46 @@ export default {
         }
 
     },
+    mounted(){
+
+        // console.log("Prop", this.keyarray);
+
+        this.$http.get('campaign/edit/' + this.keyarray).then(response => {
+
+            if(response.body.status){
+
+                this.mutableCampaignInfo = response.body.data;
+
+                return true;
+
+            }else{
+
+                return alert("Error al eliminar");
+
+            }
+
+        }, response =>{
+
+            alert("Algo ha fallado. Contacte con el administrador");
+            
+            return console.log('Too mal', response);
+
+        });
+
+    },
     methods:{
         validateFields(){
 
-            let options = {
+            // let options = {
 
-                title: this.mutableCampaignInfo.title,
-                category: this.mutableCampaignInfo.category,
-                dateInit: this.mutableCampaignInfo.dateInit,
-                dateFinal: this.mutableCampaignInfo.dateFinal,
-                totalAspirants: this.mutableCampaignInfo.totalAspirants
-            }
+            //     name: this.mutableCampaignInfo.name,
+            //     category: this.mutableCampaignInfo.category,
+            //     dateInit: this.mutableCampaignInfo.startDate,
+            //     dateFinal: this.mutableCampaignInfo.finalDate,
+            //     totalAspirants: this.mutableCampaignInfo.totalAspirants
+            // }
 
-            let resultValidate = this.$globalFunctions.emptyFields(this.options);
+            let resultValidate = this.$globalFunctions.emptyFields(this.mutableCampaignInfo);
 
             this.$globalFunctions.showErrors(resultValidate.emptyFields, this.$languages.errorFieldEmptyMessage);
 
@@ -81,17 +108,31 @@ export default {
 
             if(this.validateFields()){
 
-                let editOptions = {
+                this.$http.post('campaign/update', this.mutableCampaignInfo).then(response => {
 
-                    keyarray: this.keyarray,
-                    mutableCampaignInfo: this.mutableCampaignInfo
+                    // console.log("Too bn", response);
 
-                }
+                    if(response.body.status){
 
-                this.$store.commit('editCampaign', editOptions);
+                        alert("Edicion finalizada exitosamente");
+
+                        return this.$router.go(-1);
+
+                    }else{
+
+                        return alert("Error al eliminar");
+
+                    }
+
+
+                }, response =>{
+
+                    alert("Algo ha fallado. Contacte con el administrador", response);
+                    return console.log('Too mal', response);
+
+                });
                 
-                return this.$router.go(-1);
-                
+
             }
 
 

@@ -34,6 +34,7 @@ const textos = {
     editButtonText: 'Editar',
     deleteButtonText: 'Eliminar',
     addButtonText: 'Agregar',
+    copyButtonText: 'Copiar',
     createCampaignText: 'Crear campaña',
     createFormText: 'Crear Formulario',
 

@@ -37,18 +37,19 @@
                             <button @click="deleteCampaign(index)" class="btn btn-danger">{{ $languages.deleteButtonText }}</button>
                         </td>
                     </tr> -->
-                    <tr v-for="(value, index) in $store.getters.createdCampaigns" :key="index">
-                        <th scope="row">{{ index }}</th>
-                        <td>{{ value.title }}</td>
+                    <!-- <tr v-for="(value, index) in $store.getters.createdCampaigns" :key="index"> -->
+                    <tr v-for="(value, index) in campaigns" :key="index">
+                        <th scope="row">{{ value.code }}</th>
+                        <td>{{ value.name }}</td>
                         <td>{{ value.category }}</td>
-                        <td>{{ value.dateInit }}</td>
-                        <td>{{ value.dateFinal }}</td>
+                        <td>{{ value.startDate }}</td>
+                        <td>{{ value.finalDate }}</td>
                         <td>{{ value.totalAspirants }}</td>
                         <td>
                             <router-link to="/main/formsCreate" class="btn btn-success mr-2"> {{ $languages.createFormText }} </router-link>
-                            <router-link :to="{path: '/main/editCampaign/' + index, params:{ keyarray: index } }" class="btn btn-info mr-2">{{ $languages.editButtonText }}</router-link>
-                            <button @click="copyCampaign(index)" class="btn btn-warning mr-2">Copiar</button>
-                            <button @click="deleteCampaign(index)" class="btn btn-danger">{{ $languages.deleteButtonText }}</button>
+                            <router-link :to="{path: '/main/editCampaign/' + value.id, params:{ keyarray: value.id } }" class="btn btn-info mr-2">{{ $languages.editButtonText }}</router-link>
+                            <button @click="copyCampaign(value.id)" class="btn btn-warning mr-2">{{ $languages.copyButtonText }}</button>
+                            <button @click="deleteCampaign(value.id)" class="btn btn-danger">{{ $languages.deleteButtonText }}</button>
                         </td>
                     </tr>
                     <!-- <tr>
@@ -70,16 +71,83 @@
 </template>
 <script>
 export default {
+    data(){
+
+        return{
+
+            campaigns: '',
+
+        }
+
+    },
+    mounted(){
+
+        this.allCampaigns();
+
+    },
     methods:{
 
+        allCampaigns(){
+
+            this.$http.get('campaign/home').then(response => {
+
+                this.campaigns = response.body;
+
+            }, response =>{
+
+                console.log("Too mal", response);
+
+            });
+
+        },
         copyCampaign(index){
 
-            this.$store.commit('copyCampaign', index);
+            this.$http.get('campaign/copy/' + index).then(response => {
+
+                if(response.body.status){
+
+                    alert("Campaña copiada con exito");
+
+                    return this.allCampaigns();
+
+                }else{
+
+                    return alert("Error al eliminar");
+
+                }
+
+            }, response =>{
+
+                console.log("Too mal", response);
+
+            });
+
+            // this.$store.commit('copyCampaign', index);
 
         },
         deleteCampaign(index){
 
-            this.$store.commit('deleteCampaign', index);
+            this.$http.get('campaign/remove/' + index).then(response => {
+
+                if(response.body.status){
+
+                    alert("Campaña eliminada");
+
+                    return this.allCampaigns();
+
+                }else{
+
+                    return alert("Error al eliminar");
+
+                }
+
+            }, response =>{
+
+                console.log("Too mal", response);
+
+            });
+
+            // this.$store.commit('deleteCampaign', index);
 
         }
 

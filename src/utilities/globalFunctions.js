@@ -31,7 +31,7 @@ const globalFunctions = {
 
             // }
 
-            if (fields[key] == null || fields[key] == '' || fields[key] == undefined) {
+            if (fields[key] === null || fields[key] === '' || fields[key] === undefined) {
 
                 // console.log("Campo a validar", fields[key]);
 
