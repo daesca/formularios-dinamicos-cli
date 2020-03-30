@@ -87,3 +87,4 @@
 [2020-03-29T00:00:48.652494+01:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Recuperando campaña con id: 7 para edicion"} {"uid":"9296399"}
 [2020-03-29T00:01:32.755671+01:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Recuperando campaña con id: 7 para edicion"} {"uid":"9c8342f"}
 [2020-03-29T00:02:53.122491+01:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Editando campaña con id: 7"} {"uid":"01b0381"}
+[2020-03-30T21:09:32.350490+02:00] slim-app.DEBUG: App\Controllers\HomeController {"message":"Ejecución de función Home"} {"uid":"336b8ac"}
