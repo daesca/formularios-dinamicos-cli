@@ -1,6 +1,6 @@
 const configRoot = {
 
-    root: 'http://localhost/public/',
+    root: 'http://localhost:8585/public/',
     emulateJSON: true
 
 }

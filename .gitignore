@@ -22,5 +22,5 @@ frontend/*.sw?
 
 # BackEnd
 backend/vendor
-backend/.env
+# backend/.env
 backend/.idea
