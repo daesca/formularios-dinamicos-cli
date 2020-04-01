@@ -88,3 +88,23 @@
 [2020-03-29T00:01:32.755671+01:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Recuperando campaña con id: 7 para edicion"} {"uid":"9c8342f"}
 [2020-03-29T00:02:53.122491+01:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Editando campaña con id: 7"} {"uid":"01b0381"}
 [2020-03-30T21:09:32.350490+02:00] slim-app.DEBUG: App\Controllers\HomeController {"message":"Ejecución de función Home"} {"uid":"336b8ac"}
+[2020-03-30T20:20:11.984902-05:00] slim-app.DEBUG: App\Controllers\HomeController {"message":"Ejecución de función Home"} {"uid":"b0066a2"}
+[2020-03-30T20:22:55.577464-05:00] slim-app.DEBUG: App\Controllers\HomeController {"message":"Ejecución de función Home"} {"uid":"f7d7359"}
+[2020-03-30T20:25:01.186980-05:00] slim-app.DEBUG: App\Controllers\HomeController {"message":"Ejecución de función Home"} {"uid":"b348cc7"}
+[2020-03-30T20:31:48.813891-05:00] slim-app.DEBUG: App\Controllers\HomeController {"message":"Ejecución de función Home"} {"uid":"2f32068"}
+[2020-03-30T20:40:36.730843-05:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Recuperando campaña con id: 1 para edicion"} {"uid":"d792a40"}
+[2020-03-30T20:40:41.290262-05:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Editando campaña con id: 1"} {"uid":"76fabd3"}
+[2020-03-30T20:41:25.416623-05:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Recuperando campaña con id: 1 para edicion"} {"uid":"0756632"}
+[2020-03-30T20:41:29.562554-05:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Editando campaña con id: 1"} {"uid":"7b6f802"}
+[2020-03-30T20:42:01.200941-05:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Recuperando campaña con id: 1 para edicion"} {"uid":"52394c9"}
+[2020-03-30T21:08:31.717912-05:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Copiando campaña con id: 9"} {"uid":"7e70d3f"}
+[2020-03-30T21:09:40.733165-05:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Copiando campaña con id: 7"} {"uid":"9a1cd21"}
+[2020-03-30T21:09:49.537438-05:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Removiendo campaña con id: 9"} {"uid":"35b7d7a"}
+[2020-03-30T21:24:04.030599-05:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Copiando campaña con id: 11"} {"uid":"11eaea0"}
+[2020-03-30T21:24:33.982465-05:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Removiendo campaña con id: 4"} {"uid":"1f8e2fb"}
+[2020-03-30T21:24:39.446569-05:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Recuperando campaña con id: 11 para edicion"} {"uid":"87e958c"}
+[2020-03-30T21:24:43.586501-05:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Editando campaña con id: 11"} {"uid":"227a501"}
+[2020-03-30T21:24:49.581176-05:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Recuperando campaña con id: 7 para edicion"} {"uid":"7723036"}
+[2020-03-30T21:24:56.946958-05:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Editando campaña con id: 7"} {"uid":"db8bbcb"}
+[2020-03-30T21:25:01.738967-05:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Recuperando campaña con id: 3 para edicion"} {"uid":"fba990c"}
+[2020-03-30T21:25:06.752030-05:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Editando campaña con id: 3"} {"uid":"1622f27"}

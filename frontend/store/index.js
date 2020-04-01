@@ -16,14 +16,7 @@ const store = new Vuex.Store({
 
         },
         countForms: 0,
-        configForm: {
-            0: [{
-
-                options: { "titulo": "Campaña creada 1 editado", "peso": "25" },
-                type: 'textBox',
-
-            }]
-        },
+        configForm: { "0": [{ "type": "selectField", "options": { "titulo": "Tipo de documento", "peso": "0", "elementos": [{ "texto": "Cedula de ciudadania", "valor": "0" }, { "texto": "Cédula de extranjería", "valor": "0" }, { "texto": "Tarjeta de identidad", "valor": "0" }, { "texto": "Permiso especial de permanencia", "valor": "0" }] } }, { "type": "textField", "options": { "titulo": "Documento", "peso": "0" } }, { "type": "selectField", "options": { "titulo": "Sexo", "peso": "0", "elementos": [{ "texto": "Mujer", "valor": "0" }, { "texto": "Hombre", "valor": "0" }] } }, { "type": "textField", "options": { "titulo": "Primer Nombre", "peso": "0" } }, { "type": "textField", "options": { "titulo": "Segundo Nombre", "peso": "0" } }, { "type": "textField", "options": { "titulo": "Primer Apellido", "peso": "0" } }, { "type": "textField", "options": { "titulo": "Segundo Apellido", "peso": "0" } }, { "type": "textField", "options": { "titulo": "Edad", "peso": "0" } }, { "type": "textField", "options": { "titulo": "Telefono fijo", "peso": "0" } }, { "type": "textField", "options": { "titulo": "Teléfono celular", "peso": "0" } }, { "type": "selectField", "options": { "titulo": "Estrato de la vivienda en que reside", "peso": "0", "elementos": [{ "texto": "1", "valor": "0" }, { "texto": "2", "valor": "0" }, { "texto": "3", "valor": "0" }, { "texto": "4", "valor": "0" }, { "texto": "5", "valor": "0" }, { "texto": "6", "valor": "0" }] } }] },
         createdForms: [
 
         ],
@@ -74,13 +67,13 @@ const store = new Vuex.Store({
 
         },
         editCampaign(state, value) {
-            console.log("editCampaign", value);
+
             state.createdCampaigns[value.keyarray] = value.mutableCampaignInfo
 
         },
         deleteElementForm(state, index) {
 
-            state.configForm.splice(index, 1);
+            state.configForm[0].splice(index, 1);
 
         },
         deleteCampaign(state, index) {
