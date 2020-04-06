@@ -19,4 +19,10 @@ return function (App $app) {
 
     });
 
+    $container->set('FieldController', function () use ($container) {
+
+        return new \App\Controllers\FieldController($container);
+
+    });
+
 };

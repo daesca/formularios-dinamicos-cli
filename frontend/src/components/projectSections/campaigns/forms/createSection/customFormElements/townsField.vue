@@ -1,5 +1,10 @@
 <template>
   <div id="textBox-create-container" class="default-box">
+
+      <div class="alert alert-info" role="alert">
+      {{ $languages.clarificationTownsComponentMessage }}
+    </div>
+
     <div class="form-group">
       <label for="title">{{ $languages.titleLabelForm }}</label>
       <input type="text" class="form-control" name="title" v-model="configurations.title"/>
@@ -35,6 +40,7 @@
       </div>
       <div id="error-required" class="error-block"></div>
     </div>
+
   </div>
 </template>
 
@@ -43,12 +49,15 @@ export default {
   props: ["activateSaveOption"],
   data() {
     return {
-      typeField: "textBox",
+      typeField: "townsField",
       configurations: {
         title: null,
         weight: 0,
+        // defaultValue: '',
         name:'',
         cssClass: '',
+        // min: '',
+        // max: '',
         required: '1',
       },
     };
@@ -117,10 +126,5 @@ export default {
 </script>
 
 <style scoped>
-  #textBoxConfig-container{
 
-    height: 350px;
-    overflow-y: scroll;
-
-  }
 </style>

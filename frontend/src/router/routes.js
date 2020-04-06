@@ -45,8 +45,9 @@ const routes = [
 
             },
             {
-                path: 'formsCreate',
+                path: 'formsCreate/:idcampaign',
                 component: mainForms,
+                props: true,
             }
 
 

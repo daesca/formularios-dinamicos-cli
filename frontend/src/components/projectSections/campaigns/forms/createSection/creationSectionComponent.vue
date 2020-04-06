@@ -50,10 +50,14 @@
         components:{
             defaulted,
             'textBox': configComponents.textBox,
-            'textField': configComponents.textField,
+            'multipleField': configComponents.multipleField,
             'selectField': configComponents.selectField,
             'checkField': configComponents.checkField,
             'radioField': configComponents.radioField,
+            'countriesField': configComponents.countriesField,
+            'departmentsField': configComponents.departmentsField,
+            'townsField': configComponents.townsField,
+            'neighborhoodField': configComponents.neighborhoodField,
         },
         data(){
             return{

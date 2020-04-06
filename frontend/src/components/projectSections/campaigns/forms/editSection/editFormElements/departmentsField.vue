@@ -1,5 +1,5 @@
 <template>
-    <div id="textBox-edit-container">
+    <div id="departmentsField-edit-container">
         <div class="form-group">
             <label for="title">{{ $languages.titleLabelForm }}</label>
             <input type="text" class="form-control" name="title" v-model="mutableConfigurations.title"/>
@@ -8,7 +8,7 @@
 
         <div class="form-group">
             <label for="cssClass">{{ $languages.cssClassLabelForm }}</label><br />
-            <input type="text" class="form-control" name="cssClass" v-model="mutableConfigurations.cssClass" :disabled="noEdit"/>
+            <input type="text" class="form-control" name="cssClass" v-model="mutableConfigurations.cssClass"/>
             <small class="form-text text-muted">{{ $languages.cssClassSmallForm }}</small>
             <div id="error-cssClass" class="error-block"></div>
         </div>

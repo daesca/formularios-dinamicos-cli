@@ -1,15 +1,14 @@
 <template>
-    <div class="form-group">
-
-        <label for="resultado"><strong>{{ options.titulo }}</strong></label>
-        <textarea :name="'element-' + keyarray" id="" cols="30" rows="10" class="form-control"></textarea>
+    <div :class="configurations.cssClass">
+        <label for="resultado"><strong>{{ configurations.title }}</strong></label>
+        <textarea :name="'element-' + keyarray" id="" cols="30" rows="10" class="form-control" :data-weight="configurations.weight"></textarea>
         <hr>
     </div>
 </template>
 <script>
 export default {
 
-    props:['keyarray', 'options']
+    props:['keyarray', 'configurations']
     
 }
 </script>

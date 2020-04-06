@@ -1,54 +1,71 @@
 <template>
-    <div>
+    <div id="selectField-create-container">
         <div class="form-group">
             <label for="title">{{ $languages.titleLabelForm }}</label>
-            <input
-                type="text"
-                class="form-control"
-                name="title"
-                v-model="options.titulo"
-            />
+            <input type="text" class="form-control" name="title" v-model="configurations.title"/>
 
-            <div id="error-titulo" class="error-block"></div>
+            <div id="error-title" class="error-block"></div>
         </div>
+
         <div class="form-group">
-        <label for="valueElement">{{ $languages.valueLabelForm }}</label>
-        <input
-            type="text"
-            class="form-control"
-            name="valueElement"
-            v-model="options.peso"
-        />
-
-
-        <div id="error-peso" class="error-block">
-
-            </div>
+            <label for="cssClass">{{ $languages.cssClassLabelForm }}</label><br />
+            <input type="text" class="form-control" name="cssClass" v-model="configurations.cssClass"/>
+            <small class="form-text text-muted">{{ $languages.cssClassSmallForm }}</small>
+            <div id="error-cssClass" class="error-block"></div>
         </div>
+
+        <div class="form-group">
+            <label for="weight">{{ $languages.weightLabelForm }}</label>
+            <input type="text" class="form-control" name="weight" v-model="configurations.weight"/>
+            <div id="error-weight" class="error-block"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="requiredField">{{ $languages.requiredLabelForm }}</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="required" value="1" checked v-model="configurations.required">
+                <label class="form-check-label" for="required">
+                {{ $languages.yesText }}
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="required" value="0" v-model="configurations.required">
+                <label class="form-check-label" for="required">
+                {{ $languages.noText }}
+                </label>
+            </div>
+            <div id="error-required" class="error-block"></div>
+        </div>
+
         <div class="form-group">
             <label for="">{{ $languages.elementsLabelForm }}</label>
             <div id="elements-container" class="default-box">
-                <div v-for="(value, index) in options.elementos" :key="index" class="d-flex">
+                <div v-for="(value, index) in configurations.options" :key="index" class="d-flex justify-content-between">
                     <div class="form-group">
                         <label for="element-text">{{ $languages.textElementLabelForm }}</label>
-                        <input type="text" name="element-text" placeholder="texto del elemento" class="form-control" v-model="value.texto">
-                        <div :id="'error-element-' + index + '-texto'" class="error-block">
+                        <input type="text" name="element-text" class="form-control" v-model="value.optionTitle">
+                        <div :id="'error-option-' + index + '-optionTitle'" class="error-block">
 
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="element-value">{{ $languages.valueElementLabelForm }}</label>
-                        <input type="text" name="element-value" placeholder="valor del elemento" class="form-control" v-model="value.valor">
-                        <div :id="'error-element-' + index + '-valor'" class="error-block">
+                        <label for="element-value">{{ $languages.htmlValueLabelForm }}</label>
+                        <input type="text" name="element-value" class="form-control" v-model="value.htmlValue">
+                        <div :id="'error-option-' + index + '-htmlValue'" class="error-block">
 
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label for="element-value">{{ $languages.weightLabelForm }}</label>
+                        <input type="text" name="element-value" class="form-control" v-model="value.optionWeight">
+                        <div :id="'error-option-' + index + '-optionWeight'" class="error-block"></div>
+                    </div>
                     <div class="d-flex align-items-center">
-                        <button class="btn btn-danger" @click="deleteElement(index)">{{ $languages.deleteButtonText }}</button>
+                        <button class="btn btn-danger" @click="deleteOption(index)">{{ $languages.deleteButtonText }}</button>
                     </div>
                 </div>
                 <div id="elements-container__addButtons">
-                    <button class="btn btn-success" @click="addElements">{{ $languages.addButtonText }}</button>
+                    <button class="btn btn-success" @click="addOption">{{ $languages.addButtonText }}</button>
                 </div>
             </div>
         </div>
@@ -61,14 +78,18 @@ export default {
 
         return{
 
-            type: 'selectField',
-            options:{
-                titulo: '',
-                peso:'0',
-                elementos:[
+            typeField: 'selectField',
+            configurations:{
+                title: '',
+                weight:'0',
+                name:'',
+                cssClass:'',
+                required:'1',
+                options:[
                     {
-                        texto:'',
-                        valor: '0',
+                        optionTitle:'',
+                        htmlValue: '',
+                        optionWeight: 0,
                     }
                 ]
             }
@@ -77,53 +98,37 @@ export default {
 
     },
     methods:{
-        addElements(){
+        addOption(){
 
-            let newElement = {
+            let newOption = this.$globalFunctions.newOption();
 
-                texto: '',
-                valor: '0'
-
-            }
-
-            return this.options.elementos.push(newElement);
+            return this.configurations.options.push(newOption);
 
         },
-        deleteElement(index){
+        deleteOption(index){
             
-            this.options.elementos.splice(index, 1);
+            return this.configurations.options.splice(index, 1);
 
         },
         validateFields(){
 
-            let result = true;
-
             let basicInfo = {
-                titulo: this.options.titulo,
-                peso: this.options.peso,
+                title: this.configurations.title,
+                weight: this.configurations.weight,
+                required: this.configurations.required,
             }
 
-            let errorsEmptyFields = this.$globalFunctions.emptyFieldsSCRStructure(basicInfo, this.options.elementos);
+            let options = JSON.parse(JSON.stringify(this.configurations.options));
 
-            // console.log("Errores: ", errorsEmptyFields);
+            let errorMessages = {
 
-            let errorsEmptyFieldsBasicInfo = errorsEmptyFields.basicInfo;
-
-            let errorsEmptyFieldsElements = errorsEmptyFields.elements;
-
-
-            // console.log('Elementos del select:', errorsEmptyFields);
-
-            this.$globalFunctions.showErrors(errorsEmptyFields, this.$languages.errorFieldEmptyMessage);
-
-            if(errorsEmptyFields.length > 0){
-
-                result = false;
+                empty: this.$languages.errorFieldEmptyMessage,
+                negativeNumbers: this.$languages.errorNegativeNumbersMessage,
+                onlyNumbers: this.$languages.errorLettersMessage,
 
             }
-
-            // console.log('Estado de la validacion', errorsEmptyFields);
-            return result;
+            //console.log("Resultado de la validacion:", this.$globalFunctions.validationFiltersWithOptions(basicInfo, options, errorMessages));
+            return this.$globalFunctions.validationFiltersWithOptions(basicInfo, options, errorMessages);
 
         }
 
@@ -131,21 +136,22 @@ export default {
     watch: {
         activateSaveOption: function(val) {
         
-        if (val) {
-            if (this.validateFields()){
-            let configElement = {
-                type: this.type,
-                options: this.options
-            };
-            console.log("ConfigElement Select", configElement);
-            return this.$emit("send-option", configElement);
+            if (val) {
+                if (this.validateFields()){
+                let configElement = {
+                    typeField: this.typeField,
+                    configurations: this.configurations
+                };
+                // console.log("ConfigElement Select", configElement);
+                return this.$emit("send-option", configElement);
 
-            }else{
-            return this.$emit("send-option", false);
+                }else{
 
+                    return this.$emit("send-option", false);
+
+                }
             }
-        }
-        // configForm.push(configElement);
+
         }
   }
 }

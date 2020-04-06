@@ -1,15 +1,16 @@
 <template>
   <div id="editSingleComponent-container">
     <div id="title">
-      <strong> {{ $languages.titleLabelForm }}: </strong> {{ options.titulo }} <br />
-      <strong> {{ $languages.valueLabelForm }}: </strong>{{ options.peso }} <br>
-      <strong> {{ $languages.typeLabelForm }}:  </strong> {{ $languages[type] }}
+      <strong> {{ $languages.titleLabelForm }}: </strong> {{ configurations.title }} <br />
+      <strong> {{ $languages.weightLabelForm }}: </strong>{{ configurations.weight }} <br>
+      <template v-if="configurations.type != null"><strong> {{ $languages.typeLabelForm }}:  </strong> {{ $languages[typeField] }} ({{ $languages[configurations.type] }})</template>
+      <template v-else><strong> {{ $languages.typeLabelForm }}:  </strong> {{ $languages[typeField] }}</template>
     </div>
-    <div id="edit-buttons" class="text-right">
+    <div id="" class="text-right">
       <button
         class="btn btn-info mr-1"
         data-toggle="modal"
-        :data-target="'#editModal' + keyarray"
+        :data-target="'#' + setJqIdModal()"
       >
         {{ $languages.editButtonText }}
 
@@ -20,7 +21,7 @@
     <!-- Modal -->
     <div
       class="modal fade"
-      :id="'editModal' + keyarray"
+      :id="setJqIdModal()"
       data-backdrop="static" 
       tabindex="-1" 
       role="dialog" 
@@ -34,7 +35,7 @@
             </div>
             <div class="modal-body">
 
-              <component :is="type" :options="options" :keyarray="keyarray" :editsaveoption="editSaveOption" :canceloption="cancelOption" @send-option="editElement" @restore-info="cancelOption = !cancelOption"></component> 
+              <component :is="typeField" :configurations="configurations" :keyarray="keyarray" :editsaveoption="editSaveOption" :canceloption="cancelOption" :noEdit="noEdit" @send-option="editElement" @restore-info="cancelOption = !cancelOption"></component> 
                 <!-- Alert Component -->
                 <!-- <alerts :msg="alertMsg" :type="alertType" :showAlert="showAlertMessage"></alerts> -->
 
@@ -50,6 +51,7 @@
                 </button>
 
                 <button
+                    v-if="!noEdit"
                     type="button"
                     class="btn btn-primary"
                     @click="editSaveOption = !editSaveOption"
@@ -83,19 +85,23 @@ import * as utilitiesComponents from '../../../../../importGroups/utilities/inde
 
 export default {
 
-  props: ["type", "options", "keyarray"],
+  props: ["typeField", "configurations", "keyarray", "noEdit"],
   components:{
     'alerts': utilitiesComponents.alerts,
     'textBox': configComponents.textBox,
-    'textField': configComponents.textField,
+    'multipleField': configComponents.multipleField,
     'selectField': configComponents.selectField,
     'checkField': configComponents.checkField,
     'radioField': configComponents.radioField,
+    'countriesField': configComponents.countriesField,
+    'departmentsField': configComponents.departmentsField,
+    'townsField': configComponents.townsField,
+    'neighborhoodField': configComponents.neighborhoodField,
   },
   data(){
 
     return{
-
+      jqIdModal: 'editModal' + this.keyarray,
       editSaveOption: false,
       cancelOption: false,           
       showAlertMessage: false,
@@ -107,20 +113,34 @@ export default {
   },
   methods: {
 
+    setJqIdModal(){
+
+      let idModal = "editModal-" + this.keyarray;
+
+      if(this.noEdit){
+
+        idModal = "editModal-default-" + this.keyarray;
+
+      }
+
+      return idModal;
+
+    },
+
     editElement(editedInfo){
 
       if(editedInfo != false){
 
-        let editOptions = {
+        let editConfigurations = {
           
           keyarray: this.keyarray,
-          options: editedInfo,
+          configurations: editedInfo,
 
         }
 
         // console.log('Opciones del elemento', editOptions);
 
-        this.$store.commit('editElementForm', editOptions);
+        this.$store.commit('editElementForm', editConfigurations);
         this.alertMsg = this.$languages.editSuccessMessage;
         this.alertType = 1;
         this.showAlertMessage = true;
@@ -130,7 +150,7 @@ export default {
             self.showAlertMessage = false; 
         }, 3000);
 
-        this.closeModal("#editModal" + this.keyarray);
+        this.closeModal("#" + this.setJqIdModal());
               
       }
       this.editSaveOption = false;
@@ -138,17 +158,11 @@ export default {
     },        
     cancelEdition(){
             
-      this.mutableOptions = JSON.parse(JSON.stringify(this.options));
+      this.mutableConfigurations = JSON.parse(JSON.stringify(this.configurations));
 
-      // console.log('Opciones del elemento', this.mutableOptions);
+      // console.log('Opciones del elemento', this.mutableConfigurations);
 
-      // this.$store.commit('editElementForm', editOptions);
-
-      // let jqIdModal = "#" + this.idmodal;
-
-      this.$JQ(this.jqIdModal).modal('hide');
-
-      document.getElementsByClassName('modal-backdrop')[0].remove();
+      this.closeModal("#" + this.jqIdModal);
 
     },
 

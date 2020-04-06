@@ -15,7 +15,7 @@
               </div>
               <div id="right-side" class="col-6 border-left">
                   <div id="resultForm">
-                    <result-section-component></result-section-component>
+                    <result-section-component @save-option="saveForm"></result-section-component>
                   </div>
               </div>
 
@@ -30,6 +30,7 @@
 import * as sectionComponents from '../../../../importGroups/campaigns/forms/mainForm';
 
 export default {
+  props:['idcampaign'],
   components: {
 
     'creation-section-component': sectionComponents.creationSectionComponent,
@@ -37,6 +38,46 @@ export default {
     'result-section-component': sectionComponents.resultSectionComponent,
 
   },
+  beforeMount(){
+
+    this.$http.get('campaign/render/' + this.idcampaign).then(response => {
+
+      console.log(response);
+
+      if(response.body.state){ 
+        console.log("Tiene render");
+        this.$store.commit('setConfigForm', response.body.configForm);
+
+      }
+
+    }, response =>{
+
+      alert("Algo ha fallado. Contacte con el administrador");
+      return console.log('Too mal', response);
+
+    });    
+
+  },
+  methods:{
+
+    saveForm(){
+
+      this.$http.post('field/store', { idcampaign: this.idcampaign, configForm: this.$store.getters.configForm}).then(response => {
+
+          return console.log("Too bn", response);
+          
+          // return this.$router.go(-1);
+
+      }, response =>{
+
+          alert("Algo ha fallado. Contacte con el administrador");
+          return console.log('Too mal', response);
+
+      });
+
+    }
+
+  }
 
 }
 </script>

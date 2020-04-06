@@ -1,5 +1,5 @@
 <template>
-    <div id="textBox-edit-container">
+    <div id="countriesField-edit-container">
         <div class="form-group">
             <label for="title">{{ $languages.titleLabelForm }}</label>
             <input type="text" class="form-control" name="title" v-model="mutableConfigurations.title"/>

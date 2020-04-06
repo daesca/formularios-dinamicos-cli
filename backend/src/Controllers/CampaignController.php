@@ -36,7 +36,9 @@ class CampaignController extends Controller{
                 'category' => $campaign->category, 
                 'startDate' => $campaign->startDate, 
                 'finalDate' => $campaign->finalDate, 
-                'totalAspirants' => $campaign->totalAspirants
+                'totalAspirants' => $campaign->totalAspirants,
+                'state' => $campaign->state,
+                'render' => $campaign->render,
             );
 
             array_push($createdCampaigns, $array);
@@ -213,6 +215,27 @@ class CampaignController extends Controller{
 
         }  
         
+        $result = json_encode($result);
+
+        $response->getBody()->write($result);
+        return $response->withHeader('Content-Type', 'application/json');
+
+    }
+
+    public function render(Request $request, Response $response, $args){
+
+        $campaign = Campaign::findOrFail($args["id"]);
+
+        if(is_null($campaign->render)){
+
+            $result = array("state" => false);
+
+        }else{
+
+            $result = array("state" => true, "configForm" => unserialize($campaign->render));
+
+        }
+
         $result = json_encode($result);
 
         $response->getBody()->write($result);

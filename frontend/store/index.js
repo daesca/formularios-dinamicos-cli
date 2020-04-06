@@ -9,66 +9,42 @@ const store = new Vuex.Store({
         avalibleFormElemets: {
 
             textBox: 'Caja de Texto',
-            textField: 'Campo de texto',
-            selectField: 'Lista de opciones',
-            checkField: 'Selección multiple',
+            multipleField: 'Campo multiple',
+            selectField: 'Lista desplegable',
+            checkField: 'Casillas de verificación',
             radioField: 'Única opción',
+            countriesField: 'Lista de paises',
+            departmentsField: 'Lista de departamantos',
+            townsField: 'Lista de municipios',
+            neighborhoodField: 'Lista de barrios',
 
         },
-        countForms: 0,
-        configForm: { "0": [{ "type": "selectField", "options": { "titulo": "Tipo de documento", "peso": "0", "elementos": [{ "texto": "Cedula de ciudadania", "valor": "0" }, { "texto": "Cédula de extranjería", "valor": "0" }, { "texto": "Tarjeta de identidad", "valor": "0" }, { "texto": "Permiso especial de permanencia", "valor": "0" }] } }, { "type": "textField", "options": { "titulo": "Documento", "peso": "0" } }, { "type": "selectField", "options": { "titulo": "Sexo", "peso": "0", "elementos": [{ "texto": "Mujer", "valor": "0" }, { "texto": "Hombre", "valor": "0" }] } }, { "type": "textField", "options": { "titulo": "Primer Nombre", "peso": "0" } }, { "type": "textField", "options": { "titulo": "Segundo Nombre", "peso": "0" } }, { "type": "textField", "options": { "titulo": "Primer Apellido", "peso": "0" } }, { "type": "textField", "options": { "titulo": "Segundo Apellido", "peso": "0" } }, { "type": "textField", "options": { "titulo": "Edad", "peso": "0" } }, { "type": "textField", "options": { "titulo": "Telefono fijo", "peso": "0" } }, { "type": "textField", "options": { "titulo": "Teléfono celular", "peso": "0" } }, { "type": "selectField", "options": { "titulo": "Estrato de la vivienda en que reside", "peso": "0", "elementos": [{ "texto": "1", "valor": "0" }, { "texto": "2", "valor": "0" }, { "texto": "3", "valor": "0" }, { "texto": "4", "valor": "0" }, { "texto": "5", "valor": "0" }, { "texto": "6", "valor": "0" }] } }] },
-        createdForms: [
+        configDefaultForm: [{ "typeField": "selectField", "configurations": { "title": "Tipo documento", "weight": "0", "name": "", "cssClass": "tipoDocumentoSapiencia", "required": "1", "options": [{ "optionTitle": "Cédula de ciudadanía", "htmlValue": "0", "optionWeight": 0 }, { "optionTitle": "Cédula de extranjería", "htmlValue": "1", "optionWeight": 0 }, { "optionTitle": "Tarjeta de indentidad", "htmlValue": "2", "optionWeight": 0 }, { "optionTitle": "Permiso especial de permanencia", "htmlValue": "3", "optionWeight": 0 }] } }, { "typeField": "multipleField", "configurations": { "title": "Número de documento", "weight": 0, "defaultValue": "", "type": "number", "name": "", "cssClass": "numeroDocumentoSapiencia", "min": "", "max": "", "required": "1" } }, { "typeField": "selectField", "configurations": { "title": "Sexo", "weight": "0", "name": "", "cssClass": "sexoSapiencia", "required": "1", "options": [{ "optionTitle": "Mujer", "htmlValue": "0", "optionWeight": 0 }, { "optionTitle": "Hombre", "htmlValue": "1", "optionWeight": 0 }] } }, { "typeField": "selectField", "configurations": { "title": "Número Tarjeta de Identidad", "weight": "0", "name": "", "cssClass": "numeroTarjetaIdentidadSapiencia", "required": "1", "options": [{ "optionTitle": "Mismo Número de cédula", "htmlValue": "0", "optionWeight": 0 }, { "optionTitle": "Tarjeta de identidad", "htmlValue": "1", "optionWeight": 0 }, { "optionTitle": "No aplica", "htmlValue": "2", "optionWeight": 0 }] } }, { "typeField": "multipleField", "configurations": { "title": "Número de tarjeta de identidad", "weight": 0, "defaultValue": "", "type": "text", "name": "", "cssClass": "numeroTarjetaIdentidadCondicionSapiencia", "min": "", "max": "", "required": "1" } }, { "typeField": "multipleField", "configurations": { "title": "Primer nombre", "weight": 0, "defaultValue": "", "type": "text", "name": "", "cssClass": "", "min": "", "max": "", "required": "1" } }, { "typeField": "multipleField", "configurations": { "title": "Segundo nombre", "weight": 0, "defaultValue": "", "type": "text", "name": "", "cssClass": "segundoNombreSapiencia", "min": "", "max": "", "required": "1" } }, { "typeField": "multipleField", "configurations": { "title": "Primer apellido", "weight": 0, "defaultValue": "", "type": "text", "name": "", "cssClass": "primerApellidoSapiencia", "min": "", "max": "", "required": "1" } }, { "typeField": "multipleField", "configurations": { "title": "Segundo apellido", "weight": 0, "defaultValue": "", "type": "text", "name": "", "cssClass": "segundoApellido", "min": "", "max": "", "required": "1" } }, { "typeField": "multipleField", "configurations": { "title": "Fecha de nacimiento", "weight": 0, "defaultValue": "", "type": "date", "name": "", "cssClass": "fechaNacimientoSapiencia", "min": "", "max": "", "required": "1" } }, { "typeField": "multipleField", "configurations": { "title": "Edad", "weight": 0, "defaultValue": "", "type": "number", "name": "", "cssClass": "edadSapiencia", "min": "", "max": "", "required": "1" } }, { "typeField": "countriesField", "configurations": { "title": "País de nacimiento", "weight": 0, "name": "", "cssClass": "paisNacimientoSapiencia", "required": "1" } }, { "typeField": "multipleField", "configurations": { "title": "Lugar de nacimiento", "weight": 0, "defaultValue": "", "type": "text", "name": "", "cssClass": "lugarNacimientoSapiencia", "min": "", "max": "", "required": "1" } }, { "typeField": "departmentsField", "configurations": { "title": "Departamento de nacimiento", "weight": 0, "name": "", "cssClass": "departamentoNacimientoSapiencia", "required": "1" } }, { "typeField": "townsField", "configurations": { "title": "Municipio de nacimiento", "weight": 0, "name": "", "cssClass": "municipioNacimientoSapiencia", "required": "1" } }, { "typeField": "departmentsField", "configurations": { "title": "Departamento de residencia", "weight": 0, "name": "", "cssClass": "departamentoResidenciaSapiencia", "required": "1" } }, { "typeField": "townsField", "configurations": { "title": "Municipio de residencia", "weight": 0, "name": "", "cssClass": "municipioResidenciaSapiencia", "required": "1" } }, { "typeField": "neighborhoodField", "configurations": { "title": "Barrio, comuna, corregimiento o vereda de residencia", "weight": 0, "name": "", "cssClass": "lugarResidenciaListaSapiencia", "required": "1" } }, { "typeField": "multipleField", "configurations": { "title": "Barrio, comuna, corregimiento o vereda de residencia", "weight": 0, "defaultValue": "", "type": "text", "name": "", "cssClass": "lugarResidenciaTextoSapiencia", "min": "", "max": "", "required": "1" } }, { "typeField": "multipleField", "configurations": { "title": "Dirección de residencia", "weight": 0, "defaultValue": "", "type": "text", "name": "", "cssClass": "direccionResidenciaSapiencia", "min": "", "max": "", "required": "1" } }, { "typeField": "multipleField", "configurations": { "title": "Teléfono fijo", "weight": 0, "defaultValue": "", "type": "number", "name": "", "cssClass": "telefonoFijoSapiencia", "min": "", "max": "", "required": "1" } }, { "typeField": "multipleField", "configurations": { "title": "Celular", "weight": 0, "defaultValue": "", "type": "number", "name": "", "cssClass": "celularSapiencia", "min": "", "max": "", "required": "1" } }, { "typeField": "selectField", "configurations": { "title": "Estrato de la vivienda en que resides", "weight": "0", "name": "", "cssClass": "estratoSapiencia", "required": "1", "options": [{ "optionTitle": "1", "htmlValue": "1", "optionWeight": 0 }, { "optionTitle": "2", "htmlValue": "2", "optionWeight": 0 }, { "optionTitle": "3", "htmlValue": "3", "optionWeight": 0 }, { "optionTitle": "4", "htmlValue": "4", "optionWeight": 0 }, { "optionTitle": "5", "htmlValue": "5", "optionWeight": 0 }, { "optionTitle": "6", "htmlValue": "6", "optionWeight": 0 }] } }, { "typeField": "multipleField", "configurations": { "title": "Correo electrónico", "weight": 0, "defaultValue": "", "type": "text", "name": "", "cssClass": "correoSapiencia", "min": "", "max": "", "required": "1" } }, { "typeField": "multipleField", "configurations": { "title": "Confirma el correo electrónico", "weight": 0, "defaultValue": "", "type": "text", "name": "", "cssClass": "confirmarCorreoSapiencia", "min": "", "max": "", "required": "1" } }, { "typeField": "selectField", "configurations": { "title": "¿Tienes hijos?", "weight": "0", "name": "", "cssClass": "tieneHijosSapiencia", "required": "1", "options": [{ "optionTitle": "Si", "htmlValue": "1", "optionWeight": 0 }, { "optionTitle": "No", "htmlValue": "0", "optionWeight": 0 }] } }, { "typeField": "selectField", "configurations": { "title": "¿Cuántos hijos tiene?", "weight": "0", "name": "", "cssClass": "cantidadHijosSapiencia", "required": "1", "options": [{ "optionTitle": "1", "htmlValue": "1", "optionWeight": 0 }, { "optionTitle": "2", "htmlValue": "2", "optionWeight": 0 }, { "optionTitle": "3", "htmlValue": "3", "optionWeight": 0 }, { "optionTitle": "4", "htmlValue": "4", "optionWeight": 0 }, { "optionTitle": "5 o más", "htmlValue": "5", "optionWeight": 0 }] } }, { "typeField": "selectField", "configurations": { "title": "¿Fue madre o padre por primera vez, siendo menor de 19 años?", "weight": "0", "name": "", "cssClass": "padreMenorSapiencia", "required": "1", "options": [{ "optionTitle": "Si", "htmlValue": "1", "optionWeight": 0 }, { "optionTitle": "No", "htmlValue": "0", "optionWeight": 0 }] } }, { "typeField": "selectField", "configurations": { "title": "¿Es usted madre o padre soltero?", "weight": "0", "name": "", "cssClass": "", "required": "1", "options": [{ "optionTitle": "Si", "htmlValue": "1", "optionWeight": 0 }, { "optionTitle": "No", "htmlValue": "0", "optionWeight": 0 }] } }, { "typeField": "selectField", "configurations": { "title": "¿Tienes alguna condición de vulnerabilidad?", "weight": "0", "name": "", "cssClass": "vulnerabilidadSapiencia", "required": "1", "options": [{ "optionTitle": "Si", "htmlValue": "1", "optionWeight": 0 }, { "optionTitle": "No", "htmlValue": "0", "optionWeight": 0 }] } }, { "typeField": "checkField", "configurations": { "title": "Por favor seleccione una o varias opciones de vulnerabilidad según sea su caso", "weight": "0", "name": "", "cssClass": "tipoVulnerabilidad", "required": "1", "options": [{ "optionTitle": "Desmovilizado", "htmlValue": "1", "optionWeight": 0 }, { "optionTitle": "Desvinculado del conflicto", "htmlValue": "2", "optionWeight": 0 }, { "optionTitle": "Desplazamiento", "htmlValue": "3", "optionWeight": 0 }, { "optionTitle": "Víctima de conflicto armado reconocido por la unidad de víctimas", "htmlValue": "4", "optionWeight": 0 }, { "optionTitle": "Pertenece al sistema de responsabilidad penal para adolescentes (SRPA)", "htmlValue": "5", "optionWeight": 0 }, { "optionTitle": "Pertenece al sistema de restablecimiento de derechos PARD", "htmlValue": "6", "optionWeight": 0 }, { "optionTitle": "Pospenado", "htmlValue": "7", "optionWeight": 0 }, { "optionTitle": "Mujer víctima de violencia basada en género", "htmlValue": "8", "optionWeight": 0 }] } }, { "typeField": "selectField", "configurations": { "title": "¿Te encuentras en condición de discapacidad?", "weight": "0", "name": "", "cssClass": "discapacidadSapiencia", "required": "1", "options": [{ "optionTitle": "Si", "htmlValue": "1", "optionWeight": 0 }, { "optionTitle": "No", "htmlValue": "0", "optionWeight": 0 }] } }, { "typeField": "checkField", "configurations": { "title": "Por favor seleccione una o varias opciones de discapacidad según sea su caso", "weight": "0", "name": "", "cssClass": "tipoDiscapacidadSapiencia", "required": "1", "options": [{ "optionTitle": "Auditiva", "htmlValue": "1", "optionWeight": 0 }, { "optionTitle": "Cognitiva", "htmlValue": "2", "optionWeight": 0 }, { "optionTitle": "Física", "htmlValue": "3", "optionWeight": 0 }, { "optionTitle": "Visual", "htmlValue": "4", "optionWeight": 0 }, { "optionTitle": "Voz y habla", "htmlValue": "5", "optionWeight": 0 }] } }, { "typeField": "selectField", "configurations": { "title": "¿Te reconoces como población afrocolombiana?", "weight": "0", "name": "", "cssClass": "afrocolombianoSapiencia", "required": "1", "options": [{ "optionTitle": "Si", "htmlValue": "1", "optionWeight": 0 }, { "optionTitle": "No", "htmlValue": "0", "optionWeight": 0 }] } }, { "typeField": "selectField", "configurations": { "title": "Indique la población a la que pertenece", "weight": "0", "name": "", "cssClass": "poblacionesAfrocolombianasSapiencia", "required": "1", "options": [{ "optionTitle": "Negro-Afrodescendiente", "htmlValue": "1", "optionWeight": 0 }, { "optionTitle": "Palenquero", "htmlValue": "2", "optionWeight": 0 }, { "optionTitle": "Raizal", "htmlValue": "3", "optionWeight": 0 }, { "optionTitle": "Otra", "htmlValue": "4", "optionWeight": 0 }] } }, { "typeField": "multipleField", "configurations": { "title": "Nombre de la entidad", "weight": 0, "defaultValue": "", "type": "text", "name": "", "cssClass": "nombrePoblacionAfrodescendienteSapiencia", "min": "", "max": "", "required": "1" } }, { "typeField": "selectField", "configurations": { "title": "¿Perteneces a una etnia indígena?", "weight": "0", "name": "", "cssClass": "etniaIndigenaSapiencia", "required": "1", "options": [{ "optionTitle": "Si", "htmlValue": "1", "optionWeight": 0 }, { "optionTitle": "No", "htmlValue": "0", "optionWeight": 0 }] } }, { "typeField": "selectField", "configurations": { "title": "Indique la población a la que pertenece", "weight": "0", "name": "", "cssClass": "poblacionesIndigenasSapiencia", "required": "1", "options": [{ "optionTitle": "Embera (Dobidá, Eyabidá, katío y chami)", "htmlValue": "1", "optionWeight": 0 }, { "optionTitle": "Ingas", "htmlValue": "2", "optionWeight": 0 }, { "optionTitle": "Kamsá", "htmlValue": "3", "optionWeight": 0 }, { "optionTitle": "Nasa (Paez)", "htmlValue": "4", "optionWeight": 0 }, { "optionTitle": "Pijaos", "htmlValue": "5", "optionWeight": 0 }, { "optionTitle": "Senú", "htmlValue": "6", "optionWeight": 0 }, { "optionTitle": "Tulé (Kuna)", "htmlValue": "7", "optionWeight": 0 }, { "optionTitle": "Otra", "htmlValue": "8", "optionWeight": 0 }] } }, { "typeField": "multipleField", "configurations": { "title": "Nombre de la entidad", "weight": 0, "defaultValue": "", "type": "text", "name": "", "cssClass": "nombrePoblacionIndigenaSapiencia", "min": "", "max": "", "required": "1" } }, { "typeField": "selectField", "configurations": { "title": "¿Te reconoces como población LGTBI?", "weight": "0", "name": "", "cssClass": "lgbtiSapiencia", "required": "1", "options": [{ "optionTitle": "Si", "htmlValue": "1", "optionWeight": 0 }, { "optionTitle": "No", "htmlValue": "0", "optionWeight": 0 }] } }, { "typeField": "checkField", "configurations": { "title": "Seleccionar", "weight": "0", "name": "", "cssClass": "tipoLGBTISapiencia", "required": "1", "options": [{ "optionTitle": "Lesbiana", "htmlValue": "1", "optionWeight": 0 }, { "optionTitle": "Gay", "htmlValue": "2", "optionWeight": 0 }, { "optionTitle": "Transgenero", "htmlValue": "3", "optionWeight": 0 }, { "optionTitle": "Bisexual", "htmlValue": "4", "optionWeight": 0 }, { "optionTitle": "Intersexual", "htmlValue": "5", "optionWeight": 0 }] } }, { "typeField": "selectField", "configurations": { "title": "¿Por cuál medio te enteraste de la convocatoria?", "weight": "0", "name": "", "cssClass": "convocatoriaSapiencia", "required": "1", "options": [{ "optionTitle": "Radio", "htmlValue": "1", "optionWeight": 0 }, { "optionTitle": "Redes sociales", "htmlValue": "2", "optionWeight": 0 }, { "optionTitle": "Página oficial de Sapiencia", "htmlValue": "3", "optionWeight": 0 }, { "optionTitle": "Orientador Sapiencia en mi comuna", "htmlValue": "4", "optionWeight": 0 }, { "optionTitle": "Orientador Sapiencia en punto fijo", "htmlValue": "5", "optionWeight": 0 }, { "optionTitle": "Orientador Sapiencia en mi colegio", "htmlValue": "6", "optionWeight": 0 }, { "optionTitle": "Sede principal Sapiencia", "htmlValue": "7", "optionWeight": 0 }] } }],
+        configMutableDefaultForm: [
 
         ],
-        createdCampaigns: [{
-            code: '25896',
-            title: 'Campaña creada 1',
-            category: '1',
-            dateInit: '2020-01-01',
-            dateFinal: '2020-12-01',
-            totalAspirants: '100',
-        }],
+        configForm: []
 
     },
     mutations: {
 
         addElementForm(state, value) {
 
+            // console.log(value);
+
+            state.configForm.push(value)
+
+        },
+        setConfigForm(state, value) {
             console.log(value);
-
-            state.configForm[state.countForms].push(value)
-
-        },
-        addForms(state, value) {
-
-            state.createdForms[state.countForms] = {
-
-                indexConfigForm: state.countForms,
-                titleForm: value.tituloForm,
-
-            }
-
-            state.countForms++;
-
-        },
-        addCampaign(state, value) {
-
-            state.createdCampaigns.push(value)
-
-        },
-        copyCampaign(state, index) {
-
-            state.createdCampaigns.push(state.createdCampaigns[index]);
+            state.configForm = value;
 
         },
         editElementForm(state, value) {
 
-            state.configForm[state.countForms][value.keyarray].options = value.options
+            console.log(value);
 
-        },
-        editCampaign(state, value) {
-
-            state.createdCampaigns[value.keyarray] = value.mutableCampaignInfo
+            state.configForm[value.keyarray].configurations = JSON.parse(JSON.stringify(value.configurations))
 
         },
         deleteElementForm(state, index) {
@@ -76,25 +52,13 @@ const store = new Vuex.Store({
             state.configForm[0].splice(index, 1);
 
         },
-        deleteCampaign(state, index) {
-
-            state.createdCampaigns.splice(index, 1);
-
-        },
 
     },
     getters: {
 
-        countForms: (state) => state.countForms,
         avalibleFormElemets: (state) => state.avalibleFormElemets,
         configForm: (state) => state.configForm,
-        configFormLast: (state) => {
-
-            return state.configForm[state.countForms];
-
-        },
-        createdForms: (state) => state.createdForms,
-        createdCampaigns: (state) => state.createdCampaigns,
+        configDefaultForm: (state) => state.configDefaultForm,
 
     }
 

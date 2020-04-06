@@ -1,5 +1,10 @@
 <template>
   <div id="textBox-create-container" class="default-box">
+
+    <div class="alert alert-info" role="alert">
+      {{ $languages.clarificationCountriesComponentMessage }}
+    </div>
+
     <div class="form-group">
       <label for="title">{{ $languages.titleLabelForm }}</label>
       <input type="text" class="form-control" name="title" v-model="configurations.title"/>
@@ -14,7 +19,7 @@
     </div>
 
     <div class="form-group">
-      <label for="weight">{{ $languages.valueLabelForm }}</label>
+      <label for="weight">{{ $languages.weightLabelForm }}</label>
       <input type="text" class="form-control" name="weight" v-model="configurations.weight"/>
       <div id="error-weight" class="error-block"></div>
     </div>
@@ -35,6 +40,7 @@
       </div>
       <div id="error-required" class="error-block"></div>
     </div>
+
   </div>
 </template>
 
@@ -43,12 +49,15 @@ export default {
   props: ["activateSaveOption"],
   data() {
     return {
-      typeField: "textBox",
+      typeField: "countriesField",
       configurations: {
         title: null,
         weight: 0,
+        // defaultValue: '',
         name:'',
         cssClass: '',
+        // min: '',
+        // max: '',
         required: '1',
       },
     };

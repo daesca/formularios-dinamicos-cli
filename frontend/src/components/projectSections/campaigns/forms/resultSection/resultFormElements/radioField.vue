@@ -1,10 +1,10 @@
 <template>
-    <div class="form-group">
-        <label for=""><strong>{{ options.titulo }}</strong></label>
+    <div :class="configurations.cssClass">
+        <label for=""><strong>{{ configurations.title }}</strong></label>
         <br>
-        <div v-for="(value, index) in options.elementos" :key="index" class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" :name="'inlineRadiobox-' + keyarray" :value="value.valor">
-            <label class="form-check-label" :for="'inlineRadiobox-' + keyarray ">{{ value.texto }}</label>
+        <div v-for="(value, index) in configurations.options" :key="index" class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" :name="'inlineRadiobox-' + keyarray" :value="value.htmlValue" :data-weight="value.optionWeight" :required=" configurations.required == '1' ? true:false" />
+            <label class="form-check-label" :for="'inlineRadiobox-' + keyarray ">{{ value.optionTitle }}</label>
         </div>
         <hr>
     </div>
@@ -12,7 +12,7 @@
 <script>
 export default {
 
-    props:['keyarray', 'options']
+    props:['keyarray', 'configurations']
     
 }
 </script>

@@ -14,6 +14,9 @@ return function (App $app) {
     $app->get('/campaign/edit/{id}', 'CampaignController:edit')->setName("edit");
     $app->get('/campaign/remove/{id}', 'CampaignController:remove')->setName("remove");
     $app->get('/campaign/copy/{id}', 'CampaignController:copy')->setName("copy");
+    $app->get('/campaign/render/{id}', 'CampaignController:render')->setName("render");
+
+    $app->post('/field/store', 'FieldController:store');
     
        
 };
