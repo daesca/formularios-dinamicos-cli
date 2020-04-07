@@ -86,6 +86,16 @@ const store = new Vuex.Store({
 
             }
 
+        },
+        resetConfigForm(state) {
+
+            state.configForm = [];
+
+        },
+        resetConfigMutableDefaultForm(state) {
+
+            state.configMutableDefaultForm = [];
+
         }
 
     },

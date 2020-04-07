@@ -46,7 +46,7 @@
                         <td>{{ value.finalDate }}</td>
                         <td>{{ value.totalAspirants }}</td>
                         <td>
-                            <router-link :to="{ path: '/main/formsCreate/' + value.id, params: { idcampaing: value.id } }" class="btn btn-success mr-2"> {{ value.render == null ? $languages.createFormText: $languages.editFormText }} </router-link>
+                            <router-link :to="{ path: '/main/formsCreate/' + value.id, params: { idcampaing: value.id } }" class="btn btn-success mr-2"> {{ value.renderDefault == null ? $languages.createFormText: $languages.editFormText }} </router-link>
                             <router-link :to="{ path: '/main/editCampaign/' + value.id, params:{ keyarray: value.id } }" class="btn btn-info mr-2">{{ $languages.editButtonText }}</router-link>
                             <button @click="copyCampaign(value.id)" class="btn btn-warning mr-2">{{ $languages.copyButtonText }}</button>
                             <button @click="deleteCampaign(value.id)" class="btn btn-danger">{{ $languages.deleteButtonText }}</button>
@@ -80,7 +80,7 @@ export default {
         }
 
     },
-    mounted(){
+    beforeMount(){
 
         this.allCampaigns();
 
@@ -149,7 +149,7 @@ export default {
 
             // this.$store.commit('deleteCampaign', index);
 
-        }
+        },
 
     }
 }

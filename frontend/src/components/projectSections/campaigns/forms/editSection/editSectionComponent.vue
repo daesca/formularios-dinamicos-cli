@@ -14,7 +14,7 @@
                 <div id="collapseOneEdit" class="collapse show" aria-labelledby="headingOneEdit" data-parent="#accordionExample">
                 <div class="card-body">
                     <ul>
-                        <li v-for="(value, key) in $store.getters.configDefaultForm" :key="key" >
+                        <li v-for="(value, key) in $store.getters.configMutableDefaultForm" :key="key" >
                             <strong>Index del elemento: {{ key }} </strong>
                             <edit-single-component :configurations="value.configurations" :typeField="value.typeField" :keyarray="key" :noEdit="true"></edit-single-component>
 
