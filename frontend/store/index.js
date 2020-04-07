@@ -94,7 +94,7 @@ const store = new Vuex.Store({
         avalibleFormElemets: (state) => state.avalibleFormElemets,
         configForm: (state) => state.configForm,
         configDefaultForm: (state) => state.configDefaultForm,
-        configMutableDefaultForm: (state) => state.configDefaultForm,
+        configMutableDefaultForm: (state) => state.configMutableDefaultForm,
 
     }
 

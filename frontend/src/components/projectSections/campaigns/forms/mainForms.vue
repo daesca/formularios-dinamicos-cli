@@ -73,7 +73,7 @@ export default {
 
     saveForm(){
 
-      this.$http.post('field/store', { idcampaign: this.idcampaign, configForm: this.$store.getters.configForm, confiDefaultForm: this.$store.getters.configMutableDefaultForm}).then(response => {
+      this.$http.post('field/store', { idcampaign: this.idcampaign, configForm: this.$store.getters.configForm, configDefaultForm: this.$store.getters.configMutableDefaultForm}).then(response => {
 
           //console.log("Too bn", response);
           
