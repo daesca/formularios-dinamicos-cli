@@ -20,6 +20,10 @@ frontend/*.njsproj
 frontend/*.sln
 frontend/*.sw?
 
+# Files
+frontend/src/api/config.js
+frontend/dist
+
 # BackEnd
 backend/vendor
 backend/.env
