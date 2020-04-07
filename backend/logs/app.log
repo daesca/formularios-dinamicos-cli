@@ -134,3 +134,40 @@
 [2020-04-04T02:38:03.023648+02:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Agregando una nueva campaña"} {"uid":"119d9e5"}
 [2020-04-04T02:44:29.601698+02:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Agregando una nueva campaña"} {"uid":"d05c9ae"}
 [2020-04-06T22:41:29.048625+02:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Agregando una nueva campaña"} {"uid":"aa616ec"}
+[2020-04-07T03:44:54.978856+00:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Agregando una nueva campaña"} {"uid":"7c3de80"}
+[2020-04-07T03:50:36.756514+00:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Removiendo campaña con id: 11"} {"uid":"90075ab"}
+[2020-04-07T03:51:11.045705+00:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Agregando una nueva campaña"} {"uid":"4793213"}
+[2020-04-07T04:02:29.363486+00:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Removiendo campaña con id: 12"} {"uid":"15ffd89"}
+[2020-04-07T04:02:44.270349+00:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Agregando una nueva campaña"} {"uid":"4d4461f"}
+[2020-04-07T04:03:23.482143+00:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Recuperando campaña con id: 9 para edicion"} {"uid":"f682131"}
+[2020-04-07T04:06:22.260721+00:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Recuperando campaña con id: 9 para edicion"} {"uid":"6f4cb5e"}
+[2020-04-07T04:06:28.738925+00:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Recuperando campaña con id: 9 para edicion"} {"uid":"a11ea4c"}
+[2020-04-07T04:06:45.755051+00:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Recuperando campaña con id: 9 para edicion"} {"uid":"4c2d641"}
+[2020-04-07T04:07:04.183580+00:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Recuperando campaña con id: 9 para edicion"} {"uid":"806b278"}
+[2020-04-07T04:08:29.805060+00:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Removiendo campaña con id: 13"} {"uid":"e0b0b31"}
+[2020-04-07T04:08:52.265129+00:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Agregando una nueva campaña"} {"uid":"0aefe05"}
+[2020-04-07T04:10:45.263685+00:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Removiendo campaña con id: 14"} {"uid":"e27065f"}
+[2020-04-07T04:11:01.105741+00:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Agregando una nueva campaña"} {"uid":"51393d1"}
+[2020-04-07T04:12:03.224948+00:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Recuperando campaña con id: 15 para edicion"} {"uid":"7fe3903"}
+[2020-04-07T04:13:24.892722+00:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Removiendo campaña con id: 15"} {"uid":"4e103ce"}
+[2020-04-07T04:14:13.904388+00:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Agregando una nueva campaña"} {"uid":"6b11e60"}
+[2020-04-07T04:15:32.724258+00:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Removiendo campaña con id: 16"} {"uid":"358ef47"}
+[2020-04-07T04:15:48.894240+00:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Agregando una nueva campaña"} {"uid":"e1dd346"}
+[2020-04-07T04:20:48.711101+00:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Removiendo campaña con id: 17"} {"uid":"0174b7d"}
+[2020-04-07T04:21:02.024002+00:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Agregando una nueva campaña"} {"uid":"77a1f65"}
+[2020-04-07T04:22:52.134542+00:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Removiendo campaña con id: 18"} {"uid":"7828186"}
+[2020-04-07T04:23:04.771037+00:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Agregando una nueva campaña"} {"uid":"64589fe"}
+[2020-04-07T04:23:32.199997+00:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Removiendo campaña con id: 19"} {"uid":"7bb62f5"}
+[2020-04-07T04:28:41.348619+00:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Agregando una nueva campaña"} {"uid":"a33aca5"}
+[2020-04-07T04:29:39.362436+00:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Removiendo campaña con id: 20"} {"uid":"e15eb39"}
+[2020-04-07T04:29:52.998742+00:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Agregando una nueva campaña"} {"uid":"f34b367"}
+[2020-04-07T04:33:21.868376+00:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Removiendo campaña con id: 21"} {"uid":"f2f8ffe"}
+[2020-04-07T04:33:26.375669+00:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Removiendo campaña con id: 21"} {"uid":"136cabd"}
+[2020-04-07T04:33:44.396168+00:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Removiendo campaña con id: 21"} {"uid":"50dc428"}
+[2020-04-07T04:33:56.177113+00:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Agregando una nueva campaña"} {"uid":"e392a23"}
+[2020-04-07T04:39:23.527466+00:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Removiendo campaña con id: 22"} {"uid":"e1d6b5d"}
+[2020-04-07T04:39:37.334531+00:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Agregando una nueva campaña"} {"uid":"eeb4ff6"}
+[2020-04-07T04:39:59.146848+00:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Copiando campaña con id: 23"} {"uid":"05df752"}
+[2020-04-07T04:41:14.688706+00:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Removiendo campaña con id: 24"} {"uid":"d958303"}
+[2020-04-07T04:41:17.397289+00:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Removiendo campaña con id: 23"} {"uid":"17b60b0"}
+[2020-04-07T04:41:43.462431+00:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Agregando una nueva campaña"} {"uid":"b040cfd"}

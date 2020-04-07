@@ -7,7 +7,8 @@
         "slim/psr7": "^1.0",
         "php-di/php-di": "^6.0",
         "monolog/monolog": "^2.0",
-        "selective/basepath": "^0.2.0"
+        "selective/basepath": "^0.2.0",
+        "ext-json": "*",
     },
     "autoload": {
         "psr-4": {

@@ -7,10 +7,8 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Log\LoggerInterface;
-use Slim\Routing\RouteContext;
 
 use App\Models\Campaign;
-use Webpatser\Uuid\Uuid;
 
 class CampaignController extends Controller{
 
