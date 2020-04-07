@@ -18,14 +18,14 @@ class FieldController extends Controller{
         $this->container->get(LoggerInterface::class)->debug(CampaignController::class, ['message' => "Agregando una nueva campaña"]);
 
         $newForm = $request->getParsedBody();
+        $campaign = Campaign::findOrFail($newForm["idcampaign"]);
 
-        print_r($newForm);
 
         // die();
 
         $result = array('code' => 200, 'status' => true, 'message' => 'Fiels saved succefully');
 
-        if($newForm["configForm"] != ''){
+        if(isset($newForm["configForm"])){
 
             foreach ($newForm["configForm"] as $key => $value) {
                 
@@ -52,28 +52,19 @@ class FieldController extends Controller{
                 }
             
             }
-        }
-        
-        /** Asociacion con la tabla pivote */
+            /** Asociacion con la tabla pivote */
 
-        $fieldsInserted = Field::select('id')->orderBy('id', 'desc')->limit(count($newForm["configForm"]))->get();
+            $fieldsInserted = Field::select('id')->orderBy('id', 'desc')->limit(count($newForm["configForm"]))->get();
 
-        $campaign = Campaign::findOrFail($newForm["idcampaign"]);
+            foreach ($fieldsInserted as $key => $value) {
 
-        foreach ($fieldsInserted as $key => $value) {
-            
-            $campaign->fields()->attach($value->id);
-            // print_r($value->id);
+                $campaign->fields()->attach($value->id);
+            }
+            $campaign->render = json_encode($newForm["configForm"]);;
+
         }
 
-        /* Guardando el render */
-        $serializeConfigDefault = serialize($newForm["configDefaultForm"]);
-        $serializedConfig = serialize($newForm["configForm"]);
-        // echo $hl;
-        // print_r(unserialize($hl));
-
-        $campaign->renderDefault = $serializeConfigDefault;
-        $campaign->render = $serializedConfig;
+        $campaign->renderDefault = json_encode($newForm["configDefaultForm"]);;
 
         $campaign->save();
 

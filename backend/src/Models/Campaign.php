@@ -12,9 +12,9 @@ class Campaign extends Model
         'code', 'name', 'startDate', 'finalDate', 'totalAspirants', 'state', 'render'
     ];
 
-    public function fields(){
+    public function fields()
+    {
 
         return $this->belongsToMany('App\Models\Field');
-
     }
 }

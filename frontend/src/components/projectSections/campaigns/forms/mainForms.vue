@@ -45,14 +45,14 @@ export default {
       // console.log(response);
 
         // console.log("Tiene render");
-      if(response.body.configForm != undefined){
+      if(response.body.configForm !== undefined){
           
-        this.$store.commit('setConfigForm', response.body.configForm);
+        this.$store.commit('setConfigForm', JSON.parse(response.body.configForm));
 
       }
-      if(response.body.configDefaultForm != undefined){ 
+      if(response.body.configDefaultForm !== undefined){
 
-        this.$store.commit('setConfigMutableDefaultForm', response.body.configDefaultForm);
+        this.$store.commit('setConfigMutableDefaultForm', JSON.parse(response.body.configDefaultForm));
 
       }else{
 

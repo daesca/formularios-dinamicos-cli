@@ -172,18 +172,16 @@ class CampaignController extends Controller{
         $result = array();
 
         if(!is_null($campaign->renderDefault)){
-
-            $result["configDefaultForm"] = unserialize($campaign->renderDefault);
+            $result["configDefaultForm"] = $campaign->renderDefault;
 
         }
         if(!is_null($campaign->render)){
 
-            $result["configForm"] = unserialize($campaign->render);
+            $result["configForm"] = $campaign->render;
 
         }
 
         $result = json_encode($result);
-
         $response->getBody()->write($result);
         return $response->withHeader('Content-Type', 'application/json');
 
