@@ -42,11 +42,22 @@ export default {
 
     this.$http.get('campaign/render/' + this.idcampaign).then(response => {
 
-      console.log(response);
+      // console.log(response);
 
-      if(response.body.state){ 
-        console.log("Tiene render");
+        // console.log("Tiene render");
+      if(response.body.configForm != undefined){
+          
         this.$store.commit('setConfigForm', response.body.configForm);
+
+      }
+      if(response.body.configDefaultForm != undefined){ 
+
+        this.$store.commit('setConfigMutableDefaultForm', response.body.configDefaultForm);
+
+      }else{
+
+        this.$store.commit('setConfigMutableDefaultForm', this.$store.getters.configDefaultForm);
+        this.$store.commit('setNameToFieldOfDefaultForm', this.idcampaign);
 
       }
 
@@ -62,16 +73,16 @@ export default {
 
     saveForm(){
 
-      this.$http.post('field/store', { idcampaign: this.idcampaign, configForm: this.$store.getters.configForm}).then(response => {
+      this.$http.post('field/store', { idcampaign: this.idcampaign, configForm: this.$store.getters.configForm, confiDefaultForm: this.$store.getters.configMutableDefaultForm}).then(response => {
 
-          return console.log("Too bn", response);
+          //console.log("Too bn", response);
           
-          // return this.$router.go(-1);
+          return this.$router.go(-1);
 
       }, response =>{
 
           alert("Algo ha fallado. Contacte con el administrador");
-          return console.log('Too mal', response);
+          // return console.log('Too mal', response);
 
       });
 

@@ -165,17 +165,20 @@ class CampaignController extends Controller{
 
     }
 
-    public function render(Request $request, Response $response, $args){
+    public function renders(Request $request, Response $response, $args){
 
         $campaign = Campaign::findOrFail($args["id"]);
 
-        if(is_null($campaign->render)){
+        $result = array();
 
-            $result = array("state" => false);
+        if(!is_null($campaign->renderDefault)){
 
-        }else{
+            $result["configDefaultForm"] = unserialize($campaign->renderDefault);
 
-            $result = array("state" => true, "configForm" => unserialize($campaign->render));
+        }
+        if(!is_null($campaign->render)){
+
+            $result["configForm"] = unserialize($campaign->render);
 
         }
 

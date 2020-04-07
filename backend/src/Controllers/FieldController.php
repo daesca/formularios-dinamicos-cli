@@ -21,34 +21,37 @@ class FieldController extends Controller{
 
         print_r($newForm);
 
-        die();
+        // die();
 
         $result = array('code' => 200, 'status' => true, 'message' => 'Fiels saved succefully');
 
-        foreach ($newForm["configForm"] as $key => $value) {
+        if($newForm["configForm"] != ''){
 
-            $newField = new Field();
-
-            // print_r($value["configurations"]);
-            foreach ($value["configurations"] as $key1 => $value1) {
-               
+            foreach ($newForm["configForm"] as $key => $value) {
+                
+                $newField = new Field();
+                
                 // print_r($value["configurations"]);
-                if($value1 != ''){
-
-                   $newField->$key1 = $value1; 
-
+                foreach ($value["configurations"] as $key1 => $value1) {
+                    
+                    // print_r($value["configurations"]);
+                    if($value1 != ''){
+                        
+                        $newField->$key1 = $value1; 
+                        
+                    }
+                    //  echo $value1 . "\n";
+                    
                 }
-                //  echo $value1 . "\n";
+                
+                if(!$newField->save()){
+                    
+                    $result = array('code' => 500, 'status' => false, 'message' => 'The campaign does not edited');
+                break;
+                
+                }
             
             }
-
-            if(!$newField->save()){
-
-                $result = array('code' => 500, 'status' => false, 'message' => 'The campaign does not edited');
-                break;
-
-            }
-
         }
         
         /** Asociacion con la tabla pivote */
@@ -64,10 +67,12 @@ class FieldController extends Controller{
         }
 
         /* Guardando el render */
+        $serializeConfigDefault = serialize($newForm["configDefaultForm"]);
         $serializedConfig = serialize($newForm["configForm"]);
         // echo $hl;
         // print_r(unserialize($hl));
 
+        $campaign->renderDefault = $serializeConfigDefault;
         $campaign->render = $serializedConfig;
 
         $campaign->save();

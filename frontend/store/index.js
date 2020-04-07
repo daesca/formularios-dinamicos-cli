@@ -36,22 +36,57 @@ const store = new Vuex.Store({
 
         },
         setConfigForm(state, value) {
-            console.log(value);
+            // console.log(value);
             state.configForm = value;
+
+        },
+        setConfigDefaultForm(state, value) {
+            // console.log(value);
+            state.configDefaultForm = value;
+
+        },
+        setConfigMutableDefaultForm(state, value) {
+            // console.log(value);
+            state.configMutableDefaultForm = value;
 
         },
         editElementForm(state, value) {
 
-            console.log(value);
+            // console.log(value);
 
             state.configForm[value.keyarray].configurations = JSON.parse(JSON.stringify(value.configurations))
 
         },
         deleteElementForm(state, index) {
 
-            state.configForm[0].splice(index, 1);
+            state.configForm.splice(index, 1);
 
         },
+        editElementDefaultForm(state, value) {
+
+            // console.log(value);
+
+            state.configMutableDefaultForm[value.keyarray].configurations = JSON.parse(JSON.stringify(value.configurations))
+
+        },
+        deleteElementDefaultForm(state, index) {
+
+            state.configMutableDefaultForm.splice(index, 1);
+
+        },
+        setNameToFieldOfDefaultForm(state, idcampaign) {
+
+            let nameField = "";
+
+            for (let i = 0; i < state.configMutableDefaultForm.length; i++) {
+
+                nameField = "campaign-" + idcampaign + "-" + i;
+
+                state.configMutableDefaultForm[i].configurations.name = nameField;
+
+            }
+
+        }
 
     },
     getters: {
@@ -59,6 +94,7 @@ const store = new Vuex.Store({
         avalibleFormElemets: (state) => state.avalibleFormElemets,
         configForm: (state) => state.configForm,
         configDefaultForm: (state) => state.configDefaultForm,
+        configMutableDefaultForm: (state) => state.configDefaultForm,
 
     }
 
