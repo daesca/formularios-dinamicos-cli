@@ -14,7 +14,7 @@
 
                     <div id="collapseOneResult" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                     <div class="card-body">
-                        <component v-for="(value, key, index) in $store.getters.configDefaultForm" :is="value.typeField" :configurations="value.configurations" :key="index" :keyarray="index"></component>
+                        <component v-for="(value, key, index) in $store.getters.configMutableDefaultForm" :is="value.typeField" :configurations="value.configurations" :key="index" :keyarray="index"></component>
                     </div>
                     </div>
                 </div>
@@ -34,18 +34,8 @@
                 </div>
             </div>
         </form>
-        <div v-if="$store.getters.configForm.length > 0" class="text-right">
-            <button class="btn btn-info mr-1" data-toggle="modal" data-target="#saveFormModal" @click="saveConfiguration">{{ $languages.saveButtonText }}</button>
-        </div>
-        <div
-            class="modal fade"
-            id="saveFormModal"
-            data-backdrop="static" 
-            tabindex="-1" 
-            role="dialog" 
-            aria-labelledby="staticBackdropLabel" 
-            aria-hidden="true"
-        >       
+        <div class="text-right">
+            <button class="btn btn-info mr-1" @click="saveConfiguration">{{ $languages.saveButtonText }}</button>
         </div>
     </div>
 

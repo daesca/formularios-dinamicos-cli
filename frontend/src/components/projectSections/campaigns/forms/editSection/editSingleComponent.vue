@@ -51,7 +51,6 @@
                 </button>
 
                 <button
-                    v-if="!noEdit"
                     type="button"
                     class="btn btn-primary"
                     @click="editSaveOption = !editSaveOption"
@@ -101,7 +100,6 @@ export default {
   data(){
 
     return{
-      jqIdModal: 'editModal' + this.keyarray,
       editSaveOption: false,
       cancelOption: false,           
       showAlertMessage: false,
@@ -139,8 +137,15 @@ export default {
         }
 
         // console.log('Opciones del elemento', editOptions);
+        if(this.noEdit){
 
-        this.$store.commit('editElementForm', editConfigurations);
+          this.$store.commit('editElementDefaultForm', editConfigurations);
+
+        }else{
+          
+          this.$store.commit('editElementForm', editConfigurations);
+          
+        }
         this.alertMsg = this.$languages.editSuccessMessage;
         this.alertType = 1;
         this.showAlertMessage = true;
@@ -167,7 +172,18 @@ export default {
     },
 
     deleteItem() {
-      this.$store.commit("deleteElementForm", this.keyarray);
+
+      if(this.noEdit){
+
+        this.$store.commit("deleteElementDefaultForm", this.keyarray);
+        
+      }else{
+          
+          this.$store.commit("deleteElementForm", this.keyarray);
+
+      }
+
+
     },
     closeModal(idModal){
         

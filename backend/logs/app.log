@@ -134,3 +134,7 @@
 [2020-04-04T02:38:03.023648+02:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Agregando una nueva campaña"} {"uid":"119d9e5"}
 [2020-04-04T02:44:29.601698+02:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Agregando una nueva campaña"} {"uid":"d05c9ae"}
 [2020-04-06T22:41:29.048625+02:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Agregando una nueva campaña"} {"uid":"aa616ec"}
+[2020-04-07T05:59:41.888440+02:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Agregando una nueva campaña"} {"uid":"fce9385"}
+[2020-04-07T06:00:41.224203+02:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Agregando una nueva campaña"} {"uid":"afddd6f"}
+[2020-04-07T06:25:42.805419+02:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Agregando una nueva campaña"} {"uid":"ff3c574"}
+[2020-04-07T06:28:19.526024+02:00] slim-app.DEBUG: App\Controllers\CampaignController {"message":"Agregando una nueva campaña"} {"uid":"39cea7e"}
