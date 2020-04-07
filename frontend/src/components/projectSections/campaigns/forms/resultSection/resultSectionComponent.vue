@@ -34,7 +34,8 @@
                 </div>
             </div>
         </form>
-        <div class="text-right">
+        <div class="text-right mt-2">
+            <button class="btn btn-secondary mr-1" @click="cancelOption">{{ $languages.cancelButtonText }}</button>
             <button class="btn btn-info mr-1" @click="saveConfiguration">{{ $languages.saveButtonText }}</button>
         </div>
     </div>
@@ -76,6 +77,11 @@
             saveConfiguration(){
 
                 this.$emit('save-option');
+
+            },
+            cancelOption(){
+
+                this.$emit('cancel-option');
 
             }
 

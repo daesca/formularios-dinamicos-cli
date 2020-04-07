@@ -15,7 +15,7 @@
               </div>
               <div id="right-side" class="col-6 border-left">
                   <div id="resultForm">
-                    <result-section-component @save-option="saveForm"></result-section-component>
+                    <result-section-component @save-option="saveForm" @cancel-option="cancelForm"></result-section-component>
                   </div>
               </div>
 
@@ -39,6 +39,8 @@ export default {
 
   },
   beforeMount(){
+
+    this.resetForms();
 
     this.$http.get('campaign/render/' + this.idcampaign).then(response => {
 
@@ -85,6 +87,17 @@ export default {
           // return console.log('Too mal', response);
 
       });
+
+    },
+    cancelForm(){
+
+      return this.$router.go(-1);
+
+    },
+    resetForms(){
+
+      this.$store.commit('resetConfigForm');
+      this.$store.commit('resetConfigMutableDefaultForm');
 
     }
 
