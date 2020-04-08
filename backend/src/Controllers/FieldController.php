@@ -30,8 +30,8 @@ class FieldController extends Controller{
             foreach ($newForm["configForm"] as $key => $value) {
                 
                 $newField = new Field();
-                
-                $newField->typeField = $newForm['configForm'][0]['typeField'];
+
+                $newField->typeField = $newForm['configForm'][$key]['typeField'];
                 
                 // print_r($value["configurations"]);
                 foreach ($value["configurations"] as $key1 => $value1) {
