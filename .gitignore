@@ -28,4 +28,4 @@ frontend/dist
 backend/vendor
 backend/.env
 backend/.idea
-backend/logs
+backend/logs/app.log
