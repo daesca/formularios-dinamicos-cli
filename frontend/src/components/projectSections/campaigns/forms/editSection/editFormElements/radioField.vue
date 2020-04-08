@@ -2,34 +2,34 @@
     <div id="radioField-edit-container">
         <div class="form-group">
             <label for="title">{{ $languages.titleLabelForm }}</label>
-            <input type="text" class="form-control" name="title" v-model="configurations.title"/>
+            <input type="text" class="form-control" name="title" v-model="mutableConfigurations.title"/>
 
             <div id="error-title" class="error-block"></div>
         </div>
 
         <div class="form-group">
             <label for="cssClass">{{ $languages.cssClassLabelForm }}</label><br />
-            <input type="text" class="form-control" name="cssClass" v-model="configurations.cssClass" :disabled="noEdit"/>
+            <input type="text" class="form-control" name="cssClass" v-model="mutableConfigurations.cssClass" :disabled="noEdit"/>
             <small class="form-text text-muted">{{ $languages.cssClassSmallForm }}</small>
             <div id="error-cssClass" class="error-block"></div>
         </div>
 
         <div class="form-group">
             <label for="weight">{{ $languages.weightLabelForm }}</label>
-            <input type="text" class="form-control" name="weight" v-model="configurations.weight"/>
+            <input type="text" class="form-control" name="weight" v-model="mutableConfigurations.weight"/>
             <div id="error-weight" class="error-block"></div>
         </div>
 
         <div v-if="!noEdit" class="form-group">
             <label for="requiredField">{{ $languages.requiredLabelForm }}</label>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="required" value="1" checked v-model="configurations.required">
+                <input class="form-check-input" type="radio" name="required" value="1" checked v-model="mutableConfigurations.required">
                 <label class="form-check-label" for="required">
                 {{ $languages.yesText }}
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="required" value="0" v-model="configurations.required">
+                <input class="form-check-input" type="radio" name="required" value="0" v-model="mutableConfigurations.required">
                 <label class="form-check-label" for="required">
                 {{ $languages.noText }}
                 </label>
@@ -40,7 +40,7 @@
         <div class="form-group">
             <label for="">{{ $languages.elementsLabelForm }}</label>
             <div id="elements-container" class="default-box">
-                <div v-for="(value, index) in configurations.options" :key="index" class="d-flex justify-content-between">
+                <div v-for="(value, index) in mutableConfigurations.options" :key="index" class="d-flex justify-content-between">
                     <div class="form-group">
                         <label for="element-text">{{ $languages.textElementLabelForm }}</label>
                         <input type="text" name="element-text" class="form-control" v-model="value.optionTitle">

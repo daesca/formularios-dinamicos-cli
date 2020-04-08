@@ -142,7 +142,7 @@ export default {
           this.$store.commit('editElementDefaultForm', editConfigurations);
 
         }else{
-          
+          //console.log("Esta es la configuracion");
           this.$store.commit('editElementForm', editConfigurations);
           
         }

@@ -92,7 +92,7 @@ export default {
                     // typeField: 'checkField',
                     // configurations: this.mutableConfigurations
                     // };
-                    console.log("Enviando", this.mutableConfigurations);
+                    //console.log("Enviando", this.mutableConfigurations);
                     return this.$emit("send-option", this.mutableConfigurations);
                 }else{
 
