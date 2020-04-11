@@ -67,7 +67,7 @@ class CampaignController extends Controller{
 
     }
 
-    public function update(Request $request, Response $response, $args){
+    public function update(Request $request, Response $response){
         
         $updatedInfo = $request->getParsedBody();
 
@@ -77,7 +77,7 @@ class CampaignController extends Controller{
 
         $this->container->get(LoggerInterface::class)->debug(CampaignController::class, ['message' => "Editando campaña con id: ". $updatedInfo["id"]]);
 
-        if($campaign = Campaign::findOrFail($args["id"])){
+        if($campaign = Campaign::findOrFail($updatedInfo["id"])){
 
             $campaign->name = $updatedInfo['name'];
             $campaign->category = $updatedInfo['category'];
@@ -147,8 +147,11 @@ class CampaignController extends Controller{
 
         $this->container->get(LoggerInterface::class)->debug(CampaignController::class, ['message' => "Removiendo campaña con id: ". $args["id"]]);
 
+        $campaign = Campaign::findOrFail($args["id"]);
 
-        if($deletedRows = Campaign::where('id', $args["id"])->delete()){
+        $campaign->deleted = 1;
+
+        if($campaign->save()){
 
             $result = array('code' => 200, 'status' => true);
 
@@ -171,15 +174,15 @@ class CampaignController extends Controller{
 
         $result = array();
 
-        if(!is_null($campaign->renderDefault)){
+        // if(!is_null($campaign->renderDefault)){
             $result["configDefaultForm"] = $campaign->renderDefault;
 
-        }
-        if(!is_null($campaign->render)){
+        // }
+        // if(!is_null($campaign->render)){
 
             $result["configForm"] = $campaign->render;
 
-        }
+        // }
 
         $result = json_encode($result);
         $response->getBody()->write($result);

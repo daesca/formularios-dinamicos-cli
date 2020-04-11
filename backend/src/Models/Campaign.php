@@ -9,7 +9,7 @@ class Campaign extends Model
     protected $table = "campaigns";
 
     protected $fillable = [
-        'code', 'name', 'startDate', 'finalDate', 'totalAspirants', 'state', 'renderDefault', 'render'
+        'code', 'name', 'startDate', 'finalDate', 'totalAspirants', 'published', 'deleted', 'renderDefault', 'render'
     ];
 
     public function fields()

@@ -94,7 +94,11 @@ export default {
             //     totalAspirants: this.mutableCampaignInfo.totalAspirants
             // }
 
-            let resultValidate = this.$globalFunctions.emptyFields(this.mutableCampaignInfo);
+            let emptyFieldsException = this.$globalFunctions.excludeFieldsValidation(this.mutableCampaignInfo, ['renderDefault', 'render']);
+
+            let resultValidate = this.$globalFunctions.emptyFields(emptyFieldsException);
+
+            console.log("Resultado de la edicion: ", resultValidate);
 
             this.$globalFunctions.showErrors(resultValidate.emptyFields, this.$languages.errorFieldEmptyMessage);
 

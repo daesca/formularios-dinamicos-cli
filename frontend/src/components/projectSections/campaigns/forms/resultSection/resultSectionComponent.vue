@@ -6,15 +6,17 @@
                 <div class="card">
                     <div class="card-header" id="headingOne">
                     <h2 class="mb-0">
-                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOneResult" aria-expanded="true" aria-controls="collapseOneResult">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOneResult" aria-expanded="false" aria-controls="collapseOneResult">
                         {{ $languages.baseForm }}
                         </button>
                     </h2>
                     </div>
 
-                    <div id="collapseOneResult" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div id="collapseOneResult" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                     <div class="card-body">
-                        <component v-for="(value, key, index) in $store.getters.configMutableDefaultForm" :is="value.typeField" :configurations="value.configurations" :key="index" :keyarray="index"></component>
+                        <template v-for="(value, key, index) in $store.getters.configMutableDefaultForm">
+                            <component v-if="value.deleted == '0'" :is="value.typeField" :configurations="value.configurations" :key="index" :keyarray="index"></component>
+                        </template>
                     </div>
                     </div>
                 </div>
@@ -28,7 +30,9 @@
                     </div>
                     <div id="collapseTwoResult" class="collapse" aria-labelledby="headingTwoResult" data-parent="#accordionExample">
                     <div class="card-body">
-                        <component v-for="(value, key, index) in $store.getters.configForm" :is="value.typeField" :configurations="value.configurations" :key="index" :keyarray="index"></component>
+                        <template v-for="(value, key, index) in $store.getters.configForm">
+                            <component v-if="value.deleted == '0'" :is="value.typeField" :configurations="value.configurations" :key="index" :keyarray="index"></component>
+                        </template>
                     </div>
                     </div>
                 </div>

@@ -14,7 +14,7 @@
         </div>
 
         <div class="form-group">
-            <label for="weight">{{ $languages.valueLabelForm }}</label>
+            <label for="weight">{{ $languages.weightLabelForm }}</label>
             <input type="text" class="form-control" name="weight" v-model="mutableConfigurations.weight"/>
             <div id="error-weight" class="error-block"></div>
         </div>
@@ -22,13 +22,13 @@
         <div v-if="!noEdit" class="form-group">
             <label for="requiredField">{{ $languages.requiredLabelForm }}</label>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="required" value="1" checked v-model="mutableConfigurations.required">
+                <input class="form-check-input" type="radio" :name="'required-' + keyarray" value="1" checked v-model="mutableConfigurations.required">
                 <label class="form-check-label" for="required">
                 {{ $languages.yesText }}
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="required" value="0" v-model="mutableConfigurations.required">
+                <input class="form-check-input" type="radio" :name="'required-' + keyarray" value="0" v-model="mutableConfigurations.required">
                 <label class="form-check-label" for="required">
                 {{ $languages.noText }}
                 </label>

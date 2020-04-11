@@ -74,6 +74,7 @@ export default {
   data() {
     return {
       typeField: "multipleField",
+      deleted: '0',
       configurations: {
         title: null,
         weight: 0,
@@ -86,6 +87,12 @@ export default {
         required: '1',
       },
     };
+  },
+  mounted(){
+
+    let nameField = Math.floor(Math.random() * 10);
+    return this.configurations.name = 'campaign-'+ this.idcampaign +'-custom-' + Math.floor(Math.random() * 99);
+
   },
   methods:{
 
@@ -150,6 +157,7 @@ export default {
           // console.log("Funciona el guardado");
           let configElement = {
             typeField: this.typeField,
+            deleted: this.deleted,
             configurations: this.configurations
           };
 

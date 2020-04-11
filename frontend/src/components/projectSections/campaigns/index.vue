@@ -38,20 +38,22 @@
                         </td>
                     </tr> -->
                     <!-- <tr v-for="(value, index) in $store.getters.createdCampaigns" :key="index"> -->
-                    <tr v-for="(value, index) in campaigns" :key="index">
-                        <th scope="row">{{ value.code }}</th>
-                        <td>{{ value.name }}</td>
-                        <td>{{ value.category }}</td>
-                        <td>{{ value.startDate }}</td>
-                        <td>{{ value.finalDate }}</td>
-                        <td>{{ value.totalAspirants }}</td>
-                        <td>
-                            <router-link :to="{ path: '/main/formsCreate/' + value.id, params: { idcampaing: value.id } }" class="btn btn-success mr-2"> {{ value.renderDefault == null ? $languages.createFormText: $languages.editFormText }} </router-link>
-                            <router-link :to="{ path: '/main/editCampaign/' + value.id, params:{ keyarray: value.id } }" class="btn btn-info mr-2">{{ $languages.editButtonText }}</router-link>
-                            <button @click="copyCampaign(value.id)" class="btn btn-warning mr-2">{{ $languages.copyButtonText }}</button>
-                            <button @click="deleteCampaign(value.id)" class="btn btn-danger">{{ $languages.deleteButtonText }}</button>
-                        </td>
-                    </tr>
+                    <template v-for="(value, index) in campaigns">
+                        <tr v-if="value.deleted != '1'" :key="index">
+                            <th scope="row">{{ value.code }}</th>
+                            <td>{{ value.name }}</td>
+                            <td>{{ value.category }}</td>
+                            <td>{{ value.startDate }}</td>
+                            <td>{{ value.finalDate }}</td>
+                            <td>{{ value.totalAspirants }}</td>
+                            <td>
+                                <router-link :to="{ path: '/main/formsCreate/' + value.id, params: { idcampaing: value.id } }" class="btn btn-success mr-2"> {{ value.renderDefault == null ? $languages.createFormText: $languages.editFormText }} </router-link>
+                                <router-link :to="{ path: '/main/editCampaign/' + value.id, params:{ keyarray: value.id } }" class="btn btn-info mr-2">{{ $languages.editButtonText }}</router-link>
+                                <button @click="copyCampaign(value.id)" class="btn btn-warning mr-2">{{ $languages.copyButtonText }}</button>
+                                <button @click="deleteCampaign(value.id)" class="btn btn-danger">{{ $languages.deleteButtonText }}</button>
+                            </td>
+                        </tr>
+                    </template>
                     <!-- <tr>
                         <th scope="row">2</th>
                         <td>Jacob</td>

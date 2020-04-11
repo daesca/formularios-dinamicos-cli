@@ -17,6 +17,7 @@ return function (App $app) {
     $app->get('/campaign/render/{id}', 'CampaignController:renders')->setName("renders");
 
     $app->post('/field/store', 'FieldController:store');
+    $app->post('/field/remove/{id}', 'FieldController:remove');
     
        
 };

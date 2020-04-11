@@ -74,12 +74,13 @@
 <script>
 export default {
     
-    props: ["activateSaveOption"],
+    props: ["activateSaveOption", "idcampaign"],
     data(){
 
         return{
 
             typeField: 'radioField',
+            deleted: '0',
             configurations:{
                 title: '',
                 weight:'0',
@@ -96,6 +97,12 @@ export default {
             }
 
         }
+
+    },
+    mounted(){
+
+        let nameField = Math.floor(Math.random() * 10);
+        return this.configurations.name = 'campaign-'+ this.idcampaign +'-custom-' + Math.floor(Math.random() * 99);
 
     },
     methods:{
@@ -141,6 +148,7 @@ export default {
                 if (this.validateFields()){
                 let configElement = {
                     typeField: this.typeField,
+                    deleted: this.deleted,
                     configurations: this.configurations
                 };
                 // console.log("ConfigElement Select", configElement);

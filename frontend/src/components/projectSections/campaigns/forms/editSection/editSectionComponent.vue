@@ -5,20 +5,22 @@
             <div class="card">
                 <div class="card-header" id="headingOneEdit">
                 <h2 class="mb-0">
-                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOneEdit" aria-expanded="true" aria-controls="collapseOneEdit">
+                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOneEdit" aria-expanded="false" aria-controls="collapseOneEdit">
                         {{ $languages.baseForm }}
                     </button>
                 </h2>
                 </div>
 
-                <div id="collapseOneEdit" class="collapse show" aria-labelledby="headingOneEdit" data-parent="#accordionExample">
+                <div id="collapseOneEdit" class="collapse" aria-labelledby="headingOneEdit" data-parent="#accordionExample">
                 <div class="card-body">
                     <ul>
-                        <li v-for="(value, key) in $store.getters.configMutableDefaultForm" :key="key" >
-                            <strong>Index del elemento: {{ key }} </strong>
-                            <edit-single-component :configurations="value.configurations" :typeField="value.typeField" :keyarray="key" :noEdit="true"></edit-single-component>
+                        <template v-for="(value, key) in $store.getters.configMutableDefaultForm">
+                            <li v-if="value.deleted == '0'" :key="key" >
+                                <strong>Index del elemento: {{ key }} </strong>
+                                <edit-single-component :configurations="value.configurations" :typeField="value.typeField" :keyarray="key" :noEdit="true"></edit-single-component>
 
-                        </li>
+                            </li>
+                        </template>
                     </ul>
                 </div>
                 </div>
@@ -34,11 +36,14 @@
                 <div id="collapseTwoEdit" class="collapse" aria-labelledby="headingTwoEdit" data-parent="#accordionExample">
                 <div class="card-body">
                     <ul>
-                        <li v-for="(value, key) in $store.getters.configForm" :key="key" >
-                            <strong>Index del elemento: {{ key }} </strong>
-                            <edit-single-component :configurations="value.configurations" :typeField="value.typeField" :keyarray="key" :noEdit="false"></edit-single-component>
+                        <template v-for="(value, key) in $store.getters.configForm">
+                            <li v-if="value.deleted == '0'" :key="key" >
 
-                        </li>
+                                <strong>Index del elemento: {{ key }} </strong>
+                                <edit-single-component :configurations="value.configurations" :typeField="value.typeField" :keyarray="key" :noEdit="false"></edit-single-component>
+
+                            </li>
+                        </template>
                     </ul>
                 </div>
                 </div>
@@ -57,6 +62,15 @@ export default {
    components:{
 
        'edit-single-component': editSingleComponent
+
+   },
+   data(){
+
+       return{
+
+           deleted: this
+
+       }
 
    }
 }

@@ -6,7 +6,7 @@
 
               <div id="left-side" class="col-6">
                   <div id="addConfigFormElements" class="min-height-400px">
-                      <creation-section-component></creation-section-component>
+                      <creation-section-component :idcampaign="idcampaign"></creation-section-component>
                   </div>
                   <hr>
                   <div id="editFormElements" class="min-height-400px">
@@ -47,12 +47,12 @@ export default {
       // console.log(response);
 
         // console.log("Tiene render");
-      if(response.body.configForm !== undefined){
+      if(response.body.configForm != "null" && response.body.configForm != null){
           
         this.$store.commit('setConfigForm', JSON.parse(response.body.configForm));
 
       }
-      if(response.body.configDefaultForm !== undefined){
+      if(response.body.configDefaultForm != "null" && response.body.configDefaultForm != null){
 
         this.$store.commit('setConfigMutableDefaultForm', JSON.parse(response.body.configDefaultForm));
 
@@ -60,6 +60,7 @@ export default {
 
         this.$store.commit('setConfigMutableDefaultForm', this.$store.getters.configDefaultForm);
         this.$store.commit('setNameToFieldOfDefaultForm', this.idcampaign);
+        // this.$store.commit('setDeletedAttributeToFieldOfDefaultForm');
 
       }
 
@@ -77,9 +78,23 @@ export default {
 
       this.$http.post('field/store', { idcampaign: this.idcampaign, configForm: this.$store.getters.configForm, configDefaultForm: this.$store.getters.configMutableDefaultForm}).then(response => {
 
-          //console.log("Too bn", response);
-          
-          return this.$router.go(-1);
+          console.log("Too bn", response);
+
+            alert("Formulario guardado exitosamente");
+
+            return this.$router.go(-1);
+
+          // if(response.body.status){
+
+          //   alert("Formulario guardado exitosamente");
+
+          //   return this.$router.go(-1);
+
+          // }else{
+
+          //   return alert("Error al eliminar. Contacte al administrador");
+
+          // }
 
       }, response =>{
 
