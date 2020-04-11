@@ -23,7 +23,13 @@ class CampaignController extends Controller{
 
         $this->container->get(LoggerInterface::class)->debug(CampaignController::class, ['message' => "Agregando una nueva campaña"]);
 
-        $newCampaign = Campaign::create($request->getParsedBody());
+        $newCampaignData = $request->getParsedBody();
+        $newCampaignData["code"] = rand(0, 99999);
+        // print_r($newCampaignData);
+
+        // die();
+
+        $newCampaign = Campaign::create($newCampaignData);
         $newCampaign->code = rand(0, 99999);
         if($newCampaign->save()){
 

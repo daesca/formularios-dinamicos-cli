@@ -69,9 +69,19 @@ export default {
 
                 this.$http.post('campaign/store', this.campaignInfo).then(response => {
 
-                    // console.log("Too bn", response);
-                    
+                    // console.log("Too bn", response);          
+                if(response.body.status){
+
+                    alert("Campaña creada exitosamente");
+
                     return this.$router.go(-1);
+
+                }else{
+
+                    return alert("Error al eliminar. Contacte al administrador");
+
+                }
+        
 
                 }, response =>{
 
