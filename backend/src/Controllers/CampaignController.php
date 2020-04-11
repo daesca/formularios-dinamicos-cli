@@ -30,7 +30,7 @@ class CampaignController extends Controller{
         // die();
 
         $newCampaign = Campaign::create($newCampaignData);
-        $newCampaign->code = rand(0, 99999);
+        // $newCampaign->code = rand(0, 99999);
         if($newCampaign->save()){
 
             $result = array('code' => 200, 'status' => true, 'message' => 'Campaign created succefully');
