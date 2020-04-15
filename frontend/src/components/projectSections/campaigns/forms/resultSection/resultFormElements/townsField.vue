@@ -1,6 +1,6 @@
 <template>
     <div :class="configurations.cssClass">
-        <label :for="'element-' + keyarray"><strong>{{ configurations.title }}</strong></label>
+        <label :for="configurations.name"><strong>{{ configurations.title }}</strong></label>
         <select :name="configurations.name" class="form-control" :required=" configurations.required == '1' ? true:false">
             <option default>{{ $languages.selectDefaultOptionText }}</option>
             <option value="0">Municipio 1</option>
@@ -11,9 +11,32 @@
     </div>
 </template>
 <script>
+
+import globalFunctions from '../../../../../../utilities/globalFunctions';
+
+let props = globalFunctions.propsResultFormElements();
+
 export default {
 
-    props:['keyarray', 'configurations']
+    props:props,
+    data(){
+
+        return{
+
+            answerAspirant: '',
+
+        }
+
+    },
+    beforeMount(){
+
+        if(this.idField != undefined){
+
+            return this.$store.commit('attachSpecificAnswer', {index: this.idField, reactValue: this.answerAspirant});
+            //return this.answerAspirant = this.$store.getters.attachSpecificAnswer({index:this.idField, reactValue: this.answerAspirant});
+        }
+
+    }
 
     
 }

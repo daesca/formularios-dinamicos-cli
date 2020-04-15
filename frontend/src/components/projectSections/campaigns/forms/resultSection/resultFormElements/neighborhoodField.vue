@@ -11,9 +11,32 @@
     </div>
 </template>
 <script>
+
+import globalFunctions from '../../../../../../utilities/globalFunctions';
+
+let props = globalFunctions.propsResultFormElements();
+
 export default {
 
-    props:['keyarray', 'configurations']
+    props:props,
+    data(){
+
+        return{
+
+            answerAspirant: '',
+
+        }
+
+    },
+    beforeMount(){
+
+        if(this.idField != undefined){
+
+            return this.answerAspirant = this.$store.getters.attachSpecificAnswer({index:this.idField, reactValue: this.answerAspirant});
+
+        }
+
+    }
 
     
 }

@@ -68,16 +68,7 @@
             }
         },
         methods:{
-            validateFields(){
 
-                let resultValidate = this.$globalFunctions.emptyFields(this.options);
-
-                this.$globalFunctions.showErrors(resultValidate.emptyFields, this.$languages.errorFieldEmptyMessage);
-
-                // console.log('Estado de la validacion', resultValidate.state);
-                return resultValidate.state;
-
-            },
             saveConfiguration(){
 
                 this.$emit('save-option');

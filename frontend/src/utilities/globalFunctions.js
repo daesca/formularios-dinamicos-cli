@@ -2,6 +2,16 @@ import textos from '../languages/textos'
 
 const globalFunctions = {
 
+    propsResultFormElements() {
+
+        return ['keyarray', 'configurations', 'idField', 'renderMode'];
+
+    },
+    // propsResultFormElements() {
+
+    //     return ['keyarray', 'configurations', 'idField'];
+
+    // },
     excludeFieldsValidation(fields, excludes) {
 
         // console.log("Campos de la funcion exclude", fields);

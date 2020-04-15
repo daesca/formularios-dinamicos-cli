@@ -15,9 +15,9 @@ return function (App $app) {
         $group->get('/copy/{id}', 'CampaignController:copy')->setName("copy");
         $group->get('/render/{id}', 'CampaignController:renders')->setName("renders");
     });
-    $app->group('/campaign', function (\Slim\Routing\RouteCollectorProxy $group) {
-        $group->post('/field/store', 'FieldController:store');
-        $group->post('/field/remove/{id}', 'FieldController:remove');
+    $app->group('/field', function (\Slim\Routing\RouteCollectorProxy $group) {
+        $group->post('/store', 'FieldController:store');
+        $group->post('/remove/{id}', 'FieldController:remove');
     });
 
 
