@@ -24,6 +24,7 @@ return function (App $app) {
 
     $app->group('/inscription', function (RouteCollectorProxy $group){
         $group->get('/get/{code}' , 'InscriptionController:get');
+        $group->post('/validate' , 'DocumentController:validate');
         $group->post('/save', 'InscriptionController:store');
     });
 

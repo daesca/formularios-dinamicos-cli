@@ -8,7 +8,6 @@ use App\Models\Campaign;
 use App\Models\Document;
 use Carbon\Carbon;
 use Carbon\CarbonImmutable;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 
@@ -20,7 +19,7 @@ class InscriptionController extends Controller
         $message = [];
         try {
             $campaign = Campaign::where('code',$args['code'])->first();
-            if (! $campaign->exists()) {
+            if (is_null($campaign)) {
                 $message = [
                     "code" => "400",
                     "message" => "Campaña no encontrada.",
@@ -80,5 +79,4 @@ class InscriptionController extends Controller
         }
 
     }
-
 }
