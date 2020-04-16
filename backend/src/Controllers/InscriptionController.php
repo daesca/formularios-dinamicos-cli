@@ -6,11 +6,55 @@ namespace App\Controllers;
 
 use App\Models\Campaign;
 use App\Models\Document;
+use Carbon\Carbon;
+use Carbon\CarbonImmutable;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 
 class InscriptionController extends Controller
 {
+
+    public function get(Request $request, Response $response, $args) : ?Response
+    {
+        $message = [];
+        try {
+            $campaign = Campaign::where('code',$args['code'])->first();
+            if (! $campaign->exists()) {
+                $message = [
+                    "code" => "400",
+                    "message" => "Campaña no encontrada.",
+                ];
+                $response->getBody()->write(json_encode($message));
+                return $response->withHeader('Content-Type', 'application/json');
+            }
+            $fechaStart = Carbon::createFromFormat('Y-m-d', $campaign->startDate);
+            $fechaEnd = Carbon::createFromFormat('Y-m-d', $campaign->finalDate);
+            $fechaNow = CarbonImmutable::now('America/Bogota');
+
+            if ($campaign->published and $fechaStart->isBefore($fechaNow) and $fechaEnd->isAfter($fechaNow)) {
+                $message = [
+                    "code" => "200",
+                    "message" => "Campaña activa.",
+                ];
+                $response->getBody()->write(json_encode($message));
+                return $response->withHeader('Content-Type', 'application/json');
+            }
+            $message = [
+                "code" => "400",
+                "message" => "Campaña desactivada, no iniciada o paso el tiempo limite.",
+            ];
+            $response->getBody()->write(json_encode($message));
+            return $response->withHeader('Content-Type', 'application/json');
+        } catch (\Exception $exception) {
+            $message = [
+                "code" => "500",
+                "message" => $exception->getMessage(),
+            ];
+            $response->getBody()->write(json_encode($message));
+            return $response->withHeader('Content-Type', 'application/json');
+        }
+    }
 
     public function store(Request $request, Response $response) {
 
