@@ -25,4 +25,7 @@ return function (App $app) {
 
     });
 
+    $container->set('InscriptionController', function () use ($container){
+        return new \App\Controllers\InscriptionController($container);
+    });
 };

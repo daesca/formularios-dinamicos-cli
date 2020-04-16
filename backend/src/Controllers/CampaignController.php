@@ -52,6 +52,7 @@ class CampaignController extends Controller{
         $this->container->get(LoggerInterface::class)->debug(CampaignController::class, ['message' => "Recuperando campaña con id: ". $args["id"] ." para edicion"]);
         try {
             $campaign = Campaign::findOrFail($args["id"]);
+            
             $result = array(
                 'code' => 200,
                 'status' => true,
