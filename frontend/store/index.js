@@ -26,7 +26,6 @@ const store = new Vuex.Store({
 
         ],
         configForm: [],
-        answersAspirant: {},
 
     },
     mutations: {
@@ -102,41 +101,6 @@ const store = new Vuex.Store({
             }
 
         },
-        setAnswersAspirant(state, JSONForm) {
-
-            console.log("Desde Answers:", JSONForm);
-
-
-            for (let i = 0; i < JSONForm.length; i++) {
-
-                //Vue.set(state.answersAspirant[i], 'idField', state.configMutableDefaultForm[i].idField);
-                console.log("Indice:", JSONForm[i].idField);
-                let newIndex = JSONForm[i].idField;
-                state.answersAspirant[newIndex] = { answer: '' };
-
-
-            }
-
-            // for (let i = 0; i < state.configMutableDefaultForm.length; i++) {
-
-            //     //Vue.set(state.answersAspirant[i], 'idField', state.configMutableDefaultForm[i].idField);
-            //     Vue.set(state.answersAspirant[state.configMutableDefaultForm[i].idField], 'answer', '');
-
-
-            // }
-
-            // //let nextIndexAnswersAspirant = state.answersAspirant.length;
-
-            // for (let i = 0; i < state.configForm.length; i++) {
-
-            //     //Vue.set(state.answersAspirant[nextIndexAnswersAspirant], 'idField', state.configForm[i].idField);
-            //     Vue.set(state.answersAspirant[state.configForm[i].idField], 'answer', '');
-
-            //     //nextIndexAnswersAspirant++;
-
-            // }
-
-        },
         resetConfigForm(state) {
 
             state.configForm = [];
@@ -160,13 +124,6 @@ const store = new Vuex.Store({
         configForm: (state) => state.configForm,
         configDefaultForm: (state) => state.configDefaultForm,
         configMutableDefaultForm: (state) => state.configMutableDefaultForm,
-        answersAspirant: (state) => state.answersAspirant,
-        attachSpecificAnswer: (state) => (value) => {
-
-            return state.answersAspirant[value.index].answer;
-
-        },
-
 
     }
 

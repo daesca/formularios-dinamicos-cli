@@ -4,7 +4,7 @@ const globalFunctions = {
 
     propsResultFormElements() {
 
-        return ['keyarray', 'configurations', 'idField', 'renderMode'];
+        return ['keyarray', 'configurations', 'idField', 'renderMode', 'value'];
 
     },
     // propsResultFormElements() {
