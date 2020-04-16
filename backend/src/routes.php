@@ -20,9 +20,8 @@ return function (App $app) {
         $group->post('/remove/{id}', 'FieldController:remove');
     });
 
-    $app->group('/inscription' , function (\Slim\Routing\RouteCollectorProxy $group){
-        $group->post('/{codigo}/store', 'InscriptionController:store')->setName("inscription.store");
-    });
-    
+
+    $app->post('/inscription/save' , 'InscriptionController:store')->setName("inscription.store");
+
        
 };

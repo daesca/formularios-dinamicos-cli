@@ -23,14 +23,23 @@ export default {
         }
 
     },
-    beforeMount(){
+    watch:{
 
-        if(this.idField != undefined){
+        answerAspirant(val){
 
-            return this.answerAspirant = this.$store.getters.attachSpecificAnswer({index:this.idField, reactValue: this.answerAspirant});
+            this.$emit("changeSpecial",{ idField: this.idField, value: val })
+
         }
 
     }
+    // beforeMount(){
+
+    //     if(this.idField != undefined){
+
+    //         return this.answerAspirant = this.$store.getters.attachSpecificAnswer({index:this.idField, reactValue: this.answerAspirant});
+    //     }
+
+    // }
     
 }
 </script>

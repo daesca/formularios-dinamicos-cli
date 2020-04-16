@@ -1,23 +1,22 @@
 <template>
     <div id="renderResult-container" class="container">
         <h3 class="text-center">{{ $languages.resultSectionTitle }}</h3>
-        <form>
+        <form >
 
             <template v-for="(value, key, index) in $store.getters.configMutableDefaultForm">
-                <component v-if="value.deleted == '0'" :is="value.typeField" :configurations="value.configurations" :key="index" :keyarray="index" :idField="typeof(value.idField) === undefined ? '': value.idField"></component>
+                <component v-if="value.deleted == '0'" @changeSpecial="changeValue" :is="value.typeField" :configurations="value.configurations" :key="index" :keyarray="index" :idField="value.idField"></component>
             </template>
 
             <template v-for="(value, key, index) in $store.getters.configForm">
-                <component v-if="value.deleted == '0'" :is="value.typeField" :configurations="value.configurations" :key="index" :keyarray="index" :idField="value.idField"></component>
+                <component v-if="value.deleted == '0'" @changeSpecial="changeValue" :is="value.typeField" :configurations="value.configurations" :key="index" :keyarray="index" :idField="value.idField"></component>
             </template>
 
-            <button class="btn btn-success">Enviar</button>
+            <div class="text-right mt-2">
+                <button class="btn btn-success" @click.prevent="sendAnswers">Enviar</button>
+            </div>
 
         </form>
-        <div class="text-right mt-2">
-            <button class="btn btn-secondary mr-1" @click="cancelOption">{{ $languages.cancelButtonText }}</button>
-            <button class="btn btn-info mr-1" @click="saveConfiguration">{{ $languages.saveButtonText }}</button>
-        </div>
+
     </div>
 
 </template>
@@ -42,6 +41,7 @@
             return{
 
                 answersAspirant: {},
+                documentAspirant: '123456789'
 
             }
         },
@@ -53,12 +53,12 @@
 
                 // console.log(response);
 
-                // console.log("Tiene render");
-
                 // this.$store.commit('setAnswersAspirant', JSON.parse(response.body.configDefaultForm));
                 //this.$store.commit('setAnswersAspirant', JSON.parse(response.body.configForm));
 
                 this.setAnswersAspirant(JSON.parse(response.body.configDefaultForm));
+
+                this.setAnswersAspirant(JSON.parse(response.body.configForm));
 
                 this.$store.commit('setConfigForm', JSON.parse(response.body.configForm));
 
@@ -76,41 +76,59 @@
 
         },
         methods:{
-            // validateFields(){
 
-            //     let resultValidate = this.$globalFunctions.emptyFields(this.options);
-
-            //     this.$globalFunctions.showErrors(resultValidate.emptyFields, this.$languages.errorFieldEmptyMessage);
-
-            //     // console.log('Estado de la validacion', resultValidate.state);
-            //     return resultValidate.state;
-
-            // },
-            saveConfiguration(){
-
-                this.$emit('save-option');
-
-            },
-            cancelOption(){
-
-                this.$emit('cancel-option');
-
-            },
             setAnswersAspirant(JSONForm) {
 
-                console.log("Desde Answers:", JSONForm);
+                // console.log("Desde Answers:", JSONForm);
 
-                for (let i = 0; i < JSONForm.length; i++) {
+                if(JSONForm != undefined){
 
-                    //Vue.set(state.answersAspirant[i], 'idField', state.configMutableDefaultForm[i].idField);
-                    console.log("Indice:", JSONForm[i].idField);
+                    for (let i = 0; i < JSONForm.length; i++) {
 
-                    let newIndex = JSONForm[i].idField;
+                        // console.log("Indice:", JSONForm[i].idField);
 
-                    this.answersAspirant[newIndex] = { answer: '' };
+                        let newIndex = JSONForm[i].idField;
 
+                        // console.log('El indes', newIndex);
+
+                        let initialValue = '';
+
+                        if(JSONForm[i].typeField === 'checkField'){
+
+                            initialValue = [];
+
+                        }
+
+                        this.answersAspirant[newIndex] = { answer: initialValue };
+
+                        // this.$set(this.answersAspirant[newIndex], 'answer', ' ');
+
+                    }
 
                 }
+
+            },
+            changeValue(options){
+
+                // console.log('Asignando Valor');
+
+                return this.answersAspirant[options.idField].answer = options.value;
+
+            },
+            sendAnswers(){
+
+                console.log("Hola desde el metodo de envio");
+
+                this.$http.post('inscription/save',{idcampaign: this.idcampaign, documentAspirant: this.documentAspirant, answers: this.answersAspirant}).then(response => {
+
+                    console.log();
+
+                }, response =>{
+
+                alert("Algo ha fallado. Contacte con el administrador");
+                return console.log('Too mal', response);
+
+                });
 
             }
 

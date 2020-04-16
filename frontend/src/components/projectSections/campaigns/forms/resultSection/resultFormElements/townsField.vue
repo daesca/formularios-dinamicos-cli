@@ -1,8 +1,8 @@
 <template>
     <div :class="configurations.cssClass">
         <label :for="configurations.name"><strong>{{ configurations.title }}</strong></label>
-        <select :name="configurations.name" class="form-control" :required=" configurations.required == '1' ? true:false">
-            <option default>{{ $languages.selectDefaultOptionText }}</option>
+        <select v-model="answerAspirant" :name="configurations.name" class="form-control" :required=" configurations.required == '1' ? true:false">
+            <option value=''>{{ $languages.selectDefaultOptionText }}</option>
             <option value="0">Municipio 1</option>
             <option value="1">Municipio 2</option>
             <option value="2">Municipio 3</option>
@@ -28,15 +28,15 @@ export default {
         }
 
     },
-    beforeMount(){
+    // beforeMount(){
 
-        if(this.idField != undefined){
+    //     if(this.idField != undefined){
 
-            return this.$store.commit('attachSpecificAnswer', {index: this.idField, reactValue: this.answerAspirant});
-            //return this.answerAspirant = this.$store.getters.attachSpecificAnswer({index:this.idField, reactValue: this.answerAspirant});
-        }
+    //         return this.$store.commit('attachSpecificAnswer', {index: this.idField, reactValue: this.answerAspirant});
+    //         //return this.answerAspirant = this.$store.getters.attachSpecificAnswer({index:this.idField, reactValue: this.answerAspirant});
+    //     }
 
-    }
+    // }
 
     
 }

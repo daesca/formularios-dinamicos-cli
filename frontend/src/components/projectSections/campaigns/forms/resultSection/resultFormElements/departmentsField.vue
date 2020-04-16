@@ -1,7 +1,7 @@
 <template>
     <div :class="configurations.cssClass">
         <label :for="configurations.name"><strong>{{ configurations.title }}</strong></label>
-        <select :name="configurations.name" class="form-control" :required=" configurations.required == '1' ? true:false">
+        <select v-model="answerAspirant" :name="configurations.name" class="form-control" :required=" configurations.required == '1' ? true:false">
             <option default>{{ $languages.selectDefaultOptionText }}</option>
             <option value="0">Departamento 1</option>
             <option value="1">Departamento 2</option>
@@ -28,14 +28,23 @@ export default {
         }
 
     },
-    beforeMount(){
+    watch:{
 
-        if(this.idField != undefined){
+        answerAspirant(val){
 
-            return this.answerAspirant = this.$store.getters.attachSpecificAnswer({index:this.idField, reactValue: this.answerAspirant});
+            this.$emit("changeSpecial",{ idField: this.idField, value: val })
+
         }
 
     }
+    // beforeMount(){
+
+    //     if(this.idField != undefined){
+
+    //         return this.answerAspirant = this.$store.getters.attachSpecificAnswer({index:this.idField, reactValue: this.answerAspirant});
+    //     }
+
+    // }
 
     
 }
