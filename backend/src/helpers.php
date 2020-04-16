@@ -24,3 +24,4 @@ function parseField(array $field) : array
     $parseField['deleted'] = json_encode($field['deleted']);
     return $parseField;
 }
+
