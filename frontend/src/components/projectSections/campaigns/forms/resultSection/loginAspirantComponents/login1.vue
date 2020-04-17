@@ -67,6 +67,8 @@ export default {
 
                 if(response.body.state == 200){
 
+                    this.$emit('access-code', response.body.accessCode);
+
                     this.$emit('changeLogin', 'login2');
 
                 }else if(response.body.state == 406){

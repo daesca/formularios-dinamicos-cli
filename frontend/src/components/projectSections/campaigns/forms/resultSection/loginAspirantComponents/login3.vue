@@ -15,6 +15,12 @@
                 <button type="submit" class="btn btn-primary">Continuar</button>
 
             </div>
+            <div v-show="processing" class="text-center">
+                <div class="spinner-border" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div><br>
+                <small>Procesando...</small>
+            </div>
 
         </form>
 
@@ -23,12 +29,12 @@
 <script>
 export default {
 
-    props:['email'],
     data(){
 
         return{
 
             dateDocument: '',
+            processing: false,
 
         }
 

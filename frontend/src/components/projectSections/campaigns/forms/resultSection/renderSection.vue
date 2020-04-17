@@ -8,7 +8,16 @@
         <form v-show="login">
             <h3 class="text-center">Campaña {{ codecampaign }}</h3>
             <template v-for="(value, key, index) in defaultForm">
-                <component v-if="value.deleted == '0'" @changeSpecial="changeValue" :is="value.typeField" :defaultValue="answersAspirant[value.idField].answer" :configurations="value.configurations" :key="index" :keyarray="index" :idField="value.idField"></component>
+                <component 
+                    v-if="value.deleted == '0'" 
+                    :is="value.typeField" 
+                    :key="index" 
+                    :defaultValue="answersAspirant[value.idField].answer" 
+                    :configurations="value.configurations" 
+                    :keyarray="index" :idField="value.idField"
+                    @changeSpecial="changeValue">
+
+                    </component>
             </template>
 
             <template v-for="(value, key, index) in configForm">
@@ -34,8 +43,10 @@
                 <div class="modal-body">
                     <component 
                         :is="typeLogin"  
+                        :accesCodeAuthoriced="accesCodeAuthoriced"
                         @document-aspirant="setDocumentAspirant"
                         @type-document-aspirant="setTypeDocumentAspirant"
+                        @access-code="setAccessCodeAuthoriced"
                         @changeLogin="setTypeLogin"
                         @loginSuccessfull="setAllData">
 
@@ -83,6 +94,7 @@
                 configForm: [],
                 login: false,
                 errorCampaign: '',
+                accessCodeAuthoriced: undefined,
 
             }
         },
@@ -203,6 +215,9 @@
 
                 });
 
+            },
+            setAccessCodeAuthoriced(val){
+                this.accessCodeAuthoriced = val;
             },
             setLogin(val){
                 this.login = val;
