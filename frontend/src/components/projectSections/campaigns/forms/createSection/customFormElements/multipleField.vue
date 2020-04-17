@@ -46,7 +46,7 @@
       <div id="error-required" class="error-block"></div>
     </div>
 
-    <div v-if="configurations.type == 'date' || configurations.type == 'number'">
+    <div v-if="configurations.type != 'file'">
       <div class="form-group">
         <label for="defaultValue">{{ $languages.defaultValueLabelForm }}</label>
         <input :type="configurations.type" class="form-control" name="defaultValue" v-model="configurations.defaultValue" min="0" max="100"/>

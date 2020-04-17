@@ -28,6 +28,15 @@ export default {
         }
 
     },
+    created(){
+
+        if(this.defaultValue != undefined){
+
+            this.answerAspirant = this.defaultValue;
+
+        }
+
+    },
     watch:{
 
         answerAspirant(val){

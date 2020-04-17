@@ -28,6 +28,24 @@ export default {
         }
 
     },
+    created(){
+
+        if(this.defaultValue != undefined){
+
+            this.answerAspirant = this.defaultValue;
+
+        }
+
+    },
+    watch:{
+
+        answerAspirant(val){
+
+            this.$emit("changeSpecial",{ idField: this.idField, value: val })
+
+        }
+
+    }
     // beforeMount(){
 
     //     if(this.idField != undefined){

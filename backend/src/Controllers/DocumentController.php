@@ -21,7 +21,7 @@ class DocumentController extends Controller
             $type = $document->values()->where("name", "typeDocument")->first();
             if($typeDocument !== $type->value) {
                 $this->messages = [
-                    "code" => 200,
+                    "code" => 406,
                     "message" => "El tipo de documento no es el mismo al almacenado y relacionado al documento {$doc}",
                     "data" => []
                 ];

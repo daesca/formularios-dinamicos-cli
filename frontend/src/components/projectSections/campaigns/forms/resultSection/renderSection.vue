@@ -1,14 +1,13 @@
 <template>
     <div id="renderResult-container" class="container">
-        <h3 class="text-center">{{ $languages.resultSectionTitle }}</h3>
-        <form >
-
-            <template v-for="(value, key, index) in $store.getters.configMutableDefaultForm">
-                <component v-if="value.deleted == '0'" @changeSpecial="changeValue" :is="value.typeField" :configurations="value.configurations" :key="index" :keyarray="index" :idField="value.idField"></component>
+        <!-- <h3 class="text-center">{{ $languages.resultSectionTitle }}</h3> -->
+        <form v-show="login">
+            <template v-for="(value, key, index) in defaultForm">
+                <component v-if="value.deleted == '0'" @changeSpecial="changeValue" :is="value.typeField" :defaultValue="answersAspirant[value.idField].answer" :configurations="value.configurations" :key="index" :keyarray="index" :idField="value.idField"></component>
             </template>
 
-            <template v-for="(value, key, index) in $store.getters.configForm">
-                <component v-if="value.deleted == '0'" @changeSpecial="changeValue" :is="value.typeField" :configurations="value.configurations" :key="index" :keyarray="index" :idField="value.idField"></component>
+            <template v-for="(value, key, index) in configForm">
+                <component v-if="value.deleted == '0'" @changeSpecial="changeValue" :is="value.typeField" :defaultValue="answersAspirant[value.idField].answer" :configurations="value.configurations" :key="index" :keyarray="index" :idField="value.idField"></component>
             </template>
 
             <div class="text-right mt-2">
@@ -17,12 +16,41 @@
 
         </form>
 
-    </div>
+        <!-- Modal -->
+        <div class="modal fade" id="loginModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">Ingreso de afiliado</h5>
+                    <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button> -->
+                </div>
+                <div class="modal-body">
+                    <component 
+                        :is="typeLogin"  
+                        @document-aspirant="setDocumentAspirant"
+                        @type-document-aspirant="setTypeDocumentAspirant"
+                        @changeLogin="setTypeLogin"
+                        @loginSuccessfull="setAllData">
 
+                    </component>
+                </div>
+                <!-- <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Understood</button>
+                </div> -->
+                </div>
+            </div>
+        </div>
+
+    </div>
 </template>
 <script>
 
-    import * as configComponents from '../../../../../importGroups/campaigns/forms/resultSection/resultElementsImports'
+    import * as configComponents from '../../../../../importGroups/campaigns/forms/resultSection/resultElementsImports';
+    import * as logins from '../../../../../importGroups/render/logins';
+    import hola from 'jquery';
 
     export default {
         props:['idcampaign'],
@@ -36,47 +64,70 @@
             'departmentsField': configComponents.departmentsField,
             'townsField': configComponents.townsField,
             'neighborhoodField': configComponents.neighborhoodField,
+            'login1': logins.login1,
+            'login2': logins.login2,
+            'login3': logins.login3,
         },
         data(){
             return{
 
                 answersAspirant: {},
-                documentAspirant: '123456789'
+                documentAspirant: '123456789',
+                typeDocumentAspirant: '',
+                typeLogin: 'login1',
+                defaultForm: [],
+                configForm: [],
+                login: false,
 
             }
         },
-        created(){
+        mounted(){
 
             // this.resetForms();
+            this.showModal();
+            // this.$http.get('campaign/render/' + this.idcampaign).then(response => {
 
-            this.$http.get('campaign/render/' + this.idcampaign).then(response => {
+            //     // console.log(response);
 
-                // console.log(response);
+            //     // this.$store.commit('setAnswersAspirant', JSON.parse(response.body.configDefaultForm));
+            //     //this.$store.commit('setAnswersAspirant', JSON.parse(response.body.configForm));
 
-                // this.$store.commit('setAnswersAspirant', JSON.parse(response.body.configDefaultForm));
-                //this.$store.commit('setAnswersAspirant', JSON.parse(response.body.configForm));
+            //     this.setAnswersAspirant(JSON.parse(response.body.configDefaultForm));
 
-                this.setAnswersAspirant(JSON.parse(response.body.configDefaultForm));
+            //     this.setAnswersAspirant(JSON.parse(response.body.configForm));
 
-                this.setAnswersAspirant(JSON.parse(response.body.configForm));
+            //     this.$store.commit('setConfigForm', JSON.parse(response.body.configForm));
 
-                this.$store.commit('setConfigForm', JSON.parse(response.body.configForm));
-
-                this.$store.commit('setConfigMutableDefaultForm', JSON.parse(response.body.configDefaultForm));
+            //     this.$store.commit('setConfigMutableDefaultForm', JSON.parse(response.body.configDefaultForm));
 
 
 
-            }, response =>{
+            // }, response =>{
 
-            alert("Algo ha fallado. Contacte con el administrador");
-            return console.log('Too mal', response);
+            //     alert("Algo ha fallado. Contacte con el administrador");
+            //     return console.log('Too mal', response);
 
-            });
+            // });
             
 
         },
         methods:{
 
+            setTypeLogin(val){
+
+                this.typeLogin = val;
+
+            },
+            setDocumentAspirant(val){
+
+                this.documentAspirant = val;
+
+            },
+            setTypeDocumentAspirant(val){
+
+                this.typeDocumentAspirant = val;
+
+            },
             setAnswersAspirant(JSONForm) {
 
                 // console.log("Desde Answers:", JSONForm);
@@ -96,6 +147,12 @@
                         if(JSONForm[i].typeField === 'checkField'){
 
                             initialValue = [];
+
+                        }
+
+                        if(JSONForm[i].configurations.defaultValue != undefined){
+
+                            initialValue = JSONForm[i].configurations.defaultValue;
 
                         }
 
@@ -130,7 +187,71 @@
 
                 });
 
-            }
+            },
+            setLogin(val){
+                this.login = val;
+            },
+            setConfigForm(val){
+
+                this.configForm = val;
+
+            },
+            setDefaultForm(val){
+
+                this.defaultForm = val;
+
+            },
+            setAllData(){
+
+                this.$http.get('campaign/render/' + this.idcampaign).then(response => {
+
+                    // console.log(response);
+
+                    // this.$store.commit('setAnswersAspirant', JSON.parse(response.body.configDefaultForm));
+                    //this.$store.commit('setAnswersAspirant', JSON.parse(response.body.configForm));
+
+                    this.setAnswersAspirant(JSON.parse(response.body.configDefaultForm));
+
+                    this.setAnswersAspirant(JSON.parse(response.body.configForm));
+
+                    this.setDefaultForm(JSON.parse(response.body.configDefaultForm));
+
+                    this.setConfigForm(JSON.parse(response.body.configForm));
+                    // this.$store.commit('setConfigForm', JSON.parse(response.body.configForm));
+
+                    // this.$store.commit('setConfigMutableDefaultForm', JSON.parse(response.body.configDefaultForm));
+
+                    this.setLogin(true);
+
+                    this.closeModal();
+
+                }, response =>{
+
+                    alert("Algo ha fallado. Contacte con el administrador");
+                    return console.log('Too mal', response);
+
+                });
+
+            },
+            showModal(){
+
+                console.log("Entrando al metodo");
+        
+                this.$JQ('#loginModal').modal('show');
+                
+
+                // document.getElementsByClassName('modal-backdrop')[0].remove();
+
+
+            },    
+            closeModal(){
+        
+                this.$JQ('#loginModal').modal('hide');
+
+                document.getElementsByClassName('modal-backdrop')[0].remove();
+
+            },
+            
 
         }
 
