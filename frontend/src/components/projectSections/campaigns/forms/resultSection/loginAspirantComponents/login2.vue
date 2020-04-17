@@ -26,7 +26,7 @@
 <script>
 export default {
 
-    props:['email'],
+    props:['email', 'accesCodeAuthoriced'],
     data(){
 
         return{

@@ -6,7 +6,7 @@
 
               <div id="left-side" class="col-6">
                   <div id="addConfigFormElements" class="min-height-400px">
-                      <creation-section-component :idcampaign="idcampaign"></creation-section-component>
+                      <creation-section-component :codecampaign="codecampaign"></creation-section-component>
                   </div>
                   <hr>
                   <div id="editFormElements" class="min-height-400px">
@@ -30,7 +30,7 @@
 import * as sectionComponents from '../../../../importGroups/campaigns/forms/mainForm';
 
 export default {
-  props:['idcampaign'],
+  props:['codecampaign'],
   components: {
 
     'creation-section-component': sectionComponents.creationSectionComponent,
@@ -42,7 +42,7 @@ export default {
 
     this.resetForms();
 
-    this.$http.get('campaign/render/' + this.idcampaign).then(response => {
+    this.$http.get('campaign/render/' + this.codecampaign).then(response => {
 
       // console.log(response);
 
@@ -59,7 +59,7 @@ export default {
       }else{
 
         this.$store.commit('setConfigMutableDefaultForm', this.$store.getters.configDefaultForm);
-        this.$store.commit('setNameToFieldOfDefaultForm', this.idcampaign);
+        this.$store.commit('setNameToFieldOfDefaultForm', this.codecampaign);
         // this.$store.commit('setDeletedAttributeToFieldOfDefaultForm');
 
       }
@@ -76,7 +76,7 @@ export default {
 
     saveForm(){
 
-      this.$http.post('field/store', { idcampaign: this.idcampaign, configForm: this.$store.getters.configForm, configDefaultForm: this.$store.getters.configMutableDefaultForm}).then(response => {
+      this.$http.post('field/store', { codecampaign: this.codecampaign, configForm: this.$store.getters.configForm, configDefaultForm: this.$store.getters.configMutableDefaultForm}).then(response => {
 
           console.log("Too bn", response);
 

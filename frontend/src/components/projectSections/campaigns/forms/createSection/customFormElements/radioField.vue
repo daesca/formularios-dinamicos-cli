@@ -72,9 +72,14 @@
     </div>
 </template>
 <script>
+
+import globalFunctions from '../../../../../../utilities/globalFunctions';
+
+let props = globalFunctions.propsCreateCustomFormElements();
+
 export default {
     
-    props: ["activateSaveOption", "idcampaign"],
+    props: props,
     data(){
 
         return{
@@ -102,7 +107,7 @@ export default {
     mounted(){
 
         let nameField = Math.floor(Math.random() * 10);
-        return this.configurations.name = 'campaign-'+ this.idcampaign +'-custom-' + Math.floor(Math.random() * 99);
+        return this.configurations.name = 'campaign-'+ this.codecampaign +'-custom-' + Math.floor(Math.random() * 99);
 
     },
     methods:{

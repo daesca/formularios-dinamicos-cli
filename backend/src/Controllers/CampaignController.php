@@ -49,9 +49,9 @@ class CampaignController extends Controller{
 
     public function edit(Request $request, Response $response, $args){
 
-        $this->container->get(LoggerInterface::class)->debug(CampaignController::class, ['message' => "Recuperando campaña con id: ". $args["id"] ." para edicion"]);
+        $this->container->get(LoggerInterface::class)->debug(CampaignController::class, ['message' => "Recuperando campaña con codigo: ". $args["code"] ." para edicion"]);
         try {
-            $campaign = Campaign::findOrFail($args["id"]);
+            $campaign = Campaign::where('code',$args['code'])->first();
             
             $result = array(
                 'code' => 200,
@@ -118,11 +118,11 @@ class CampaignController extends Controller{
 
     public function copy(Request $request, Response $response, $args){
 
-        $this->container->get(LoggerInterface::class)->debug(CampaignController::class, ['message' => "Copiando campaña con id: ". $args["id"]]);
+        $this->container->get(LoggerInterface::class)->debug(CampaignController::class, ['message' => "Copiando campaña con codigo: ". $args["code"]]);
 
         try {
 
-        $campaign = Campaign::findOrFail($args["id"]);
+        $campaign = Campaign::where('code',$args['code'])->first();
 
 
             $newCampaign = Campaign::create($campaign->toArray());
@@ -152,9 +152,9 @@ class CampaignController extends Controller{
 
     public function remove(Request $request, Response $response, $args){
 
-        $this->container->get(LoggerInterface::class)->debug(CampaignController::class, ['message' => "Removiendo campaña con id: ". $args["id"]]);
+        $this->container->get(LoggerInterface::class)->debug(CampaignController::class, ['message' => "Removiendo campaña con codigo: ". $args["code"]]);
 
-        $campaign = Campaign::findOrFail($args["id"]);
+        $campaign = Campaign::where('code',$args['code'])->first();
 
         $campaign->deleted = 1;
 
@@ -177,7 +177,7 @@ class CampaignController extends Controller{
 
     public function renders(Request $request, Response $response, $args){
 
-        $campaign = Campaign::findOrFail($args["id"]);
+        $campaign = Campaign::where('code',$args['code'])->first();
 
         $result = array();
 

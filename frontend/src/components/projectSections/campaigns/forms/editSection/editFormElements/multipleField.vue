@@ -70,9 +70,13 @@
 </template>
 <script>
 
+import globalFunctions from '../../../../../../utilities/globalFunctions';
+
+let props = globalFunctions.propsEditFormElements();
+
 export default {
 
-    props:['keyarray', 'configurations', 'editsaveoption', 'canceloption', "noEdit"],
+    props:props,
 
     data(){
 

@@ -2,6 +2,15 @@ import textos from '../languages/textos'
 
 const globalFunctions = {
 
+    propsCreateCustomFormElements() {
+
+        return ['activateSaveOption', 'codecampaign'];
+
+    },
+    propsEditFormElements() {
+
+        return ['keyarray', 'configurations', 'editsaveoption', 'canceloption', 'noEdit'];
+    },
     propsResultFormElements() {
 
         return ['keyarray', 'configurations', 'idField', 'renderMode', 'value'];

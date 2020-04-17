@@ -40,13 +40,13 @@ const routes = [
             },
             {
 
-                path: 'editCampaign/:keyarray',
+                path: 'editCampaign/:codecampaign',
                 component: editCampaign,
                 props: true
 
             },
             {
-                path: 'formsCreate/:idcampaign',
+                path: 'formsCreate/:codecampaign',
                 component: mainForms,
                 props: true,
             }
@@ -57,7 +57,7 @@ const routes = [
     },
     {
 
-        path: '/render/:idcampaign',
+        path: '/render/:codecampaign',
         components: { main: renderSection, },
         props: { main: true }
     },

@@ -1,7 +1,12 @@
 <template>
-    <div id="renderResult-container" class="container">
-        <!-- <h3 class="text-center">{{ $languages.resultSectionTitle }}</h3> -->
+    <div id="renderResult-container" class="container mt-4">
+
+        <div v-show="errorCampaign != ''" class="alert alert-danger">
+            <b>{{ errorCampaign }}</b>
+        </div>
+
         <form v-show="login">
+            <h3 class="text-center">Campaña {{ codecampaign }}</h3>
             <template v-for="(value, key, index) in defaultForm">
                 <component v-if="value.deleted == '0'" @changeSpecial="changeValue" :is="value.typeField" :defaultValue="answersAspirant[value.idField].answer" :configurations="value.configurations" :key="index" :keyarray="index" :idField="value.idField"></component>
             </template>
@@ -20,12 +25,12 @@
         <div class="modal fade" id="loginModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                <div class="modal-header">
+                <!-- <div class="modal-header">
                     <h5 class="modal-title" id="loginModalLabel">Ingreso de afiliado</h5>
-                    <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
-                    </button> -->
-                </div>
+                    </button>
+                </div> -->
                 <div class="modal-body">
                     <component 
                         :is="typeLogin"  
@@ -50,10 +55,9 @@
 
     import * as configComponents from '../../../../../importGroups/campaigns/forms/resultSection/resultElementsImports';
     import * as logins from '../../../../../importGroups/render/logins';
-    import hola from 'jquery';
 
     export default {
-        props:['idcampaign'],
+        props:['codecampaign'],
         components:{
             'textBox': configComponents.textBox,
             'multipleField': configComponents.multipleField,
@@ -78,36 +82,48 @@
                 defaultForm: [],
                 configForm: [],
                 login: false,
+                errorCampaign: '',
 
             }
         },
         mounted(){
 
             // this.resetForms();
-            this.showModal();
-            // this.$http.get('campaign/render/' + this.idcampaign).then(response => {
+            this.$http.get('inscription/get/' + this.codecampaign).then(response => {
+                
+                if(response.body.code == '200'){
+                    
+                    this.showModal();
 
-            //     // console.log(response);
+                }else{
 
-            //     // this.$store.commit('setAnswersAspirant', JSON.parse(response.body.configDefaultForm));
-            //     //this.$store.commit('setAnswersAspirant', JSON.parse(response.body.configForm));
+                    console.log(response);
 
-            //     this.setAnswersAspirant(JSON.parse(response.body.configDefaultForm));
+                    this.errorCampaign = response.body.message;
 
-            //     this.setAnswersAspirant(JSON.parse(response.body.configForm));
+                }
 
-            //     this.$store.commit('setConfigForm', JSON.parse(response.body.configForm));
+                // console.log(response);
 
-            //     this.$store.commit('setConfigMutableDefaultForm', JSON.parse(response.body.configDefaultForm));
+                // this.$store.commit('setAnswersAspirant', JSON.parse(response.body.configDefaultForm));
+                //this.$store.commit('setAnswersAspirant', JSON.parse(response.body.configForm));
+
+                // this.setAnswersAspirant(JSON.parse(response.body.configDefaultForm));
+
+                // this.setAnswersAspirant(JSON.parse(response.body.configForm));
+
+                // this.$store.commit('setConfigForm', JSON.parse(response.body.configForm));
+
+                // this.$store.commit('setConfigMutableDefaultForm', JSON.parse(response.body.configDefaultForm));
 
 
 
-            // }, response =>{
+            }, response =>{
 
-            //     alert("Algo ha fallado. Contacte con el administrador");
-            //     return console.log('Too mal', response);
+                alert("Algo ha fallado. Contacte con el administrador");
+                return console.log('Too mal', response);
 
-            // });
+            });
             
 
         },
@@ -176,7 +192,7 @@
 
                 console.log("Hola desde el metodo de envio");
 
-                this.$http.post('inscription/save',{idcampaign: this.idcampaign, documentAspirant: this.documentAspirant, answers: this.answersAspirant}).then(response => {
+                this.$http.post('inscription/save',{codecampaign: this.codecampaign, documentAspirant: this.documentAspirant, answers: this.answersAspirant}).then(response => {
 
                     console.log();
 
@@ -203,7 +219,7 @@
             },
             setAllData(){
 
-                this.$http.get('campaign/render/' + this.idcampaign).then(response => {
+                this.$http.get('campaign/render/' + this.codecampaign).then(response => {
 
                     // console.log(response);
 
@@ -234,8 +250,6 @@
 
             },
             showModal(){
-
-                console.log("Entrando al metodo");
         
                 this.$JQ('#loginModal').modal('show');
                 

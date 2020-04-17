@@ -20,10 +20,10 @@
                 <input type="number" name="document" class="form-control" v-model="document" required/>
 
             </div>
-            <div v-show="processing != true" class="button-group text-center">
+            <div v-show="!processing" class="button-group text-center">
                 <button type="submit" class="btn btn-primary">Continuar</button>
             </div>
-            <div v-show="processing == true" class="text-center">
+            <div v-show="processing" class="text-center">
                 <div class="spinner-border" role="status">
                     <span class="sr-only">Loading...</span>
                 </div><br>
@@ -59,35 +59,37 @@ export default {
             this.$emit('document-aspirant', this.document);
             this.$emit('type-document-aspirant', this.typeDocument);
 
-            this.$emit('changeLogin', 'login2');
+            // this.$emit('changeLogin', 'login2');
 
-            // this.$http.post('inscription/validate',{typeDocument: this.typeDocument, document: this.document}).then(response => {
+            this.$http.post('inscription/validate',{typeDocument: this.typeDocument, document: this.document}).then(response => {
 
-            //     if(response.body.state == 200){
+                console.log('Desde login1: ', response);
 
-            //         this.$emit('changeLogin', 'login2');
+                if(response.body.state == 200){
 
-            //     }else if(response.body.state == 406){
+                    this.$emit('changeLogin', 'login2');
 
-            //         this.showAlert = true;
+                }else if(response.body.state == 406){
+
+                    this.showAlert = true;
                 
-            //     }else{
+                }else{
 
 
-            //         this.$emit('loginSuccessfull', true);
+                    this.$emit('loginSuccessfull', true);
 
-            //     }
+                }
 
-            //     this.processing = false;
+                this.processing = false;
 
-            // }, response =>{
+            }, response =>{
 
-            //     alert("Algo ha fallado. Contacte con el administrador");
+                alert("Algo ha fallado. Contacte con el administrador");
 
-            //     this.processing = false;
-            //     return console.log('Too mal', response);
+                this.processing = false;
+                return console.log('Too mal', response);
 
-            // });
+            });
 
 
         }

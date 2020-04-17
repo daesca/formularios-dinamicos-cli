@@ -22,7 +22,7 @@
         
         <div v-if="selected != ''">
 
-            <component :is="selected" :activateSaveOption="saveOption" @send-option="saveElement" :idcampaign="idcampaign"></component>
+            <component :is="selected" :activateSaveOption="saveOption" @send-option="saveElement" :codecampaign="codecampaign"></component>
 
                 <!-- <component :is="selected" :activateSaveOption ="saveOption"></component> -->
 
@@ -47,7 +47,7 @@
     // import textField from './customFormElements/textField';
 
     export default {
-        props:["idcampaign"],
+        props:["codecampaign"],
         components:{
             defaulted,
             'textBox': configComponents.textBox,

@@ -38,7 +38,7 @@
 </template>
 <script>
 export default {
-    props:['keyarray'],
+    props:['codecampaign'],
     data(){
 
         return{
@@ -57,9 +57,9 @@ export default {
     },
     mounted(){
 
-        // console.log("Prop", this.keyarray);
+        // console.log("Prop", this.codecampaign);
 
-        this.$http.get('campaign/edit/' + this.keyarray).then(response => {
+        this.$http.get('campaign/edit/' + this.codecampaign).then(response => {
 
             if(response.body.status){
 

@@ -39,8 +39,13 @@
 </template>
 
 <script>
+
+import globalFunctions from '../../../../../../utilities/globalFunctions';
+
+let props = globalFunctions.propsCreateCustomFormElements();
+
 export default {
-  props: ["activateSaveOption", "idcampaign"],
+  props: props,
   data() {
     return {
       typeField: "textBox",
