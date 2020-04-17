@@ -25,4 +25,22 @@ return function (Container $container) {
     $container->set('db', function () use ($capsule, $container) {
         return $capsule;
     });
+
+    $container->set('smtp', function () use ($container) {
+        // Create the Transport
+        $settings = (object) $container->get('settings')['email'];
+        $transport = (new Swift_SmtpTransport($settings->host, $settings->port, $settings->protocol))
+            ->setUsername($settings->username)
+            ->setPassword($settings->password)
+            ->setStreamOptions(['ssl' =>
+                [
+                    'allow_self_signed' => true,
+                    'verify_peer' => false
+                ]
+            ]);
+
+        $smtp = new Swift_Mailer($transport);
+
+        return $smtp;
+    });
 };

@@ -14,4 +14,9 @@ class Document extends Model
     {
         return $this->hasMany(ResponseCampagin::class, 'document_id', 'id');
     }
+
+    public function codes()
+    {
+        return $this->hasOne(Codes::class, 'document_id', 'id');
+    }
 }

@@ -28,6 +28,13 @@ return function (Container $container) {
                     'cache' => false
                 ]
             ],
+            'email' => [
+                'host'      => getenv('SMTPHost'),  // SMTP Host
+                'port'      => getenv('SMTPPort'),  // SMTP Port
+                'username'  => getenv('SMTPUser'),  // SMTP Username
+                'password'  => getenv('SMTPPassword'),  // SMTP Password
+                'protocol'  => getenv('SMTPProtocol')   // SSL or TLS
+            ],
             'connection' => [
                 'driver' => getenv("DBDriver"),
                 'host' => getenv("DBHost"),
@@ -35,6 +42,7 @@ return function (Container $container) {
                 'dbuser' => getenv("DBUser"),
                 'dbpass' => getenv("DBPassword"),
             ]
+
         ];
 
     });
