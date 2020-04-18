@@ -89,9 +89,6 @@ function validating(object $field, string $condition, $value): ?array
             break;
         case "options" :
             $htmlValues = array_column(json_decode($field->options), 'htmlValue');
-            if (is_array($value)) {
-                $value = explode(",", $value);
-            }
             if (!in_array($value, $htmlValues)) {
                 $message = [
                     "message" => "El valor es diferente que las opciones del item",

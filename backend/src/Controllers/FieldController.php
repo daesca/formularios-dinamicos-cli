@@ -20,7 +20,6 @@ class FieldController extends Controller{
         $newForm = $request->getParsedBody();
         try {
             $campaign = Campaign::where("code", $newForm["codecampaign"])->first();
-
             foreach ($newForm['configDefaultForm'] as $key => $value) {
                 $saveField = saveField($value);
                 array_push($this->configDefaultForm, $saveField);
@@ -67,11 +66,6 @@ class FieldController extends Controller{
             $response->getBody()->write($result);
             return $response->withHeader('Content-Type', 'application/json');
         }
-
-
-
-
-
     }
 
 }
