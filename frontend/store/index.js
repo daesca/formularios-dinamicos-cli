@@ -919,6 +919,23 @@ const store = new Vuex.Store({
         },
         setConfigMutableDefaultForm(state, value) {
             // console.log(value);
+
+            // for (let i = 0; i < value.length; i++) {
+
+            //     if (value[i].deleted != undefined) {
+
+            //         if (value[i].deleted != 1) {
+
+            //             state.configMutableDefaultForm[i] = value[i];
+
+            //         }
+
+            //     } else {
+
+            //         state.configMutableDefaultForm[i] = value[i];
+
+            //     }
+            // }
             state.configMutableDefaultForm = value;
 
         },

@@ -251,8 +251,6 @@
 
                         this.setLogin(true);
 
-                        this.closeModal();
-
                     }, response =>{
 
                         alert("Algo ha fallado. Contacte con el administrador");
@@ -265,6 +263,8 @@
                     this.$http.post('inscription/get/data/document', { code: this.codecampaign, document: this.documentAspirant }).then(response => {
 
                         console.log('Datos llenaos', response.body);
+
+                        this.closeModal();
 
                     }, response =>{
 
