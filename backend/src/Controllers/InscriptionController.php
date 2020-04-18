@@ -57,12 +57,11 @@ class InscriptionController extends Controller
     }
 
     public function store(Request $request, Response $response) {
-
-        echo "<pre>";
-        $campaign_id = $request->getParsedBody()['idcampaign'];
+        $errors = [];
+        $codecampaign = $request->getParsedBody()['codecampaign'];
         $documentAspirant = $request->getParsedBody()['documentAspirant'];
         try {
-            $campaign = Campaign::findOrFail($campaign_id);
+            $campaign = Campaign::where('code', $codecampaign)->first();
 
             $fields = collect($campaign->fields->toArray());
 
@@ -71,10 +70,29 @@ class InscriptionController extends Controller
             }
             foreach ($request->getParsedBody()['answers'] AS $k => $v) {
                 $field = (object) $fields->where('id', $k)->first();
-                var_dump($v);
-                var_dump(evaluateField($field, $v['answer']));
+                $evaluateField = evaluateField($field, $v['answer']);
+                if (! is_null($evaluateField)) {
+                    array_push($errors, $evaluateField);
+                }
             }
-            die;
+            if (count($errors) > 0) {
+                $message = [
+                    "code" => "500",
+                    "message" => "Contiene errores el envio de la información.",
+                    "data" => [
+                        "errors" => $errors
+                    ]
+                ];
+                $response->getBody()->write(json_encode($message));
+                return $response->withHeader('Content-Type', 'application/json');
+            }
+            $message = [
+                "code" => "200",
+                "message" => "Se creo correctamente la preinscripción.",
+                "data" => []
+            ];
+            $response->getBody()->write(json_encode($message));
+            return $response->withHeader('Content-Type', 'application/json');
         } catch (\Exception $exception) {
             die("[ERROR] Error for ". $exception->getMessage());
         }
@@ -115,8 +133,12 @@ class InscriptionController extends Controller
             $response->getBody()->write(json_encode($message));
             return $response->withHeader('Content-Type', 'application/json');
         }
-
-        $response->getBody()->write("Jola");
+        $message = [
+            "code" => 404,
+            "message" => "No sé encontro campaña o usuario",
+            "data" => []
+        ];
+        $response->getBody()->write(json_encode($message));
         return $response;
     }
 }

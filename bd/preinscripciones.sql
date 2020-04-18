@@ -147,7 +147,7 @@ CREATE TABLE `fields` (
   `defaultForm` tinyint(1) NOT NULL COMMENT '0: No hace parte del formulario base, 1: Hace parte del formulario base',
   `typeField` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `type` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `options` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `options` longtext COLLATE utf8_unicode_ci DEFAULT NULL,
   `required` tinyint(1) NOT NULL DEFAULT 1,
   `defaultValue` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
   `cssClass` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
