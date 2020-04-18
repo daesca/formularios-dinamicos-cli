@@ -59,7 +59,7 @@ export default {
       }else{
 
         this.$store.commit('setConfigMutableDefaultForm', this.$store.getters.configDefaultForm);
-        this.$store.commit('setNameToFieldOfDefaultForm', this.codecampaign);
+        // this.$store.commit('setNameToFieldOfDefaultForm', this.codecampaign);
         // this.$store.commit('setDeletedAttributeToFieldOfDefaultForm');
 
       }
