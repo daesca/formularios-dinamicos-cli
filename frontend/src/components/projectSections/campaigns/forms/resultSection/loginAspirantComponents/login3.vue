@@ -43,7 +43,7 @@ export default {
 
         sendInfoLogin3(){
 
-            this.$emit('loginSuccessfull');
+            this.$emit('loginSuccessfull', 1);
 
             // this.$http.get('inscription/validate',{typeDocument: this.typeDocument, document: this.document}).then(response => {
 

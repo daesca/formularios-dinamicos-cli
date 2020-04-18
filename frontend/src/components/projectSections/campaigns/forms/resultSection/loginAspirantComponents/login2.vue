@@ -1,6 +1,6 @@
 <template>
     <div id="loginAspirant2">
-        <h3>
+        <h3 class="mb-4">
             Notamos que haz realizado preinscripciones anteriormente, asi que hemos enviado un código al siguiente correo <b>{{ email }}</b>,
             el cual deberás ingresar para continuar.
             
@@ -15,7 +15,7 @@
             </div>
             <div class="button-group text-center">
 
-                <button type="submit" class="btn btn-primary">Continuar</button>
+                <button type="submit" class="">Continuar</button>
 
             </div>
             <div v-show="processing" class="text-center">
@@ -47,7 +47,7 @@ export default {
 
         sendInfoLogin2(){
 
-            this.$emit('changeLogin', 'login3');
+            // this.$emit('changeLogin', 'login3');
 
             // this.$http.get('inscription/validate',{typeDocument: this.typeDocument, document: this.document}).then(response => {
 
@@ -71,7 +71,7 @@ export default {
         },
         alternativeValidation(){
 
-            this.$emit('changeLogin', 'login3');
+            this.$emit('alternativeValidation');
 
         }
 

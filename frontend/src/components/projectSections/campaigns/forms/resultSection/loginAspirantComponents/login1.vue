@@ -1,19 +1,9 @@
 <template>
     <div id="loginAspirant1">
-        <h3>Bienvenido al registro de campaña. Ingresa los siguientes datos:</h3>
+        <h3 class="mb-4">Bienvenido al registro de campaña. Ingresa los siguientes datos:</h3>
         <form  @submit.prevent="sendInfoLogin1">
             <div class="alert alert-danger" v-show="showAlert">
                 El tipo de documento no es el mismo que se tiene en el sistema. Por favor, elija el tipo de documento correcto
-            </div>
-            <div class="form-group">
-                <label for="idType">Tipo de documento:</label>
-                <select name="idType" class="form-control" v-model="typeDocument" required>
-                    <option value="" default>{{ this.$languages.selectDefaultOptionText }}</option>
-                    <option value="1">Cédula de ciudadanía</option>
-                    <option value="2">Cédula de extranjería</option>
-                    <option value="3">Tarjeta de identidad</option>
-                    <option value="4">Permiso especial</option>
-                </select>
             </div>
             <div class="form-group">
                 <label for="document">Número de identificación:</label>
@@ -21,7 +11,7 @@
 
             </div>
             <div v-show="!processing" class="button-group text-center">
-                <button type="submit" class="btn btn-primary">Continuar</button>
+                <button type="submit" class="">Continuar</button>
             </div>
             <div v-show="processing" class="text-center">
                 <div class="spinner-border" role="status">
@@ -43,7 +33,6 @@ export default {
 
             showAlert: false,
             document: '',
-            typeDocument: '',
             processing: false,
 
 
@@ -57,41 +46,42 @@ export default {
             this.processing = true;
 
             this.$emit('document-aspirant', this.document);
-            this.$emit('type-document-aspirant', this.typeDocument);
+
+             this.$emit('changeLogin', 'login2');
 
             // this.$emit('changeLogin', 'login2');
 
-            this.$http.post('inscription/validate',{typeDocument: this.typeDocument, document: this.document}).then(response => {
+            // this.$http.post('inscription/validate',{typeDocument: this.typeDocument, document: this.document}).then(response => {
 
-                console.log('Desde login1: ', response);
+            //     console.log('Desde login1: ', response);
 
-                if(response.body.state == 200){
+            //     if(response.body.state == 200){
 
-                    this.$emit('access-code', response.body.accessCode);
+            //         this.$emit('access-code', response.body.accessCode);
 
-                    this.$emit('changeLogin', 'login2');
+            //         this.$emit('changeLogin', 'login2');
 
-                }else if(response.body.state == 406){
+            //     }else if(response.body.state == 406){
 
-                    this.showAlert = true;
+            //         this.showAlert = true;
                 
-                }else{
+            //     }else{
 
 
-                    this.$emit('loginSuccessfull', true);
+            //         this.$emit('loginSuccessfull', 0);
 
-                }
+            //     }
 
-                this.processing = false;
+            //     this.processing = false;
 
-            }, response =>{
+            // }, response =>{
 
-                alert("Algo ha fallado. Contacte con el administrador");
+            //     alert("Algo ha fallado. Contacte con el administrador");
 
-                this.processing = false;
-                return console.log('Too mal', response);
+            //     this.processing = false;
+            //     return console.log('Too mal', response);
 
-            });
+            // });
 
 
         }

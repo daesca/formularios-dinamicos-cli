@@ -5,6 +5,48 @@
             <b>{{ errorCampaign }}</b>
         </div>
 
+        <div class="row" v-if="!login">
+
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6 mr-auto ml-auto">
+
+                <!-- <login1
+                    @document-aspirant="setDocumentAspirant"
+                    @access-code="setAccessCodeAuthoriced"
+                    @loginSuccessfull="setAllData">
+                >
+
+                </login1>
+
+            </div>
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+
+                <login2
+                    :accesCodeAuthoriced="accesCodeAuthoriced"
+                    @activateLogin3="showModal"
+                >
+
+                </login2> -->
+                <div class="loginBox">
+                    <component 
+                        :is="typeLogin"  
+                        :accesCodeAuthoriced="accessCodeAuthoriced"
+                        @document-aspirant="setDocumentAspirant"
+                        @access-code="setAccessCodeAuthoriced"
+                        @changeLogin="setTypeLogin"
+                        @alternativeValidation="showModal"
+                        @loginSuccessfull="setAllData">
+
+                    </component>
+
+                </div>
+            
+
+            </div>
+
+        </div>
+
+        
+
         <form v-show="login">
             <h3 class="text-center">Campaña {{ codecampaign }}</h3>
             <template v-for="(value, key, index) in defaultForm">
@@ -41,7 +83,7 @@
                     </button>
                 </div> -->
                 <div class="modal-body">
-                    <component 
+                    <!-- <component 
                         :is="typeLogin"  
                         :accesCodeAuthoriced="accesCodeAuthoriced"
                         @document-aspirant="setDocumentAspirant"
@@ -50,7 +92,13 @@
                         @changeLogin="setTypeLogin"
                         @loginSuccessfull="setAllData">
 
-                    </component>
+                    </component> -->
+
+                    <login3 
+                        @loginSuccessfull="setAllData">
+                    >
+
+                    </login3>
                 </div>
                 <!-- <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -103,11 +151,9 @@
             // this.resetForms();
             this.$http.get('inscription/get/' + this.codecampaign).then(response => {
                 
-                if(response.body.code == '200'){
+                if(response.body.code != '200'){
                     
-                    this.showModal();
-
-                }else{
+                    // this.showModal();
 
                     console.log(response);
 
@@ -232,36 +278,40 @@
                 this.defaultForm = val;
 
             },
-            setAllData(){
+            setAllData(val){
 
-                this.$http.get('campaign/render/' + this.codecampaign).then(response => {
+                if(val != 1){
 
-                    // console.log(response);
+                    this.$http.get('campaign/render/' + this.codecampaign).then(response => {
 
-                    // this.$store.commit('setAnswersAspirant', JSON.parse(response.body.configDefaultForm));
-                    //this.$store.commit('setAnswersAspirant', JSON.parse(response.body.configForm));
+                        // console.log(response);
 
-                    this.setAnswersAspirant(JSON.parse(response.body.configDefaultForm));
+                        // this.$store.commit('setAnswersAspirant', JSON.parse(response.body.configDefaultForm));
+                        //this.$store.commit('setAnswersAspirant', JSON.parse(response.body.configForm));
 
-                    this.setAnswersAspirant(JSON.parse(response.body.configForm));
+                        this.setAnswersAspirant(JSON.parse(response.body.configDefaultForm));
 
-                    this.setDefaultForm(JSON.parse(response.body.configDefaultForm));
+                        this.setAnswersAspirant(JSON.parse(response.body.configForm));
 
-                    this.setConfigForm(JSON.parse(response.body.configForm));
-                    // this.$store.commit('setConfigForm', JSON.parse(response.body.configForm));
+                        this.setDefaultForm(JSON.parse(response.body.configDefaultForm));
 
-                    // this.$store.commit('setConfigMutableDefaultForm', JSON.parse(response.body.configDefaultForm));
+                        this.setConfigForm(JSON.parse(response.body.configForm));
+                        // this.$store.commit('setConfigForm', JSON.parse(response.body.configForm));
 
-                    this.setLogin(true);
+                        // this.$store.commit('setConfigMutableDefaultForm', JSON.parse(response.body.configDefaultForm));
 
-                    this.closeModal();
+                        this.setLogin(true);
 
-                }, response =>{
+                        this.closeModal();
 
-                    alert("Algo ha fallado. Contacte con el administrador");
-                    return console.log('Too mal', response);
+                    }, response =>{
 
-                });
+                        alert("Algo ha fallado. Contacte con el administrador");
+                        return console.log('Too mal', response);
+
+                    });
+                
+                }
 
             },
             showModal(){
@@ -286,6 +336,39 @@
 
     }
 </script>
-<style scoped>
+<style>
+
+    .loginBox{
+
+        background-color:#3F4E90;
+        color: #fff;
+        min-height: 500px;
+        display: flex;
+        align-items: center;
+        padding-left: 1em;
+        padding-right: 1em;
+
+    }
+    .loginBox button{
+
+        background-color: transparent;
+        border: 1px solid #fff;
+        padding: .3em 4em;
+        border-radius: 10px;
+        font-weight: bold;
+        color: #fff;
+        
+    }
+
+    .loginBox a{
+
+        color: #fff !important;
+
+    }
+
+    .loginBox a:hover{
+
+        /* text-decoration: none; */
+    }
 
 </style>
