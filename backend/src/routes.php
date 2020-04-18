@@ -27,6 +27,8 @@ return function (App $app) {
         $group->post('/validate/document' , 'DocumentController:validateDocument');
         $group->post('/validate/code', 'DocumentController:validateCode');
         $group->post('/save', 'InscriptionController:store');
+        $group->post("/get/data/document",
+            "InscriptionController:getRenderWithDataOfDocument");
     });
 
        

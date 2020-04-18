@@ -19,7 +19,7 @@ class FieldController extends Controller{
 
         $newForm = $request->getParsedBody();
         try {
-            $campaign = Campaign::findOrFail($newForm["idcampaign"]);
+            $campaign = Campaign::where("code", $newForm["codecampaign"])->first();
 
             foreach ($newForm['configDefaultForm'] as $key => $value) {
                 $saveField = saveField($value);

@@ -10,6 +10,7 @@ use Carbon\Carbon;
 use Carbon\CarbonImmutable;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
+use function DI\string;
 
 class InscriptionController extends Controller
 {
@@ -78,5 +79,44 @@ class InscriptionController extends Controller
             die("[ERROR] Error for ". $exception->getMessage());
         }
 
+    }
+
+    public function getRenderWithDataOfDocument(Request $request, Response $response)
+    {
+        $arrayRender = [];
+        $arrayItem = null;
+        $campagin = Campaign::where('code', $request->getParsedBody()['code'])->first();
+        $document = Document::where('document', $request->getParsedBody()['document'])->first();
+        $fields = $campagin->fields;
+        if (! is_null($campagin) and !is_null($document)) {
+            foreach ($document->values as $res) {
+                $aux = $fields->where('name', $res->name)->first()->toArray();
+                $arrayItem['typeField'] = $aux['typeField'];
+                unset($aux['typeField']);
+                unset($aux['created_at']);
+                unset($aux['updated_at']);
+                unset($aux['pivot']);
+                $arrayItem['configurations'] = $aux;
+                $arrayItem['configurations']['defaultValue'] = $res->value;
+                $arrayItem['idField'] = $aux['id'];
+                unset($arrayItem['configurations']['id']);
+                array_push($arrayRender, $arrayItem);
+            }
+            $message = [
+                "code" => 200,
+                "message" => "Información previa del usuario y el render personalizado",
+                "data" => [
+                    "idcampaign" => $campagin->id,
+                    "codecampaign" => $campagin->code,
+                    "configDefaultForm" => $arrayRender,
+                    "configForm" => json_decode($campagin->render)
+                ]
+            ];
+            $response->getBody()->write(json_encode($message));
+            return $response->withHeader('Content-Type', 'application/json');
+        }
+
+        $response->getBody()->write("Jola");
+        return $response;
     }
 }
