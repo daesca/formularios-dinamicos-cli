@@ -1,10 +1,7 @@
 <template>
     <div id="loginAspirant1">
-        <h3 class="mb-4">Bienvenido al registro de campaña. Ingresa los siguientes datos:</h3>
+        <h3 class="mb-4">Bienvenido al registro de campaña. Ingresa el número de identificación para continuar:</h3>
         <form  @submit.prevent="sendInfoLogin1">
-            <div class="alert alert-danger" v-show="showAlert">
-                El tipo de documento no es el mismo que se tiene en el sistema. Por favor, elija el tipo de documento correcto
-            </div>
             <div class="form-group">
                 <label for="document">Número de identificación:</label>
                 <input type="number" name="document" class="form-control" v-model="document" required/>
@@ -47,41 +44,40 @@ export default {
 
             this.$emit('document-aspirant', this.document);
 
-             this.$emit('changeLogin', 'login2');
+            this.$http.post('inscription/validate/document',{document: this.document}).then(response => {
 
-            // this.$emit('changeLogin', 'login2');
+                // console.log('Desde login1: ', response);
 
-            // this.$http.post('inscription/validate',{typeDocument: this.typeDocument, document: this.document}).then(response => {
+                if(response.body.code == 200){
 
-            //     console.log('Desde login1: ', response);
+                    this.$emit('document-aspirant', response.body.data.document);
 
-            //     if(response.body.state == 200){
+                    this.$emit('email-aspirant', response.body.data.email);
 
-            //         this.$emit('access-code', response.body.accessCode);
+                    this.$emit('changeLogin', 'login2');
 
-            //         this.$emit('changeLogin', 'login2');
+                }else if(response.body.code == 501){
 
-            //     }else if(response.body.state == 406){
-
-            //         this.showAlert = true;
+                    this.showAlert = true;
                 
-            //     }else{
+                }else{
 
+                    console.log('No hay informacion previa');
 
-            //         this.$emit('loginSuccessfull', 0);
+                    this.$emit('loginSuccessfull', 0);
 
-            //     }
+                }
 
-            //     this.processing = false;
+                this.processing = false;
 
-            // }, response =>{
+            }, response =>{
 
-            //     alert("Algo ha fallado. Contacte con el administrador");
+                alert("Algo ha fallado. Contacte con el administrador");
 
-            //     this.processing = false;
-            //     return console.log('Too mal', response);
+                this.processing = false;
+                return console.log('Too mal', response);
 
-            // });
+            });
 
 
         }

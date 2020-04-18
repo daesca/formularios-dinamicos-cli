@@ -32,7 +32,7 @@
 <script>
 export default {
 
-    props:['email', 'accesCodeAuthoriced'],
+    props:['document'],
     data(){
 
         return{
@@ -49,24 +49,24 @@ export default {
 
             // this.$emit('changeLogin', 'login3');
 
-            // this.$http.get('inscription/validate',{typeDocument: this.typeDocument, document: this.document}).then(response => {
+            this.$http.post('inscription/validate/code',{document: this.document, code: this.accessCode}).then(response => {
 
-            //     if(response.body.state == 200){
+                if(response.body.code == 200){
 
-            //         this.$emit('successLogin2', true);
+                    this.$emit('loginSuccessfull', 1);
 
-            //     }else if(response.body.state == 406){
+                }else{
 
-                   
+                   console.log("Algo malo paso");
 
-            //     }
+                }
 
-            // }, response =>{
+            }, response =>{
 
-            //     alert("Algo ha fallado. Contacte con el administrador");
-            //     return console.log('Too mal', response);
+                alert("Algo ha fallado. Contacte con el administrador");
+                return console.log('Too mal', response);
 
-            // });
+            });
 
         },
         alternativeValidation(){
