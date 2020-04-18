@@ -14,13 +14,13 @@
                 <div id="collapseOneEdit" class="collapse" aria-labelledby="headingOneEdit" data-parent="#accordionExample">
                 <div class="card-body">
                     <ul>
-                        <template v-for="(value, key) in $store.getters.configMutableDefaultForm">
-                            <li v-if="value.deleted == '0'" :key="key" >
+                        
+                            <li v-for="(value, key) in $store.getters.configMutableDefaultForm" :key="key" >
                                 <strong>Index del elemento: {{ key }} </strong>
                                 <edit-single-component :configurations="value.configurations" :typeField="value.typeField" :keyarray="key" :noEdit="true"></edit-single-component>
 
                             </li>
-                        </template>
+                      
                     </ul>
                 </div>
                 </div>
@@ -36,14 +36,14 @@
                 <div id="collapseTwoEdit" class="collapse" aria-labelledby="headingTwoEdit" data-parent="#accordionExample">
                 <div class="card-body">
                     <ul>
-                        <template v-for="(value, key) in $store.getters.configForm">
-                            <li v-if="value.deleted == '0'" :key="key" >
+                      
+                            <li v-for="(value, key) in $store.getters.configForm" :key="key" >
 
                                 <strong>Index del elemento: {{ key }} </strong>
                                 <edit-single-component :configurations="value.configurations" :typeField="value.typeField" :keyarray="key" :noEdit="false"></edit-single-component>
 
                             </li>
-                        </template>
+                   
                     </ul>
                 </div>
                 </div>
