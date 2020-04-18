@@ -38,8 +38,8 @@
                         </td>
                     </tr> -->
                     <!-- <tr v-for="(value, index) in $store.getters.createdCampaigns" :key="index"> -->
-                    <template v-for="(value, index) in campaigns">
-                        <tr v-if="value.deleted != '1'" :key="index">
+                 
+                        <tr v-for="(value, index) in campaigns" :key="index">
                             <th scope="row">{{ value.code }}</th>
                             <td>{{ value.name }}</td>
                             <td>{{ value.category }}</td>
@@ -53,7 +53,7 @@
                                 <button @click="deleteCampaign(value.code)" class="btn btn-danger">{{ $languages.deleteButtonText }}</button>
                             </td>
                         </tr>
-                    </template>
+                 
                     <!-- <tr>
                         <th scope="row">2</th>
                         <td>Jacob</td>

@@ -14,7 +14,7 @@ class CampaignController extends Controller{
 
     public function home(Request $request, Response $response){
 
-        $response->getBody()->write(Campaign::get()->toJson());
+        $response->getBody()->write(Campaign::where('deleted', 0)->get()->toJson());
         return $response->withHeader('Content-Type', 'application/json');
 
     }

@@ -14,9 +14,9 @@
 
                     <div id="collapseOneResult" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
                     <div class="card-body">
-                        <template v-for="(value, key, index) in $store.getters.configMutableDefaultForm">
-                            <component v-if="value.deleted == '0'" :is="value.typeField" :defaultValue="value.configurations.defautlValue" :configurations="value.configurations" :key="index" :keyarray="index"></component>
-                        </template>
+
+                        <component v-for="(value, key, index) in $store.getters.configMutableDefaultForm" :is="value.typeField" :defaultValue="value.configurations.defautlValue" :configurations="value.configurations" :key="index" :keyarray="index"></component>
+
                     </div>
                     </div>
                 </div>
@@ -30,9 +30,9 @@
                     </div>
                     <div id="collapseTwoResult" class="collapse" aria-labelledby="headingTwoResult" data-parent="#accordionExample">
                     <div class="card-body">
-                        <template v-for="(value, key, index) in $store.getters.configForm">
-                            <component v-if="value.deleted == '0'" :is="value.typeField" :defaultValue="value.configurations.defautlValue" :configurations="value.configurations" :key="index" :keyarray="index"></component>
-                        </template>
+
+                        <component v-for="(value, key, index) in $store.getters.configForm" :is="value.typeField" :defaultValue="value.configurations.defautlValue" :configurations="value.configurations" :key="index" :keyarray="index"></component>
+                     
                     </div>
                     </div>
                 </div>
