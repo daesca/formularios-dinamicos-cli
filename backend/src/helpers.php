@@ -72,7 +72,7 @@ function validating(object $field, string $condition, $value): ?array
             }
             break;
         case "max" :
-            if ($field->max < strlen($value)) {
+            if ($field->max < strlen($value) and !empty($field->max)) {
                 $message = [
                     "message" => "Es mayor que el maximo requerido",
                     "field" => $field->id
@@ -89,11 +89,20 @@ function validating(object $field, string $condition, $value): ?array
             break;
         case "options" :
             $htmlValues = array_column(json_decode($field->options), 'htmlValue');
-            if (!in_array($value, $htmlValues)) {
-                $message = [
-                    "message" => "El valor es diferente que las opciones del item",
-                    "field" => $field->id
-                ];
+            if (is_string($value)) {
+                if (!in_array($value, $htmlValues)) {
+                    $message = [
+                        "message" => "El valor es diferente que las opciones del item",
+                        "field" => $field->id
+                    ];
+                }
+            } else {
+                if (!empty(array_diff($value, $htmlValues))) {
+                    $message = [
+                        "message" => "El valor es diferente que las opciones del item",
+                        "field" => $field->id
+                    ];
+                }
             }
             break;
         case "type" :
@@ -105,7 +114,7 @@ function validating(object $field, string $condition, $value): ?array
             }
             break;
         case "required" :
-            if ($field->required and empty($value)) {
+            if ($field->required and $value == "") {
                 $message = [
                     "message" => "El valor es requerido",
                     "field" => $field->id
@@ -131,7 +140,7 @@ function getEvaluate(string $evaluate, $value): bool
     return $callable($value);
 }
 
-function is_date($date, $format = 'Y-m-d H:i:s'): bool
+function is_date($date, $format = 'Y-m-d'): bool
 {
     $d = DateTime::createFromFormat($format, $date);
     return $d && $d->format($format) == $date;

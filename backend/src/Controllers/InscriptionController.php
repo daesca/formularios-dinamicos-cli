@@ -6,6 +6,7 @@ namespace App\Controllers;
 
 use App\Models\Campaign;
 use App\Models\Document;
+use App\Models\ResponseCampagin;
 use Carbon\Carbon;
 use Carbon\CarbonImmutable;
 use Psr\Http\Message\ServerRequestInterface as Request;
@@ -58,26 +59,35 @@ class InscriptionController extends Controller
 
     public function store(Request $request, Response $response) {
         $errors = [];
+        $corrects = [];
         $codecampaign = $request->getParsedBody()['codecampaign'];
         $documentAspirant = $request->getParsedBody()['documentAspirant'];
         try {
             $campaign = Campaign::where('code', $codecampaign)->first();
-
             $fields = collect($campaign->fields->toArray());
-
-            if (! Document::where('document', $documentAspirant)->exists()) {
-                Document::create(['document' => $documentAspirant]);
+            $document = Document::where('document', $documentAspirant)->first();
+            if (is_null($document)) {
+                $document = Document::create(['document' => $documentAspirant]);
             }
             foreach ($request->getParsedBody()['answers'] AS $k => $v) {
                 $field = (object) $fields->where('id', $k)->first();
                 $evaluateField = evaluateField($field, $v['answer']);
                 if (! is_null($evaluateField)) {
                     array_push($errors, $evaluateField);
+                    continue;
                 }
+                array_push($corrects, [
+                    'campaign_id' => $campaign->id,
+                    'field_id' => $field->id,
+                    'document_id' => $document->id,
+                    'value' => is_array($v['answer'])?implode(",", $v['answer']):$v['answer'],
+                    'name' => $field->name
+
+                ]);
             }
             if (count($errors) > 0) {
                 $message = [
-                    "code" => "500",
+                    "code" => "501",
                     "message" => "Contiene errores el envio de la información.",
                     "data" => [
                         "errors" => $errors
@@ -86,9 +96,18 @@ class InscriptionController extends Controller
                 $response->getBody()->write(json_encode($message));
                 return $response->withHeader('Content-Type', 'application/json');
             }
+            if (ResponseCampagin::insert($corrects)) {
+                $message = [
+                    "code" => "200",
+                    "message" => "Se creo correctamente la preinscripción.",
+                    "data" => []
+                ];
+                $response->getBody()->write(json_encode($message));
+                return $response->withHeader('Content-Type', 'application/json');
+            }
             $message = [
-                "code" => "200",
-                "message" => "Se creo correctamente la preinscripción.",
+                "code" => "500",
+                "message" => "Se produjo un error a la creacion del registro.",
                 "data" => []
             ];
             $response->getBody()->write(json_encode($message));

@@ -7,7 +7,7 @@ namespace App\Models;
 class   Document extends Model
 {
     protected $table = 'documents';
-    protected $fillable = ['document'];
+    protected $fillable = ['id', 'document'];
 
     public $timestamps = false;
 
