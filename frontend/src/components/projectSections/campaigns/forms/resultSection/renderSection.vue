@@ -69,7 +69,12 @@
 
                         {{ bodyResultSaveAnswers }}
 
-                        <button class="btn btn-success" @click="setShowResultSaveAnswers(false)">Aceptar</button>
+                        <div class="text-center">
+                            
+                            <button class="btn btn-success" @click="closeModal">Aceptar</button>
+
+                        </div>
+
 
                     </div>
 
@@ -181,21 +186,31 @@
 
                         }
 
-                        if(precharge != 0){
-
-                            if(JSONForm[i].configurations.options != undefined){
-
-                                JSONForm[i].configurations.options = JSON.parse(JSONForm[i].configurations.options);
-
-                            }
-
-                        }
-
                         if(JSONForm[i].configurations.defaultValue != undefined && JSONForm[i].configurations.defaultValue != ''){
 
                             initialValue = JSONForm[i].configurations.defaultValue;
 
                         }
+
+                        if(precharge != 0){
+
+                            if(typeof(JSONForm[i].configurations.options) == 'string'){
+
+                                JSONForm[i].configurations.options = JSON.parse(JSONForm[i].configurations.options);
+
+                                
+
+                            }
+
+                            if(JSONForm[i].typeField === 'checkField'){
+
+                                initialValue = initialValue.split(",");
+
+                            }
+
+                        }
+
+
 
                         this.answersAspirant[newIndex] = { answer: initialValue };
 
