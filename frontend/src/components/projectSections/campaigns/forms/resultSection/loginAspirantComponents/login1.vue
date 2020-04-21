@@ -50,9 +50,11 @@ export default {
 
                 if(response.body.code == 200){
 
-                    this.$emit('document-aspirant', response.body.data.document);
+                    console.log(response.body);
 
-                    this.$emit('email-aspirant', response.body.data.email);
+                    this.$emit('document-aspirant', response.body.data[0].document);
+
+                    this.$emit('email-aspirant', response.body.data[0].email);
 
                     this.$emit('changeLogin', 'login2');
 

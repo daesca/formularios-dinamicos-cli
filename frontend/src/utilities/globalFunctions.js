@@ -13,7 +13,7 @@ const globalFunctions = {
     },
     propsResultFormElements() {
 
-        return ['keyarray', 'configurations', 'idField', 'renderMode', 'value'];
+        return ['keyarray', 'configurations', 'idField', 'renderMode', 'defaultValue'];
 
     },
     // propsResultFormElements() {

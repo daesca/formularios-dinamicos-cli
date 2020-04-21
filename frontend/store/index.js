@@ -63,6 +63,19 @@ const store = new Vuex.Store({
                     "max": "",
                     "required": "1"
                 }
+            }, {
+                "typeField": "multipleField",
+                "configurations": {
+                    "title": "Fecha de expedición del documento",
+                    "weight": 0,
+                    "defaultValue": "",
+                    "type": "date",
+                    "name": "fechaExpedicionSapiencia",
+                    "cssClass": "",
+                    "min": "",
+                    "max": "",
+                    "required": "1"
+                }
             },
             {
                 "typeField": "selectField",
@@ -890,7 +903,7 @@ const store = new Vuex.Store({
                         }
                     ]
                 }
-            }
+            },
         ],
         configMutableDefaultForm: [
 

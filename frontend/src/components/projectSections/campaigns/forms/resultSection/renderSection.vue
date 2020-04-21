@@ -5,7 +5,7 @@
             <b>{{ errorCampaign }}</b>
         </div>
 
-        <div class="row" v-if="!login && errorCampaign == ''">
+        <div class="row" v-show="!login && errorCampaign == ''">
 
             <div class="col-12 col-sm-12 col-md-6 col-lg-6 mr-auto ml-auto">
 
@@ -13,6 +13,7 @@
                     <component 
                         :is="typeLogin"
                         :document="documentAspirant"
+                        :email="emailAspirant"
                         @document-aspirant="setDocumentAspirant"
                         @email-aspirant="setEmailAspirant"
                         @changeLogin="setTypeLogin"
@@ -28,7 +29,7 @@
 
         </div>
 
-        <form v-show="login">
+        <form v-show="login" @submit.prevent="sendAnswers">
             <h3 class="text-center">Campaña {{ codecampaign }}</h3>
 
                 <component 
@@ -44,7 +45,7 @@
                 </component>
 
             <div class="text-right mt-2">
-                <button class="btn btn-success" @click.prevent="sendAnswers">Enviar</button>
+                <button class="btn btn-success">Enviar</button>
             </div>
 
         </form>
@@ -56,11 +57,22 @@
 
                 <div class="modal-body">
 
-                    <login3 
+                    <login3 v-show="!showResultSaveAnswers"
                         @loginSuccessfull="setAllData">
                     >
 
                     </login3>
+
+                    <div v-show="showResultSaveAnswers">
+
+                        <h2>{{ titleResultSaveAnswers }}</h2>
+
+                        {{ bodyResultSaveAnswers }}
+
+                        <button class="btn btn-success" @click="setShowResultSaveAnswers(false)">Aceptar</button>
+
+                    </div>
+
                 </div>
 
                 </div>
@@ -103,6 +115,9 @@
                 renderForm:[],
                 login: false,
                 errorCampaign: '',
+                titleResultSaveAnswers: '',
+                bodyResultSaveAnswers: '',
+                showResultSaveAnswers: false,
 
             }
 
@@ -144,7 +159,7 @@
                 this.emailAspirant = val;
 
             },
-            setAnswersAspirant(JSONForm) {
+            setAnswersAspirant(JSONForm, precharge = 0) {
 
                 // console.log("Desde Answers:", JSONForm);
 
@@ -166,7 +181,17 @@
 
                         }
 
-                        if(JSONForm[i].configurations.defaultValue != undefined){
+                        if(precharge != 0){
+
+                            if(JSONForm[i].configurations.options != undefined){
+
+                                JSONForm[i].configurations.options = JSON.parse(JSONForm[i].configurations.options);
+
+                            }
+
+                        }
+
+                        if(JSONForm[i].configurations.defaultValue != undefined && JSONForm[i].configurations.defaultValue != ''){
 
                             initialValue = JSONForm[i].configurations.defaultValue;
 
@@ -206,22 +231,45 @@
             },
             sendAnswers(){
 
-                console.log("Hola desde el metodo de envio");
+                // console.log("Hola desde el metodo de envio");
 
                 this.$http.post('inscription/save',{codecampaign: this.codecampaign, documentAspirant: this.documentAspirant, answers: this.answersAspirant}).then(response => {
 
-                    console.log();
+                    if(response.body.code == 200){
+
+                        this.titleResultSaveAnswers = "Guardado exitoso";
+
+                        this.bodyResultSaveAnswers = response.body.message;
+
+                   
+
+                    }else{
+
+                        this.titleResultSaveAnswers = "Error al guardar";
+
+                        this.bodyResultSaveAnswers = response.body.message;    
+
+                    }
+
+                    this.setShowResultSaveAnswers(true);
+
+                    this.showModal();
 
                 }, response =>{
 
-                alert("Algo ha fallado. Contacte con el administrador");
-                return console.log('Too mal', response);
+                    alert("Algo ha fallado. Contacte con el administrador");
+                    return console.log('Too mal', response);
 
                 });
 
             },
             setLogin(val){
                 this.login = val;
+            },
+            setShowResultSaveAnswers(val){
+
+                this.showResultSaveAnswers = val;
+
             },
             // setConfigForm(val){
 
@@ -263,6 +311,16 @@
                     this.$http.post('inscription/get/data/document', { code: this.codecampaign, document: this.documentAspirant }).then(response => {
 
                         console.log('Datos llenaos', response.body);
+
+                        this.setAnswersAspirant(response.body.data.configDefaultForm, 1);
+
+                        this.setAnswersAspirant(response.body.data.configForm, 1);
+
+                        this.setRenderForm(response.body.data.configDefaultForm);
+
+                        this.setRenderForm(response.body.data.configForm);
+
+                        this.setLogin(true);
 
                         this.closeModal();
 

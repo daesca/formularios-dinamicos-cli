@@ -6,10 +6,11 @@
             
         </h3>
         <form @submit.prevent="sendInfoLogin2">
-
+            
             <div class="form-group">
                 <label for="accessCode">Código:</label>
                 <input type="text" name="accessCode" class="form-control" v-model="accessCode" required/>
+                <span v-show="showErrorAlert"><b>Alerta:</b>Código erroneo</span><br>
                 <a href="javascript:void(0)" @click="alternativeValidation"><small>¿No puedes acceder a esa cuenta de correo? Quizá podamos hacer algo</small></a>
 
             </div>
@@ -32,13 +33,14 @@
 <script>
 export default {
 
-    props:['document'],
+    props:['document', 'email'],
     data(){
 
         return{
 
             accessCode: '',
             processing: false,
+            showErrorAlert: false,
 
         }
 
@@ -53,11 +55,12 @@ export default {
 
                 if(response.body.code == 200){
 
+                    this.showErrorAlert = false;
                     this.$emit('loginSuccessfull', 1);
 
                 }else{
 
-                   console.log("Algo malo paso");
+                   this.showErrorAlert = true;
 
                 }
 
