@@ -29,6 +29,7 @@ return function (App $app) {
         $group->post('/save', 'InscriptionController:store');
         $group->post("/get/data/document",
             "InscriptionController:getRenderWithDataOfDocument");
+        $group->post('/validate/expedition', 'DocumentController:validateExpeditionDate');
     });
 
        

@@ -6,6 +6,7 @@ namespace App\Controllers;
 
 use App\Models\Codes;
 use App\Models\Document;
+use App\Models\ResponseCampagin;
 use Carbon\Carbon;
 use Carbon\CarbonImmutable;
 use Psr\Http\Message\ResponseInterface as Response;
@@ -113,5 +114,32 @@ class DocumentController extends Controller
         } catch (\Exception $e) {
             die($e->getMessage());
         }
+    }
+
+    public function validateExpeditionDate(Request $request, Response $response)
+    {
+        $expeditionDateSend = $request->getParsedBody()['expeditionDate'];
+        $documentSend = $request->getParsedBody()['document'];
+        $document = Document::where([
+            'document' => $documentSend])->first();
+        $expeditionDate = $document->values()->where([
+            'name' => 'fechaExpedicionSapiencia'
+        ])->first();
+
+        if (strcmp($expeditionDate->value, $expeditionDateSend) === 0) {
+
+            $this->messages = [
+                'code' => '200',
+                'message' => 'Las fechas de expedicíon son iguales'
+            ];
+            $response->getBody()->write(json_encode($this->messages));
+            return $response->withHeader('Content-Type', 'application/json');
+        }
+        $this->messages = [
+            'code' => '500',
+            'message' => 'Las fechas de expedicíon no son iguales'
+        ];
+        $response->getBody()->write(json_encode($this->messages));
+        return $response->withHeader('Content-Type', 'application/json');
     }
 }
