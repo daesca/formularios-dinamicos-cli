@@ -14,7 +14,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 
 class DocumentController extends Controller
 {
-    protected array $messages;
+    protected $messages;
 
     function validateDocument(Request $request, Response $response, $args)
     {

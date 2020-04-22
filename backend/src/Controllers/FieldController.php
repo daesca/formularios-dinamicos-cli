@@ -30,7 +30,7 @@ class FieldController extends Controller{
 
             if (count($newForm['configForm']) > 0) {
                 foreach ($newForm['configForm'] as $key => $value) {
-                    $saveField = saveField($value);
+                    $saveField = saveField($value, false);
                     array_push($this->configForm, $saveField);
                     array_push($this->idFields, $saveField['idField']);
                 }

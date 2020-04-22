@@ -3,9 +3,14 @@
 use App\Models\Field;
 use Illuminate\Support\Collection;
 
-function saveField(array $value): array
+function saveField(array $value, bool $defaultForm = true): array
 {
     $parseField = parseField($value);
+    if($parseField) {
+        $parseField['defaultForm'] = '1';
+    } else {
+        $parseField['defaultForm'] = '0';
+    }
     if (!isset($value['idField'])) {
         $field = Field::create($parseField);
         $value['idField'] = $field->id;
@@ -22,8 +27,10 @@ function parseField(array $field): array
 {
     $parseField = $field['configurations'];
     $parseField['typeField'] = $field['typeField'];
-    $parseField['options'] = json_encode($field['configurations']['options']);
-    $parseField['deleted'] = json_encode($field['deleted']);
+    if(isset($field['configurations']['options'])) {
+        $parseField['options'] = json_encode($field['configurations']['options']);
+    }
+    $parseField['deleted'] = $field['deleted'];
     return $parseField;
 }
 
