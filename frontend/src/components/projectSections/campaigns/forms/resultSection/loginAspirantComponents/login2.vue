@@ -10,7 +10,7 @@
             <div class="form-group">
                 <label for="accessCode">Código:</label>
                 <input type="text" name="accessCode" class="form-control" v-model="accessCode" required/>
-                <span v-show="showErrorAlert"><b>Alerta:</b>Código erroneo</span><br>
+                <div v-show="showErrorAlert"><span ><b>Alerta:</b>Código erroneo</span></div>
                 <a href="javascript:void(0)" @click="alternativeValidation"><small>¿No puedes acceder a esa cuenta de correo? Quizá podamos hacer algo</small></a>
 
             </div>
