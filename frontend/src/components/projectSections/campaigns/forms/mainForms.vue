@@ -60,7 +60,7 @@ export default {
 
         this.$store.commit('setConfigMutableDefaultForm', this.$store.getters.configDefaultForm);
         // this.$store.commit('setNameToFieldOfDefaultForm', this.codecampaign);
-        // this.$store.commit('setDeletedAttributeToFieldOfDefaultForm');
+        this.$store.commit('setDeletedAttributeToFieldOfDefaultForm');
 
       }
 
@@ -78,23 +78,20 @@ export default {
 
       this.$http.post('field/store', { codecampaign: this.codecampaign, configForm: this.$store.getters.configForm, configDefaultForm: this.$store.getters.configMutableDefaultForm}).then(response => {
 
+
           console.log("Too bn", response);
 
-            alert("Formulario guardado exitosamente");
+          if(response.body.code == 200){
 
+            alert("Formulario guardado exitosamente");
+            
             return this.$router.go(-1);
 
-          // if(response.body.status){
+          }else{
 
-          //   alert("Formulario guardado exitosamente");
+            alert("Error al guardar. Contacte al administrador");
 
-          //   return this.$router.go(-1);
-
-          // }else{
-
-          //   return alert("Error al eliminar. Contacte al administrador");
-
-          // }
+          }
 
       }, response =>{
 
