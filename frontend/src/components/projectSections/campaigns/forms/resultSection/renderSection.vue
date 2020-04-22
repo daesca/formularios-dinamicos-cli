@@ -57,8 +57,10 @@
 
                 <div class="modal-body">
 
-                    <login3 v-show="!showResultSaveAnswers"
-                        @loginSuccessfull="setAllData">
+                    <login3 
+                        v-show="!showResultSaveAnswers"
+                        :document="documentAspirant"  
+                        @loginSuccessfull="setAllData"
                     >
 
                     </login3>
@@ -123,6 +125,7 @@
                 titleResultSaveAnswers: '',
                 bodyResultSaveAnswers: '',
                 showResultSaveAnswers: false,
+                nextIndex: 0,
 
             }
 
@@ -214,8 +217,6 @@
 
                         this.answersAspirant[newIndex] = { answer: initialValue };
 
-                        // this.$set(this.answersAspirant[newIndex], 'answer', ' ');
-
                     }
 
                 }
@@ -229,9 +230,11 @@
 
                         if(JSONForm[i].deleted != 1){
 
-                            this.renderForm[i] = JSONForm[i];
+                            this.renderForm[this.nextIndex] = JSONForm[i];
 
                         }
+
+                        this.nextIndex ++;
                     }
 
                 }

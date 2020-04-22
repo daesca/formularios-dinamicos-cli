@@ -8,6 +8,8 @@
             <div class="form-group">
                 <label for="dateDocument">Fecha de expedición:</label>
                 <input type="date" name="dateDocument" class="form-control" v-model="dateDocument" required/>
+                <div><span v-show="showErrorAlert"><b>Alerta:</b>Fecha errada</span></div>
+                
 
             </div>
             <div class="button-group text-center">
@@ -28,13 +30,14 @@
 </template>
 <script>
 export default {
-
+    props:['document'],
     data(){
 
         return{
 
             dateDocument: '',
             processing: false,
+            showErrorAlert: false,
 
         }
 
@@ -43,26 +46,29 @@ export default {
 
         sendInfoLogin3(){
 
-            this.$emit('loginSuccessfull', 1);
+            this.$http.post('inscription/validate/expedition',{document: this.document, expeditionDate: this.dateDocument}).then(response => {
 
-            // this.$http.get('inscription/validate',{typeDocument: this.typeDocument, document: this.document}).then(response => {
+                this.processing = true;
+                
+                if(response.body.code == 200){
 
-            //     if(response.body.state == 200){
+                    this.showErrorAlert = false;
+                    this.$emit('loginSuccessfull', 1);
 
-            //         this.$emit('successLogin2', true);
+                }else{
 
-            //     }else if(response.body.state == 406){
+                   this.showErrorAlert = true;
 
-                   
+                }
 
-            //     }
+                this.processing = false;
 
-            // }, response =>{
+            }, response =>{
 
-            //     alert("Algo ha fallado. Contacte con el administrador");
-            //     return console.log('Too mal', response);
+                alert("Algo ha fallado. Contacte con el administrador");
+                return console.log('Too mal', response);
 
-            // });
+            });
 
         }
 
