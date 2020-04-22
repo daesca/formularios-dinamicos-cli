@@ -28,7 +28,7 @@ class FieldController extends Controller{
 
             $campaign->renderDefault = json_encode($this->configDefaultForm);
 
-            if (count($newForm['configForm']) > 0) {
+            if (isset($newForm['configForm'])) {
                 foreach ($newForm['configForm'] as $key => $value) {
                     $saveField = saveField($value, false);
                     array_push($this->configForm, $saveField);
