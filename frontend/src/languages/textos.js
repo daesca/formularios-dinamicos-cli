@@ -1,6 +1,6 @@
 const textos = {
 
-    welcomeLoginMessageText: 'Bienvenido a la plataforma de pre-inscripciones',
+    welcomeLoginMessageText: 'Inicio de sesión',
 
     //Type elements
     textBox: 'Caja de Texto',
@@ -62,9 +62,12 @@ const textos = {
     deleteButtonText: 'Eliminar',
     addButtonText: 'Agregar',
     copyButtonText: 'Copiar',
+    shareButtonText: 'Compartir',
+
     createCampaignText: 'Crear campaña',
     createFormText: 'Crear Formulario',
     editFormText: 'Editar Formulario',
+
 
     //Creation section texts
 

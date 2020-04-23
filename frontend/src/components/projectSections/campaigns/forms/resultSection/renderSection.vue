@@ -1,11 +1,11 @@
 <template>
     <div id="renderResult-container" class="container mt-4">
 
-        <div v-show="errorCampaign != ''" class="alert alert-danger">
+        <div v-if="errorCampaign != ''" class="alert alert-danger">
             <b>{{ errorCampaign }}</b>
         </div>
 
-        <div class="row" v-show="!login && errorCampaign == ''">
+        <div class="row" v-if="!login && errorCampaign == ''">
 
             <div class="col-12 col-sm-12 col-md-6 col-lg-6 mr-auto ml-auto">
 
@@ -130,7 +130,7 @@
             }
 
         },
-        mounted(){
+        beforeMount(){
 
             // this.resetForms();
             this.$http.get('inscription/get/' + this.codecampaign).then(response => {

@@ -94,4 +94,26 @@ export default {
     opacity: 0;
   }
 
+  .ovalButton{
+
+      border: 1px solid #fff;
+      padding: .3em 2em;
+      border-radius: 50px;
+      font-weight: bold;
+      color: #fff;
+      
+  }
+
+  .backPrimaryColor{
+
+    background-color: #007DFA;
+
+  }
+
+  .textPrimaryColor{
+
+    color: #007DFA;
+
+  }
+
 </style>

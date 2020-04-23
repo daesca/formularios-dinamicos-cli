@@ -1,73 +1,73 @@
 <template>
-    <div id="index-campaings-container" class="container">
-        <h1>Modulo de Campañas</h1>
-        <div class="d-flex justify-content-start mb-2">
-            <router-link to="/main/createCampaign" class="btn btn-info mr-2"> {{ $languages.createCampaignText }} </router-link>
-            <!-- <router-link to="/main/formsCreate" class="btn btn-info"> {{ $languages.createFormText }} </router-link> -->
+    <div id="index-campaings-container" class="container-full">
+
+        <div class="row">
+
+            <div class="col-12 col-sm-12 col-md-8 col-lg-8 mr-auto ml-auto">
+                <h1>Modulo de Campañas</h1>
+                <div class="d-flex justify-content-start mb-2">
+                    <router-link to="/main/createCampaign" class="btn btn-info mr-2"> {{ $languages.createCampaignText }} </router-link>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">{{ $languages.titleLabelForm }}</th>
+                                <th scope="col">Categoria</th>
+                                <th scope="col">Fecha Inicio</th>
+                                <th scope="col">Fecha Final</th>
+                                <th scope="col">Cupos</th>
+                                <th scope="col">Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>     
+                            <tr v-for="(value, index) in campaigns" :key="index">
+                                <th scope="row">{{ value.code }}</th>
+                                <td>{{ value.name }}</td>
+                                <td>{{ value.category }}</td>
+                                <td>{{ value.startDate }}</td>
+                                <td>{{ value.finalDate }}</td>
+                                <td>{{ value.totalAspirants }}</td>
+                                <td>
+                                    <router-link :to="{ path: '/main/formsCreate/' + value.code, params: { codecampaign: value.code } }" class="btn btn-success mr-2"> {{ value.renderDefault == null ? $languages.createFormText: $languages.editFormText }} </router-link>
+                                    <router-link :to="{ path: '/main/editCampaign/' + value.code, params:{ codecampaign: value.code } }" class="btn btn-info mr-2">{{ $languages.editButtonText }}</router-link>
+                                    <button @click="copyCampaign(value.code)" class="btn btn-warning mr-2">{{ $languages.copyButtonText }}</button>
+                                    <button @click="deleteCampaign(value.code)" class="btn btn-danger mr-2">{{ $languages.deleteButtonText }}</button>
+                                    <button @click="shareCampaign(value.code)" class="btn btn-primary" data-toggle="modal" data-target="#shareModal">{{ $languages.shareButtonText }}</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
         </div>
-        <!-- <div v-if="$store.getters.createdCampaigns.length == 0"> -->
-        <!-- <div class="alert alert-danger">
-            <span>{{ $languages.noCampaignsAvalible }}</span>
-        </div> -->
-        <!-- <div v-else class="table-responsive"> -->
-        <div class="table-responsive">
-            <table class="table">
-                <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">{{ $languages.titleLabelForm }}</th>
-                        <th scope="col">Categoria</th>
-                        <th scope="col">Fecha Inicio</th>
-                        <th scope="col">Fecha Final</th>
-                        <th scope="col">Cupos</th>
-                        <th scope="col">Opciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- <tr>
-                        <th scope="row">0</th>
-                        <td>Campaña creada 1</td>
-                        <td>Tecnologia e Informacion</td>
-                        <td>01-01-2020</td>
-                        <td>01-12-2020</td>
-                        <td>100</td>
-                        <td>
-                            <router-link to="/main/formsCreate" class="btn btn-success mr-2"> {{ $languages.createFormText }} </router-link>
-                            <router-link to="/main/editCampaign" class="btn btn-info mr-2">{{ $languages.editButtonText }}</router-link>
-                            <button @click="deleteCampaign(index)" class="btn btn-danger">{{ $languages.deleteButtonText }}</button>
-                        </td>
-                    </tr> -->
-                    <!-- <tr v-for="(value, index) in $store.getters.createdCampaigns" :key="index"> -->
-                 
-                        <tr v-for="(value, index) in campaigns" :key="index">
-                            <th scope="row">{{ value.code }}</th>
-                            <td>{{ value.name }}</td>
-                            <td>{{ value.category }}</td>
-                            <td>{{ value.startDate }}</td>
-                            <td>{{ value.finalDate }}</td>
-                            <td>{{ value.totalAspirants }}</td>
-                            <td>
-                                <router-link :to="{ path: '/main/formsCreate/' + value.code, params: { codecampaign: value.code } }" class="btn btn-success mr-2"> {{ value.renderDefault == null ? $languages.createFormText: $languages.editFormText }} </router-link>
-                                <router-link :to="{ path: '/main/editCampaign/' + value.code, params:{ codecampaign: value.code } }" class="btn btn-info mr-2">{{ $languages.editButtonText }}</router-link>
-                                <button @click="copyCampaign(value.code)" class="btn btn-warning mr-2">{{ $languages.copyButtonText }}</button>
-                                <button @click="deleteCampaign(value.code)" class="btn btn-danger">{{ $languages.deleteButtonText }}</button>
-                            </td>
-                        </tr>
-                 
-                    <!-- <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Larry</td>
-                        <td>the Bird</td>
-                        <td>@twitter</td>
-                    </tr> -->
-                </tbody>
-                </table>
+
+        <!-- Modal -->
+        <div class="modal fade" id="shareModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Compartir Campaña</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="linkShare">Link:</label>
+                            <input type="text" id="linkShare" data-toggle="tooltip" data-placement="top" title="Link copiado" data-trigger="manual" class="form-control" v-model="linkShareCampaign" readonly>
+                        </div>
+                        <div>
+                            <button class="btn btn-info" @click="copyLink">Copiar al portapeles</button>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -78,6 +78,7 @@ export default {
         return{
 
             campaigns: '',
+            linkShareCampaign: '',
 
         }
 
@@ -124,7 +125,6 @@ export default {
 
             });
 
-            // this.$store.commit('copyCampaign', index);
 
         },
         deleteCampaign(index){
@@ -152,6 +152,33 @@ export default {
             // this.$store.commit('deleteCampaign', index);
 
         },
+        shareCampaign(val){
+
+            this.linkShareCampaign = "http://arrobamedellin.edu.co:8009/preinscripciones/frontend/dist/#/render/" + val;
+
+        },
+
+        copyLink(){
+
+            /* Get the text field */
+            let copyText = document.getElementById("linkShare");
+
+            /* Select the text field */
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+
+            /* Copy the text inside the text field */
+            document.execCommand("copy");
+
+            this.$JQ("#linkShare").tooltip('show');
+            
+            let self = this;
+
+            setTimeout(function(){ 
+                self.$JQ("#linkShare").tooltip('hide'); 
+            });
+
+        }
 
     }
 }
