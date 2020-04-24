@@ -19,17 +19,21 @@ export default {
 </script>
 
 <style>
-  /* #addConfigFormElements{
 
-    overflow-y: scroll;
-
+  @font-face {
+    font-family: "Roboto";
+    src: url('./assets/fonts/Roboto-Light.ttf') format('ttf'),
+    url('./assets/fonts/Roboto-Regular.ttf') format('ttf'),
+    url('./assets/fonts/Roboto-Bold.ttf') format('ttf');
   }
 
-  #editFormElements{
+  body{
 
-    overflow-y: scroll;
+    font-family: "Roboto", sans-serif !important;
+    font-weight: normal !important;
+    color: #02243C !important;
 
-  } */
+  }
 
   .error-block{
 
@@ -96,23 +100,23 @@ export default {
 
   .ovalButton{
 
-      border: 1px solid #fff;
-      padding: .3em 2em;
-      border-radius: 50px;
-      font-weight: bold;
-      color: #fff;
+    border: 1px solid #fff;
+    padding: .3em 2em;
+    border-radius: 50px;
+    font-weight: bold;
+    color: #fff;
       
   }
 
   .backPrimaryColor{
 
-    background-color: #007DFA;
+    background-color: #007DF6;
 
   }
 
   .textPrimaryColor{
 
-    color: #007DFA;
+    color: #007DF6;
 
   }
 

@@ -1,6 +1,17 @@
 const textos = {
 
+    /* Admin Login */
     welcomeLoginMessageText: 'Inicio de sesión',
+    userPlaceholderInput: 'Usuario',
+    passwordPlaceholderInput: 'Contraseña',
+
+    /* Tables */
+
+    categoryHeadText: "Categoría",
+    startDateHeadText: "Fecha Inicio",
+    finalDateHeadText: "Fecha Fin",
+    quotaHeadText: "Cupos",
+    optionsHeadText: "Opciones",
 
     //Type elements
     textBox: 'Caja de Texto',
@@ -63,6 +74,7 @@ const textos = {
     addButtonText: 'Agregar',
     copyButtonText: 'Copiar',
     shareButtonText: 'Compartir',
+    accessButtonText: 'Acceder',
 
     createCampaignText: 'Crear campaña',
     createFormText: 'Crear Formulario',

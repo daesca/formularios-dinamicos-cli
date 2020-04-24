@@ -2,7 +2,7 @@
     <div id="login-admin-section">
         <div id="login-container">
             <div class="login-container__header backPrimaryColor">
-
+                <img src="../../../assets/logo-arroba.png" alt="Logo Arroba" class="img-responsive">
             </div>
             <div class="login-container__body">
 
@@ -13,14 +13,14 @@
                 </div>
                 <div class="form-group">
                     <!-- <label for="user">Usuario</label> -->
-                    <input type="email" name="user" class="form-control" v-model="user">
+                    <input type="email" name="user" class="login-container__body-input" :placeholder="$languages.userPlaceholderInput" v-model="user">
                 </div>
                 <div class="form-group">
                     <!-- <label for="exampleInputPassword1">Password</label> -->
-                    <input type="password" class="form-control" v-model="password">
+                    <input type="password" class="login-container__body-input" :placeholder="$languages.passwordPlaceholderInput" v-model="password">
                 </div>
                 <div class="text-center">
-                    <button class="ovalButton backPrimaryColor" @click="credentialsVerification">Acceder</button>
+                    <button class="ovalButton backPrimaryColor" @click="credentialsVerification">{{ $languages.accessButtonText }}</button>
                 </div>
 
             </div>
@@ -94,13 +94,42 @@ export default {
 
         height:100px;
         border-radius: 10px 10px 0 0;
+        text-align: center;
 
+    }
+
+    .login-container__header img{
+
+        width: 90%;
     }
 
     .login-container__body{
 
        padding: 1em;
 
+    }
+
+    .login-container__body-input{
+
+        color: #02243C;
+        font-weight: bold;
+        font-family: "Roboto", sans-serif;
+        padding: .4em;
+        width: 100%;  
+
+    }
+
+    .login-container__body-input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: #02243C;
+        opacity: 1; /* Firefox */
+    }
+
+    .login-container__body-input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+        color: #02243C;
+    }
+
+    .login-container__body-input::-ms-input-placeholder { /* Microsoft Edge */
+        color: #02243C;
     }
 
     .login-container__footer{

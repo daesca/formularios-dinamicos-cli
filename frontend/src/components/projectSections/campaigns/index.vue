@@ -10,21 +10,21 @@
                 </div>
 
                 <div class="table-responsive">
-                    <table class="table">
-                        <thead class="thead-dark">
+                    <table class="table" id="table-campaigns">
+                        <thead>
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">{{ $languages.titleLabelForm }}</th>
-                                <th scope="col">Categoria</th>
-                                <th scope="col">Fecha Inicio</th>
-                                <th scope="col">Fecha Final</th>
-                                <th scope="col">Cupos</th>
-                                <th scope="col">Opciones</th>
+                                <th scope="col">{{ $languages.categoryHeadText }}</th>
+                                <th scope="col">{{ $languages.startDateHeadText }}</th>
+                                <th scope="col">{{ $languages.finalDateHeadText }}</th>
+                                <th scope="col">{{ $languages.quotaHeadText }}</th>
+                                <th scope="col">{{ $languages.optionsHeadText }}</th>
                             </tr>
                         </thead>
                         <tbody>     
                             <tr v-for="(value, index) in campaigns" :key="index">
-                                <th scope="row">{{ value.code }}</th>
+                                <td scope="row">{{ value.code }}</td>
                                 <td>{{ value.name }}</td>
                                 <td>{{ value.category }}</td>
                                 <td>{{ value.startDate }}</td>
@@ -183,3 +183,34 @@ export default {
     }
 }
 </script>
+<style scoped>
+
+    #table-campaigns thead tr th{
+
+        color: #999999;
+        font-weight: normal;
+        border-right: 1px solid #999999;
+        border-top: none;
+        border-bottom: none;
+        text-align: center;
+
+    }
+
+    #table-campaigns thead tr th:last-child{
+
+        border-right: none;
+
+    }
+
+    #table-campaigns tbody tr td{
+
+        color: #4d4d4d;
+        font-weight: normal;
+        text-align: center;
+        border: none;
+        vertical-align: middle;
+
+    }
+
+
+</style>
