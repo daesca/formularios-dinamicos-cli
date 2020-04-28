@@ -20,6 +20,8 @@ export default {
 
 <style>
 
+  /* General Styles */
+
   @font-face {
     font-family: "Roboto";
     src: url('./assets/fonts/Roboto-Light.ttf') format('ttf'),
@@ -34,6 +36,15 @@ export default {
     color: #02243C !important;
 
   }
+
+  
+  button:focus{
+
+    outline: none;
+
+  }
+
+  /* End General Styles */
 
   .error-block{
 
@@ -119,5 +130,19 @@ export default {
     color: #007DF6;
 
   }
+
+  .default-color-text{
+
+    color: #02243C;
+
+  }
+
+  .error-color-text{
+
+    color: #ff0000;
+
+  }
+
+
 
 </style>

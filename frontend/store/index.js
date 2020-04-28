@@ -17,6 +17,7 @@ const store = new Vuex.Store({
             departmentsField: 'Lista de departamantos',
             townsField: 'Lista de municipios',
             neighborhoodField: 'Lista de barrios',
+            schoolsField: 'Lista de instituciones educativas',
 
         },
         configDefaultForm: [{
@@ -357,8 +358,8 @@ const store = new Vuex.Store({
                 "configurations": {
                     "title": "Estrato de la vivienda en que resides",
                     "weight": "0",
-                    "name": "",
-                    "cssClass": "estratoSapiencia",
+                    "name": "estratoSapiencia",
+                    "cssClass": "",
                     "required": "1",
                     "options": [{
                             "optionTitle": "1",
@@ -904,11 +905,493 @@ const store = new Vuex.Store({
                     ]
                 }
             },
+            {
+                "typeField": "selectField",
+                "configurations": {
+                    "title": "¿Eres egresado de un colegio del municipio de Medellín?",
+                    "weight": "0",
+                    "name": "egresadoSapiencia",
+                    "cssClass": "",
+                    "required": "1",
+                    "options": [{
+                            "optionTitle": "Si",
+                            "htmlValue": "1",
+                            "optionWeight": 0
+                        },
+                        {
+                            "optionTitle": "No",
+                            "htmlValue": "0",
+                            "optionWeight": 0
+                        }
+                    ]
+                }
+            },
+            {
+                "typeField": "schoolsField",
+                "configurations": {
+                    "title": "¿Cuál es el nombre completo de la institución educativa de la cual egresaste del bachillerato?",
+                    "weight": 0,
+                    "name": "institucionSapiencia",
+                    "cssClass": "",
+                    "required": "1"
+                }
+            },
+            {
+                "typeField": "selectField",
+                "configurations": {
+                    "title": "Indica el tipo de institución educativa de la cual egresaste de bachillerato",
+                    "weight": "0",
+                    "name": "tipoInstitucionSapiencia",
+                    "cssClass": "",
+                    "required": "1",
+                    "options": [{
+                            "optionTitle": "Institución pública de Medellín",
+                            "htmlValue": "0",
+                            "optionWeight": 0
+                        },
+                        {
+                            "optionTitle": "Institución privada de Medellín",
+                            "htmlValue": "1",
+                            "optionWeight": 0
+                        },
+                        {
+                            "optionTitle": "Institución por cobertura",
+                            "htmlValue": "2",
+                            "optionWeight": 0
+                        }
+                    ]
+                }
+            },
+            {
+                "typeField": "selectField",
+                "configurations": {
+                    "title": "Indica el tipo de institución educativa de la cual egresaste de bachillerato",
+                    "weight": "0",
+                    "name": "tipoInstitucionSegundaOpcionSapiencia",
+                    "cssClass": "",
+                    "required": "1",
+                    "options": [{
+                            "optionTitle": "Institución pública",
+                            "htmlValue": "0",
+                            "optionWeight": 0
+                        },
+                        {
+                            "optionTitle": "Institución privada",
+                            "htmlValue": "1",
+                            "optionWeight": 0
+                        },
+                        {
+                            "optionTitle": "Institución por cobertura",
+                            "htmlValue": "2",
+                            "optionWeight": 0
+                        }
+                    ]
+                }
+            },
+            {
+                "typeField": "multipleField",
+                "configurations": {
+                    "title": "¿Cuál es el nombre completo de la institución educativa de la cual egresaste del bachillerato?",
+                    "weight": 0,
+                    "defaultValue": "",
+                    "type": "text",
+                    "name": "nombreInstitucionSapiencia",
+                    "cssClass": "",
+                    "min": "",
+                    "max": "",
+                    "required": "1"
+                }
+            },
+            {
+                "typeField": "multipleField",
+                "configurations": {
+                    "title": "Municipio donde se encuentra la institución",
+                    "weight": 0,
+                    "defaultValue": "",
+                    "type": "text",
+                    "name": "municipioInstitucionSapiencia",
+                    "cssClass": "",
+                    "min": "",
+                    "max": "",
+                    "required": "1"
+                }
+            },
+            {
+                "typeField": "selectField",
+                "configurations": {
+                    "title": "¿Estudiaste una media técnica en la institución educativa donde egresaste del bachillerato?",
+                    "weight": "0",
+                    "name": "mediaTecnicaSapiencia",
+                    "cssClass": "",
+                    "required": "1",
+                    "options": [{
+                            "optionTitle": "Si",
+                            "htmlValue": "1",
+                            "optionWeight": 0
+                        },
+                        {
+                            "optionTitle": "No",
+                            "htmlValue": "0",
+                            "optionWeight": 0
+                        }
+                    ]
+                }
+            },
+            {
+                "typeField": "multipleField",
+                "configurations": {
+                    "title": "Título de la media técnica",
+                    "weight": 0,
+                    "defaultValue": "",
+                    "type": "text",
+                    "name": "tituloMediaTecnicaSapiencia",
+                    "cssClass": "",
+                    "min": "",
+                    "max": "",
+                    "required": "1"
+                }
+            },
+            {
+                "typeField": "multipleField",
+                "configurations": {
+                    "title": "Institución que otorgó el título de la media técnica",
+                    "weight": 0,
+                    "defaultValue": "",
+                    "type": "text",
+                    "name": "institucionMediaTecnicaSapiencia",
+                    "cssClass": "",
+                    "min": "",
+                    "max": "",
+                    "required": "1"
+                }
+            },
+            {
+                "typeField": "selectField",
+                "configurations": {
+                    "title": "Año de graduación del bachillerato",
+                    "weight": "0",
+                    "name": "anuarioGraduacionSapiencia",
+                    "cssClass": "",
+                    "required": "1",
+                    "options": [{
+                            "optionTitle": "Año 1",
+                            "htmlValue": "1",
+                            "optionWeight": 0
+                        },
+                        {
+                            "optionTitle": "Año 2",
+                            "htmlValue": "2",
+                            "optionWeight": 0
+                        },
+                        {
+                            "optionTitle": "Año 3",
+                            "htmlValue": "3",
+                            "optionWeight": 0
+                        },
+                        {
+                            "optionTitle": "No aplica",
+                            "htmlValue": "0",
+                            "optionWeight": 0
+                        }
+                    ]
+                }
+            },
+            {
+                "typeField": "selectField",
+                "configurations": {
+                    "title": "¿Tienes título en un programa de educación superior (técnica profesional, tecnología o programa profesional universitario)?",
+                    "weight": "0",
+                    "name": "tieneTituloSuperiorSapiencia",
+                    "cssClass": "",
+                    "required": "1",
+                    "options": [{
+                            "optionTitle": "Si",
+                            "htmlValue": "1",
+                            "optionWeight": 0
+                        },
+                        {
+                            "optionTitle": "No",
+                            "htmlValue": "0",
+                            "optionWeight": 0
+                        }
+                    ]
+                }
+            },
+            {
+                "typeField": "multipleField",
+                "configurations": {
+                    "title": "¿En qué institución realizó los estudios?",
+                    "weight": 0,
+                    "defaultValue": "",
+                    "type": "text",
+                    "name": "institucionSuperiorSapiencia",
+                    "cssClass": "",
+                    "min": "",
+                    "max": "",
+                    "required": "1"
+                }
+            },
+            {
+                "typeField": "multipleField",
+                "configurations": {
+                    "title": "Nombre del programa que estudiaste",
+                    "weight": 0,
+                    "defaultValue": "",
+                    "type": "text",
+                    "name": "nombreProgramaSuperiorSapiencia",
+                    "cssClass": "",
+                    "min": "",
+                    "max": "",
+                    "required": "1"
+                }
+            },
+            {
+                "typeField": "multipleField",
+                "configurations": {
+                    "title": "Título otorgado según diploma",
+                    "weight": 0,
+                    "defaultValue": "",
+                    "type": "text",
+                    "name": "nombreTituloSuperiorSapiencia",
+                    "cssClass": "",
+                    "min": "",
+                    "max": "",
+                    "required": "1"
+                }
+            },
+            {
+                "typeField": "selectField",
+                "configurations": {
+                    "title": "¿Estás estudiando actualmente un programa de educación superior (técnica profesional, tecnología o programa profesional universitario)?",
+                    "weight": "0",
+                    "name": "estudiaActualmenteProgramaSuperiorSapiencia",
+                    "cssClass": "",
+                    "required": "1",
+                    "options": [{
+                            "optionTitle": "Si",
+                            "htmlValue": "1",
+                            "optionWeight": 0
+                        },
+                        {
+                            "optionTitle": "No",
+                            "htmlValue": "0",
+                            "optionWeight": 0
+                        }
+                    ]
+                }
+            },
+            {
+                "typeField": "selectField",
+                "configurations": {
+                    "title": "¿Cuál de estos programas?",
+                    "weight": "0",
+                    "name": "tipoProgramaSuperiorSapiencia",
+                    "cssClass": "",
+                    "required": "1",
+                    "options": [{
+                            "optionTitle": "Técnica Profesional",
+                            "htmlValue": "0",
+                            "optionWeight": 0
+                        },
+                        {
+                            "optionTitle": "Tecnología",
+                            "htmlValue": "1",
+                            "optionWeight": 0
+                        },
+                        {
+                            "optionTitle": "Carrera Universitaria",
+                            "htmlValue": "2",
+                            "optionWeight": 0
+                        },
+                    ]
+                }
+            },
+            {
+                "typeField": "multipleField",
+                "configurations": {
+                    "title": "¿En qué institución estás realizando sus estudios?",
+                    "weight": 0,
+                    "defaultValue": "",
+                    "type": "text",
+                    "name": "institucionTituloSuperiorSapiencia",
+                    "cssClass": "",
+                    "min": "",
+                    "max": "",
+                    "required": "1"
+                }
+            },
+            {
+                "typeField": "multipleField",
+                "configurations": {
+                    "title": "Nombre del programa que estas estudiando",
+                    "weight": 0,
+                    "defaultValue": "",
+                    "type": "text",
+                    "name": "nombreEstudioActualSuperiorSapiencia",
+                    "cssClass": "",
+                    "min": "",
+                    "max": "",
+                    "required": "1"
+                }
+            },
+            {
+                "typeField": "selectField",
+                "configurations": {
+                    "title": "¿Eres egresado del sistema de educación escolar para adultos y extraedad (CLEI)?",
+                    "weight": "0",
+                    "name": "esEgresadoEducacionAdultosSapiencia",
+                    "cssClass": "",
+                    "required": "1",
+                    "options": [{
+                            "optionTitle": "Si",
+                            "htmlValue": "1",
+                            "optionWeight": 0
+                        },
+                        {
+                            "optionTitle": "No",
+                            "htmlValue": "0",
+                            "optionWeight": 0
+                        }
+                    ]
+                }
+            },
+            {
+                "typeField": "selectField",
+                "configurations": {
+                    "title": "¿Eres o has sido beneficiario de apoyo para matricula en un programa de educación superior con recursos del municipio?",
+                    "weight": "0",
+                    "name": "esBeneficiarioRecursosMunicipioSapiencia",
+                    "cssClass": "",
+                    "required": "1",
+                    "options": [{
+                            "optionTitle": "Si",
+                            "htmlValue": "1",
+                            "optionWeight": 0
+                        },
+                        {
+                            "optionTitle": "No",
+                            "htmlValue": "0",
+                            "optionWeight": 0
+                        }
+                    ]
+                }
+            },
+            {
+                "typeField": "selectField",
+                "configurations": {
+                    "title": "¿De qué programa con resursos del municipio ha sido beneficiado?",
+                    "weight": "0",
+                    "name": "tipoProgramaRecursosMunicipioSapiencia",
+                    "cssClass": "",
+                    "required": "1",
+                    "options": [{
+                            "optionTitle": "Becas mejores bachilleres",
+                            "htmlValue": "0",
+                            "optionWeight": 0
+                        },
+                        {
+                            "optionTitle": "Fondo Sapiencia EPM y Universidades",
+                            "htmlValue": "1",
+                            "optionWeight": 0
+                        },
+                        {
+                            "optionTitle": "Fondo Sapiencia con recursos de Presupuesto Participativo",
+                            "htmlValue": "2",
+                            "optionWeight": 0
+                        },
+                        {
+                            "optionTitle": "Presupuesto participativo en convenio directo",
+                            "htmlValue": "3",
+                            "optionWeight": 0
+                        },
+                        {
+                            "optionTitle": "@Medellín",
+                            "htmlValue": "4",
+                            "optionWeight": 0
+                        },
+                        {
+                            "optionTitle": "Ciudadelas Universitarias",
+                            "htmlValue": "5",
+                            "optionWeight": 0
+                        },
+
+                    ]
+                }
+            },
+            {
+                "typeField": "selectField",
+                "configurations": {
+                    "title": "¿Has participado o pertenecido a algunas de las siguientes categorías?",
+                    "weight": "0",
+                    "name": "rolSocialSapiencia",
+                    "cssClass": "",
+                    "required": "1",
+                    "options": [{
+                            "optionTitle": "Personero",
+                            "htmlValue": "0",
+                            "optionWeight": 0
+                        },
+                        {
+                            "optionTitle": "Contralor estudiantil",
+                            "htmlValue": "1",
+                            "optionWeight": 0
+                        },
+                        {
+                            "optionTitle": "Representante de exalumnos ante el Consejo Directivo",
+                            "htmlValue": "2",
+                            "optionWeight": 0
+                        },
+                        {
+                            "optionTitle": "Representante estudiantil",
+                            "htmlValue": "3",
+                            "optionWeight": 0
+                        },
+                        {
+                            "optionTitle": "Deportista de una de las ligas INDER Medellín participante de juegos departamentales o nacionales",
+                            "htmlValue": "4",
+                            "optionWeight": 0
+                        },
+                        {
+                            "optionTitle": "Ganador de estímulos de arte y cultura convocados por el Municipio de Medellín o el Ministerio de Cultura",
+                            "htmlValue": "5",
+                            "optionWeight": 0
+                        },
+                        {
+                            "optionTitle": "Mujer que haya llegado a la fase de entrevista individual en el concurso Mujeres Jóvenes Talento Medellín",
+                            "htmlValue": "6",
+                            "optionWeight": 0
+                        },
+                        {
+                            "optionTitle": "Líder de mediación escolar",
+                            "htmlValue": "7",
+                            "optionWeight": 0
+                        },
+                        {
+                            "optionTitle": "Multiplicadores de convivencia del programa Delinquir No Paga",
+                            "htmlValue": "8",
+                            "optionWeight": 0
+                        },
+                        {
+                            "optionTitle": "Programa Reintegración Sostenible para un Territorio en Paz",
+                            "htmlValue": "9",
+                            "optionWeight": 0
+                        },
+                        {
+                            "optionTitle": "Jovenes R",
+                            "htmlValue": "10",
+                            "optionWeight": 0
+                        },
+
+                    ]
+                }
+            },
         ],
         configMutableDefaultForm: [
 
         ],
         configForm: [],
+        departamentoNacimiento: '1',
+        departamentoResidencia: '1',
 
     },
     mutations: {
@@ -933,22 +1416,6 @@ const store = new Vuex.Store({
         setConfigMutableDefaultForm(state, value) {
             // console.log(value);
 
-            // for (let i = 0; i < value.length; i++) {
-
-            //     if (value[i].deleted != undefined) {
-
-            //         if (value[i].deleted != 1) {
-
-            //             state.configMutableDefaultForm[i] = value[i];
-
-            //         }
-
-            //     } else {
-
-            //         state.configMutableDefaultForm[i] = value[i];
-
-            //     }
-            // }
             state.configMutableDefaultForm = value;
 
         },
@@ -1015,6 +1482,16 @@ const store = new Vuex.Store({
 
             Vue.set(state.answersAspirant[value.index], 'answer', value.reactValue);
 
+        },
+        changeDepartamentoNacimiento(state, value) {
+
+            state.departamentoNacimiento = value;
+
+        },
+        changeDepartamentoResidencia(state, value) {
+
+            state.departamentoResidencia = value;
+
         }
 
     },
@@ -1024,6 +1501,8 @@ const store = new Vuex.Store({
         configForm: (state) => state.configForm,
         configDefaultForm: (state) => state.configDefaultForm,
         configMutableDefaultForm: (state) => state.configMutableDefaultForm,
+        departamentoNacimiento: (state) => state.departamentoNacimiento,
+        departamentoResidencia: (state) => state.departamentoResidencia,
 
     }
 

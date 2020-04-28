@@ -6,7 +6,7 @@
             <div class="col-12 col-sm-12 col-md-8 col-lg-8 mr-auto ml-auto">
                 <h1>Modulo de Campañas</h1>
                 <div class="d-flex justify-content-start mb-2">
-                    <router-link to="/main/createCampaign" class="btn btn-info mr-2"> {{ $languages.createCampaignText }} </router-link>
+                    <router-link to="/main/createCampaign" class="add-campaign-button backPrimaryColor mr-2" :title="$languages.createCampaignText"> <i class="icon-plus"></i> </router-link>
                 </div>
 
                 <div class="table-responsive">
@@ -30,12 +30,12 @@
                                 <td>{{ value.startDate }}</td>
                                 <td>{{ value.finalDate }}</td>
                                 <td>{{ value.totalAspirants }}</td>
-                                <td>
-                                    <router-link :to="{ path: '/main/formsCreate/' + value.code, params: { codecampaign: value.code } }" class="btn btn-success mr-2"> {{ value.renderDefault == null ? $languages.createFormText: $languages.editFormText }} </router-link>
-                                    <router-link :to="{ path: '/main/editCampaign/' + value.code, params:{ codecampaign: value.code } }" class="btn btn-info mr-2">{{ $languages.editButtonText }}</router-link>
-                                    <button @click="copyCampaign(value.code)" class="btn btn-warning mr-2">{{ $languages.copyButtonText }}</button>
-                                    <button @click="deleteCampaign(value.code)" class="btn btn-danger mr-2">{{ $languages.deleteButtonText }}</button>
-                                    <button @click="shareCampaign(value.code)" class="btn btn-primary" data-toggle="modal" data-target="#shareModal">{{ $languages.shareButtonText }}</button>
+                                <td class="options-cell">
+                                    <router-link :to="{ path: '/main/formsCreate/' + value.code, params: { codecampaign: value.code } }" class="btn-success mr-2" data-toggle="tooltip" data-placement="top" :title="value.renderDefault == null ? $languages.createFormText: $languages.editFormText"><i class="icon-doc"></i></router-link>
+                                    <router-link :to="{ path: '/main/editCampaign/' + value.code, params:{ codecampaign: value.code } }" class="btn-info mr-2" data-toggle="tooltip" data-placement="top" :title="$languages.editButtonText"><i class="icon-pencil"></i></router-link>
+                                    <a href="javascript:void(0)" @click="copyCampaign(value.code)" class="btn-warning mr-2" data-toggle="tooltip" data-placement="top" :title="$languages.copyButtonText"><i class="icon-clone"></i></a>
+                                    <a href="javascript:void(0)" @click="deleteCampaign(value.code)" class="btn-danger mr-2" data-toggle="tooltip" data-placement="top" :title="$languages.deleteButtonText"><i class="icon-trash-empty"></i></a>
+                                    <a href="javascript:void(0)" @click="shareCampaign(value.code)" class="btn-primary" data-toggle="modal" data-target="#shareModal" :title="$languages.shareButtonText"><i class="icon-export"></i></a>
                                 </td>
                             </tr>
                         </tbody>
@@ -184,7 +184,14 @@ export default {
 }
 </script>
 <style scoped>
+    .add-campaign-button{
 
+        font-size: 2rem;
+        padding: 0.3em 0.3em;
+        border-radius: 50%;
+        color: #fff;
+
+    }
     #table-campaigns thead tr th{
 
         color: #999999;
@@ -211,6 +218,14 @@ export default {
         vertical-align: middle;
 
     }
+
+    #table-campaigns tbody tr td.options-cell > a{
+
+        padding: .5em .4em;
+        border-radius: 50%;
+
+    }
+
 
 
 </style>

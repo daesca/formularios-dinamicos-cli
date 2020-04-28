@@ -13,7 +13,7 @@ const globalFunctions = {
     },
     propsResultFormElements() {
 
-        return ['keyarray', 'configurations', 'idField', 'renderMode', 'defaultValue'];
+        return ['keyarray', 'configurations', 'idField', 'renderMode', 'defaultValue', 'departamentonacimiento', 'departamentoresidencia'];
 
     },
     // propsResultFormElements() {

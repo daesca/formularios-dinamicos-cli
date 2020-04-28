@@ -5,7 +5,9 @@
                 <img src="../../assets/logo-arroba.png" alt="Logo Arroba" class="img-responsive">
             </div>
             <div class="mainSection__header-userOptions">
-                <h3>Administrador</h3>
+                <span class="mr-2">Administrador</span>
+                <i class="icon-user"></i>
+                <i class="icon-angle-down"></i>
             </div>
             <!-- <h2>Bienvenido administrador</h2> -->
         </div>
@@ -40,7 +42,7 @@ export default {
     .mainSection__header{
 
         display: flex;
-        padding: 0 1em;
+        padding: 1em 1.5em;
 
     }
 
@@ -49,10 +51,20 @@ export default {
         display:flex;
         align-items: center;
         margin-left: auto;
-
         color: #fff;
 
     }
+
+    .mainSection__header-userOptions .icon-user{
+
+        padding: .1em .1em;
+        border-radius: 50%;
+        background-color: #d4d3d3;
+        font-size: 2.5rem;
+
+    }
+
+    
 
     #navbarMain > ul{
 

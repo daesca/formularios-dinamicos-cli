@@ -23,6 +23,7 @@ const textos = {
     countriesField: 'Lista de paises',
     departmentsField: 'Lista de departamantos',
     townsField: 'Lista de municipios',
+    schoolsField: 'Lista de instituciones educativas',
 
     //Alerts messages
     editSuccessMessage: 'Edición realizada correctamente',
@@ -32,7 +33,8 @@ const textos = {
     clarificationCountriesComponentMessage: 'Este componente cargará la lista de paises otorgados por Sapiencia',
     clarificationDepartmentsComponentMessage: 'Este componente cargará la lista de departamentos otorgados por Sapiencia',
     clarificationTownsComponentMessage: 'Este componente cargará la lista de ciudades otorgadas por Sapiencia',
-    clarificationNeighborhoodMessage: 'Este componente cargará la lista de barrios del municipio de Medellín otorgados por sapiencia',
+    clarificationNeighborhoodMessage: 'Este componente cargará la lista de barrios del municipio de Medellín otorgados por Sapiencia',
+    clarificationSchoolsMessage: 'Este componente cargará la lista de instituciones educativas del municipio de Medellín otorgados por Sapiencia',
 
     //Section titles
     creationSectionTitle: 'Agregar elementos',
