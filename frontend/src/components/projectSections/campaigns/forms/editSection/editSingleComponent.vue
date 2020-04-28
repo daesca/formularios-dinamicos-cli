@@ -96,6 +96,7 @@ export default {
     'departmentsField': configComponents.departmentsField,
     'townsField': configComponents.townsField,
     'neighborhoodField': configComponents.neighborhoodField,
+    'schoolsField': configComponents.schoolsField,
   },
   data(){
 

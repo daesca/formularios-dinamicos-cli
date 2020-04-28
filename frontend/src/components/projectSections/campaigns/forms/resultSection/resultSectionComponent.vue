@@ -48,6 +48,7 @@
 <script>
 
     import * as configComponents from '../../../../../importGroups/campaigns/forms/resultSection/resultElementsImports'
+    // import JQuery from 'jquery';
 
     export default {
 
@@ -61,6 +62,7 @@
             'departmentsField': configComponents.departmentsField,
             'townsField': configComponents.townsField,
             'neighborhoodField': configComponents.neighborhoodField,
+            'schoolsField': configComponents.schoolsField,
         },
         data(){
             return{

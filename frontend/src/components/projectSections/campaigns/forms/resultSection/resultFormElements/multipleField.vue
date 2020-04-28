@@ -1,5 +1,5 @@
 <template>
-    <div :class="configurations.cssClass">
+    <div :id="configurations.name" :class="configurations.cssClass" :style="show">
 
         <label for="resultado"><strong>{{ configurations.title }} </strong></label>
         <input v-if="configurations.type == 'text'" type="text" v-model="answerAspirant" :name="configurations.name" class="form-control" :required=" configurations.required == '1' ? true:false"/>
@@ -22,10 +22,16 @@ export default {
         return{
 
             answerAspirant: '',
+            show:{
+
+                display: 'block',
+
+            }
 
         }
 
     },
+
     created(){
 
         if(this.defaultValue != undefined){
@@ -34,14 +40,27 @@ export default {
 
         }
 
+        // if(this.configurations.name == "lugarNacimientoSapiencia"){
+
+        //     return this.show.display = 'none';
+
+        // }
+
     },
     watch:{
 
         answerAspirant(val){
 
-            this.$emit("changeSpecial",{ idField: this.idField, value: val })
+            this.$emit("changeSpecial",{ idField: this.idField, value: val });
 
-        }
+            // if(this.configurations.name == "lugarNacimientoSapiencia"){
+
+            //     this.show.display = 'none';
+
+            // }
+
+        },
+
 
     }
     // beforeMount(){

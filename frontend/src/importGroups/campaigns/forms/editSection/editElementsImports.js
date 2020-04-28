@@ -7,6 +7,7 @@ import countriesField from '../../../../components/projectSections/campaigns/for
 import departmentsField from '../../../../components/projectSections/campaigns/forms/editSection/editFormElements/departmentsField';
 import townsField from '../../../../components/projectSections/campaigns/forms/editSection/editFormElements/townsField';
 import neighborhoodField from '../../../../components/projectSections/campaigns/forms/editSection/editFormElements/neighborhoodField';
+import schoolsField from '../../../../components/projectSections/campaigns/forms/editSection/editFormElements/schoolsField';
 
 
 export {
@@ -20,5 +21,6 @@ export {
     departmentsField,
     townsField,
     neighborhoodField,
+    schoolsField,
 
 }

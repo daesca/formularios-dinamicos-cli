@@ -1,8 +1,8 @@
 <template>
-  <div id="departments-create-container" class="default-box">
+  <div id="schools-create-container" class="default-box">
 
     <div class="alert alert-info" role="alert">
-      {{ $languages.clarificationDepartmentsComponentMessage }}
+      {{ $languages.clarificationSchoolsMessage }}
     </div>
 
     <div class="form-group">
@@ -54,7 +54,7 @@ export default {
   props: props,
   data() {
     return {
-      typeField: "departmentsField",
+      typeField: "schoolsField",
       deleted: '0',
       configurations: {
         title: null,

@@ -1,5 +1,5 @@
 <template>
-  <div id="textBox-create-container" class="default-box">
+  <div id="neighborhood-create-container" class="default-box">
 
     <div class="alert alert-info" role="alert">
       {{ $languages.clarificationNeighborhoodMessage }}

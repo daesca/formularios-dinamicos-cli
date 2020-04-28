@@ -32,6 +32,21 @@
         <form v-show="login" @submit.prevent="sendAnswers">
             <h3 class="text-center">Campaña {{ codecampaign }}</h3>
 
+                <!-- <component 
+                    v-for="(value, key, index) in renderForm"
+                    :is="value.typeField" 
+                    :key="index" 
+                    :defaultValue="answersAspirant[value.idField].answer" 
+                    :configurations="value.configurations" 
+                    :keyarray="index" 
+                    :idField="value.idField"
+                    :departamentonacimiento="value.configurations.name='' ? answersAspirant[value.idField].answer: undefined"
+                    :departamentoresidencia="value.configurations.name='' ? answersAspirant[value.idField].answer: undefined"
+                    @changeSpecial="changeValue"
+                    @pais-nacimiento-colombia="isColombia"
+                >
+                </component> -->
+
                 <component 
                     v-for="(value, key, index) in renderForm"
                     :is="value.typeField" 
@@ -105,6 +120,7 @@
             'departmentsField': configComponents.departmentsField,
             'townsField': configComponents.townsField,
             'neighborhoodField': configComponents.neighborhoodField,
+            'schoolsField': configComponents.schoolsField,
             'login1': logins.login1,
             'login2': logins.login2,
             'login3': logins.login3,
@@ -289,16 +305,6 @@
                 this.showResultSaveAnswers = val;
 
             },
-            // setConfigForm(val){
-
-            //     this.configForm = val;
-
-            // },
-            // setDefaultForm(val){
-
-            //     this.defaultForm = val;
-
-            // },
             setAllData(val){
 
                 if(val != 1){
@@ -368,7 +374,18 @@
                 document.getElementsByClassName('modal-backdrop')[0].remove();
 
             },
-            
+            // isColombia(val){
+
+            //     if(val ){
+
+
+                    
+            //         this.$JQ("#lugarNacimientoSapiencia").toggle('slow');
+            //     this.$JQ("#departamentoNacimientoSapiencia").toggle('slow');
+            //     this.$JQ("#municipioNacimientoSapiencia").toggle('slow'); 
+            //         }
+                
+            // }
 
         }
 

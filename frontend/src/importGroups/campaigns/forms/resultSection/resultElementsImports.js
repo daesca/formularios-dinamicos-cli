@@ -10,6 +10,7 @@ import countriesField from "../../../../components/projectSections/campaigns/for
 import departmentsField from "../../../../components/projectSections/campaigns/forms/resultSection/resultFormElements/departmentsField";
 import townsField from "../../../../components/projectSections/campaigns/forms/resultSection/resultFormElements/townsField";
 import neighborhoodField from "../../../../components/projectSections/campaigns/forms/resultSection/resultFormElements/neighborhoodField";
+import schoolsField from "../../../../components/projectSections/campaigns/forms/resultSection/resultFormElements/schoolsField";
 
 
 
@@ -23,4 +24,5 @@ export {
     departmentsField,
     townsField,
     neighborhoodField,
+    schoolsField,
 };

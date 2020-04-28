@@ -7,6 +7,7 @@ import countriesField from '../../../../components/projectSections/campaigns/for
 import departmentsField from '../../../../components/projectSections/campaigns/forms/createSection/customFormElements/departmentsField';
 import townsField from '../../../../components/projectSections/campaigns/forms/createSection/customFormElements/townsField';
 import neighborhoodField from '../../../../components/projectSections/campaigns/forms/createSection/customFormElements/neighborhoodField';
+import schoolsField from '../../../../components/projectSections/campaigns/forms/createSection/customFormElements/schoolsField';
 
 export {
     textBox,
@@ -18,4 +19,5 @@ export {
     departmentsField,
     townsField,
     neighborhoodField,
+    schoolsField,
 }
