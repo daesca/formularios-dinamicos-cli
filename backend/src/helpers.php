@@ -183,6 +183,9 @@ function getTypeField(object $field): ?array
         ],
         "neighborhoodField" => [
             "required"
+        ],
+        "schoolsField" => [
+            "required"
         ]
     ];
 
