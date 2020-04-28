@@ -127,7 +127,12 @@ class InscriptionController extends Controller
         $fields = $campagin->fields;
         if (! is_null($campagin) and !is_null($document)) {
             foreach ($document->values as $res) {
-                $aux = $fields->where('name', $res->name)->first()->toArray();
+                $aux = $fields->where(
+                    [
+                        'name' => $res->name,
+                        'defaultForm' => 1
+                    ]
+                )->first()->toArray();
                 $arrayItem['typeField'] = $aux['typeField'];
                 unset($aux['typeField']);
                 unset($aux['created_at']);
