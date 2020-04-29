@@ -14,7 +14,9 @@ class Campaign extends Model
 
     public function fields()
     {
-
-        return $this->belongsToMany('App\Models\Field');
+        return $this->belongsToMany('App\Models\Field',
+            'campaign_field',
+            'campaign_id',
+            'field_id');
     }
 }

@@ -70,7 +70,7 @@ class InscriptionController extends Controller
                 $document = Document::create(['document' => $documentAspirant]);
             }
             foreach ($request->getParsedBody()['answers'] AS $k => $v) {
-                $field = (object) $fields->where('id', $k)->first();
+                $field = (object) $fields->where('id', '=', $k)->first();
                 $evaluateField = evaluateField($field, $v['answer']);
                 if (! is_null($evaluateField)) {
                     array_push($errors, $evaluateField);
@@ -124,15 +124,14 @@ class InscriptionController extends Controller
         $arrayItem = null;
         $campagin = Campaign::where('code', $request->getParsedBody()['code'])->first();
         $document = Document::where('document', $request->getParsedBody()['document'])->first();
-        $fields = $campagin->fields;
+        $fields = collect($campagin->fields->toArray());
+
         if (! is_null($campagin) and !is_null($document)) {
             foreach ($document->values as $res) {
-                $aux = $fields->where(
-                    [
-                        'name' => $res->name,
-                        'defaultForm' => 1
-                    ]
-                )->first()->toArray();
+                $aux = $fields
+                    ->where('name', '=', $res->name)
+                    ->where('defaultForm', '=', 1)
+                    ->first();
                 $arrayItem['typeField'] = $aux['typeField'];
                 unset($aux['typeField']);
                 unset($aux['created_at']);
