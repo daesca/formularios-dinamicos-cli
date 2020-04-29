@@ -395,6 +395,47 @@ const store = new Vuex.Store({
                 }
             },
             {
+                "typeField": "selectField",
+                "configurations": {
+                    "title": "Puntaje del sisbén",
+                    "weight": "0",
+                    "name": "puntajeSisbenSapiencia",
+                    "cssClass": "",
+                    "required": "1",
+                    "options": [{
+                            "optionTitle": "0 - 39.2",
+                            "htmlValue": "1",
+                            "optionWeight": 0
+                        },
+                        {
+                            "optionTitle": "39.33 - 48.49",
+                            "htmlValue": "2",
+                            "optionWeight": 0
+                        },
+                        {
+                            "optionTitle": "48.50 - 56.73",
+                            "htmlValue": "3",
+                            "optionWeight": 0
+                        },
+                        {
+                            "optionTitle": "56.74 - 90.00",
+                            "htmlValue": "4",
+                            "optionWeight": 0
+                        },
+                        {
+                            "optionTitle": "90.01 - 99.00",
+                            "htmlValue": "5",
+                            "optionWeight": 0
+                        },
+                        {
+                            "optionTitle": "No tiene",
+                            "htmlValue": "6",
+                            "optionWeight": 0
+                        }
+                    ]
+                }
+            },
+            {
                 "typeField": "multipleField",
                 "configurations": {
                     "title": "Correo electrónico",
@@ -1390,8 +1431,8 @@ const store = new Vuex.Store({
 
         ],
         configForm: [],
-        departamentoNacimiento: '1',
-        departamentoResidencia: '1',
+        departamentoNacimiento: '',
+        departamentoResidencia: '',
 
     },
     mutations: {

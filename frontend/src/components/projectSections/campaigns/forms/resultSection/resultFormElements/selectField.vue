@@ -1,7 +1,7 @@
 <template>
     <div :id="configurations.name" :class="configurations.cssClass">
         <label :for="configurations.name"><strong>{{ configurations.title }}</strong></label>
-        <select v-model="answerAspirant" class="form-control" :data-weight="configurations.weight" :required="configurations.required == '1' ? true:false" >
+        <select v-model="answerAspirant" :name="configurations.name" class="form-control" :data-weight="configurations.weight" :required="configurations.required == '1' ? true:false" >
             <option value="">{{ $languages.selectDefaultOptionText }}</option>
             <option v-for="(value, index) in configurations.options" :key="index" :value="value.htmlValue" :data-weight="value.optionWeight">{{ value.optionTitle }}</option>
         </select>

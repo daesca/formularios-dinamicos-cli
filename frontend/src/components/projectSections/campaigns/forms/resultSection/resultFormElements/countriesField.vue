@@ -3,10 +3,10 @@
         <label :for="configurations.name"><strong>{{ configurations.title }}</strong></label>
         <select v-model="answerAspirant" :name="configurations.name" class="form-control" :required=" configurations.required == '1' ? true:false">
             <option value="" default>{{ $languages.selectDefaultOptionText }}</option>
-            <!-- <option v-for="valueCountry in countries" :key="valueCountry.id" :value="valueCountry.id">{{ valueCountry.name }}</option> -->
-            <option value="0">Pais 1</option>
+            <option v-for="valueCountry in countries" :key="valueCountry.id" :value="valueCountry.id">{{ valueCountry.name }}</option>
+            <!-- <option value="0">Pais 1</option>
             <option value="1">Pais 2</option>
-            <option value="2">Pais 3</option>
+            <option value="2">Pais 3</option> -->
         </select>
         <hr>
     </div>
@@ -23,7 +23,7 @@ export default {
     data(){
 
         return{
-            // countries: [],
+            countries: [],
             answerAspirant: '',
 
         }
@@ -37,16 +37,16 @@ export default {
 
         }
 
-        // this.$http.get('sapiencia/get/countries/all').then(response => {
+        this.$http.get('sapiencia/get/countries/all').then(response => {
 
-        //     this.countries = response.body;
+            this.countries = response.body;
 
-        // }, response =>{
+        }, response =>{
 
-        //     alert('Fallo al consultar los departamentos. Contacte con el administrador');
-        //     console.log("Error:", response.body);
+            alert('Fallo al consultar los departamentos. Contacte con el administrador');
+            console.log("Error:", response.body);
 
-        // });
+        });
 
     },
     watch:{
@@ -55,11 +55,11 @@ export default {
 
             this.$emit("changeSpecial",{ idField: this.idField, value: val });
 
-            // if(this.configurations.name == 'paisNacimientoSapiencia'){
+            if(this.configurations.name == 'paisNacimientoSapiencia'){
 
-            //     this.$emit('pais-nacimiento-colombia', val);
+                this.$emit('pais-nacimiento-colombia', val);
 
-            // }
+            }
 
         }
 

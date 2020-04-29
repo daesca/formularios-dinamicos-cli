@@ -3,10 +3,10 @@
         <label :for="configurations.name"><strong>{{ configurations.title }}</strong></label>
         <select v-model="answerAspirant" :name="configurations.name" class="form-control" :required=" configurations.required == '1' ? true:false">
             <option value=''>{{ $languages.selectDefaultOptionText }}</option>
-            <!-- <option v-for="valueTown in towns" :key="valueTown.id" :value="valueTown.id">{{ valueTown.name }}</option> -->
-            <option value="0">Municipio 1</option>
+            <option v-for="valueTown in towns" :key="valueTown.id" :value="valueTown.id">{{ valueTown.name }}</option>
+            <!-- <option value="0">Municipio 1</option>
             <option value="1">Municipio 2</option>
-            <option value="2">Municipio 3</option>
+            <option value="2">Municipio 3</option> -->
         </select>
         <hr>
     </div>
@@ -25,7 +25,7 @@ export default {
         return{
 
             answerAspirant: '',
-            // towns: [],
+            towns: [],
 
         }
 
@@ -48,11 +48,12 @@ export default {
         },
         departamentonacimiento(val){
 
-            if(this.configurations.name == ''){
+            if(this.configurations.name == 'municipioNacimientoSapiencia'){
 
-                this.$http.get('sapiencia/get/neighborhoods/all/' + val).then(response => {
+                this.$http.get('sapiencia/get/towns/all/' + val).then(response => {
 
                     this.towns = response.body;
+                    this.answerAspirant = '';
 
                 }, response =>{
 
@@ -66,11 +67,15 @@ export default {
         },
         departamentoresidencia(val){
 
-            if(this.configurations.name == ''){
-
-                this.$http.get('sapiencia/get/neighborhoods/all/' + val).then(response => {
+            
+            if(this.configurations.name == 'municipioResidenciaSapiencia'){
+                
+                console.log('Hola!!!');
+                
+                this.$http.get('sapiencia/get/towns/all/' + val).then(response => {
 
                     this.towns = response.body;
+                    this.answerAspirant ='';
 
                 }, response =>{
 

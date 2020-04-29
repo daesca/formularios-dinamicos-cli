@@ -32,4 +32,8 @@ return function (App $app) {
     $container->set('DocumentController', function () use ($container){
         return new \App\Controllers\DocumentController($container);
     });
+
+    $container->set('SapienciaDataController', function () use ($container){
+        return new \App\Controllers\SapienciaDataController($container);
+    });
 };

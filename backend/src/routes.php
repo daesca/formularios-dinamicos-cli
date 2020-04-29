@@ -32,5 +32,16 @@ return function (App $app) {
         $group->post('/validate/expedition', 'DocumentController:validateExpeditionDate');
     });
 
+    $app->group('/sapiencia', function (RouteCollectorProxy $group){
+        $group->get('/get/countries/all' , 'SapienciaDataController:allCountries');
+        $group->get('/get/departments/all' , 'SapienciaDataController:allDepartments');
+        $group->get('/get/neighborhoods/all' , 'SapienciaDataController:allNeighborhoods');
+        $group->get('/get/communes/all' , 'SapienciaDataController:allCommunes');
+        $group->get('/get/streettypes/all' , 'SapienciaDataController:allStreettypes');
+        $group->get('/get/towns/all/{idDepartment}' , 'SapienciaDataController:allTowns');
+        $group->get('/get/schools/all' , 'SapienciaDataController:allSchools');
+        
+    });
+
        
 };

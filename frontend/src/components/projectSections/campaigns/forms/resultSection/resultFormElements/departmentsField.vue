@@ -3,10 +3,10 @@
         <label :for="configurations.name"><strong>{{ configurations.title }}</strong></label>
         <select v-model="answerAspirant" :name="configurations.name" class="form-control" :required=" configurations.required == '1' ? true:false">
             <option value="" default>{{ $languages.selectDefaultOptionText }}</option>
-            <!-- <option v-for="valueDepartment in departments" :key="valueDepartment.id" :value="valueDepartment.id">{{ valueDepartment.name }}</option> -->
-            <option value="0">Departamento 1</option>
+            <option v-for="valueDepartment in departments" :key="valueDepartment.id" :value="valueDepartment.id">{{ valueDepartment.name }}</option>
+            <!-- <option value="0">Departamento 1</option>
             <option value="1">Departamento 2</option>
-            <option value="2">Departamento 3</option>
+            <option value="2">Departamento 3</option> -->
         </select>
         <hr>
     </div>
@@ -23,7 +23,7 @@ export default {
     data(){
 
         return{
-            // departments:[],
+            departments:[],
             answerAspirant: '',
 
         }
@@ -31,22 +31,30 @@ export default {
     },
     created(){
 
-        // this.$http.get('sapiencia/get/departments/all').then(response => {
+        this.$http.get('sapiencia/get/departments/all').then(response => {
 
-        //     this.departments = response.body;
+            this.departments = response.body;
 
-        // }, response =>{
+        }, response =>{
 
-        //     alert('Fallo al consultar los departamentos. Contacte con el administrador');
-        //     console.log("Error:", response.body);
+            alert('Fallo al consultar los departamentos. Contacte con el administrador');
+            console.log("Error:", response.body);
 
-        // });
+        });
 
         if(this.defaultValue != undefined){
 
             this.answerAspirant = this.defaultValue;
 
         }
+
+        // if(this.configurations.name == "departamentoNacimientoSapiencia"){
+
+        //     this.show.display = 'block';
+
+        // }
+
+        
 
     },
     watch:{
@@ -55,10 +63,17 @@ export default {
 
             this.$emit("changeSpecial",{ idField: this.idField, value: val })
 
-            // if(){
+            if(this.configurations.name == 'departamentoNacimientoSapiencia'){
 
+                this.$store.commit('changeDepartamentoNacimiento', val);
 
-            // }
+            }
+
+            if(this.configurations.name == 'departamentoResidenciaSapiencia'){
+
+                this.$store.commit('changeDepartamentoResidencia', val);
+
+            }
 
         }
 
