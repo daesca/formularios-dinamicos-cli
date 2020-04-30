@@ -275,11 +275,38 @@
                 return this.answersAspirant[options.idField].answer = options.value;
 
             },
+            filterAnswers(){
+
+                let filterAnswers = JSON.parse(JSON.stringify(this.answersAspirant));
+
+                console.log("Variable filterAnswers", filterAnswers);
+
+                let allFields = document.querySelectorAll("div#renderResult-container > form > div");
+
+                let indexFilter = '';
+
+                for(let i = 0; i < allFields.length; i++){
+
+                    if(allFields[i].getAttribute("data-show") == '0'){
+
+                        indexFilter = allFields[i].getAttribute("data-filter");
+
+                        delete filterAnswers[indexFilter];
+
+                    }
+
+                }
+
+                return filterAnswers;
+
+            },
             sendAnswers(){
 
                 // console.log("Hola desde el metodo de envio");
 
-                this.$http.post('inscription/save',{codecampaign: this.codecampaign, documentAspirant: this.documentAspirant, answers: this.answersAspirant}).then(response => {
+                let filteredAnswers = this.filterAnswers();
+
+                this.$http.post('inscription/save',{codecampaign: this.codecampaign, documentAspirant: this.documentAspirant, answers: filteredAnswers}).then(response => {
 
                     if(response.body.code == 200){
 
@@ -419,146 +446,191 @@
             initialRules(){
 
                 const paisNacimientoField = document.querySelector("select[name='paisNacimientoSapiencia']");
-                
                 const lugarNacimientoContainer = document.querySelector("#lugarNacimientoSapiencia");
-                // const lugarNacimientoField = document.querySelector("input[name='lugarNacimientoSapiencia']");
-                lugarNacimientoContainer.style.display = 'none';
-
+                const lugarNacimientoField = document.querySelector("input[name='lugarNacimientoSapiencia']");
                 const departamentoNacimientoContainer = document.querySelector("#departamentoNacimientoSapiencia");
-                // const departamentoNacimientoField = document.querySelector("select[name='paisNacimientoSapiencia']");
+                const departamentoNacimientoField = document.querySelector("select[name='departamentoNacimientoSapiencia']");
+                const municipioNacimientoContainer = document.querySelector("#municipioNacimientoSapiencia");
+                const municipioNacimientoField = document.querySelector("select[name='municipioNacimientoSapiencia']");
+                const municipioResidenciaField = document.querySelector("select[name='municipioResidenciaSapiencia']");
+                const barriosListaContainer =  document.querySelector("#lugarResidenciaListaSapiencia");
+                const barriosListaField = document.querySelector("select[name='lugarResidenciaListaSapiencia']");
+                const barrioTextoContainer = document.querySelector("#lugarResidenciaTextoSapiencia");
+                const barrioTextoField = document.querySelector("input[name='lugarResidenciaTextoSapiencia']");
+                const tieneHijosField = document.querySelector("select[name='tieneHijosSapiencia']");
+                const cantidadHijosContainer = document.querySelector("#cantidadHijosSapiencia");
+                const cantidadHijosField = document.querySelector("select[name='cantidadHijosSapiencia']");
+                const padreMenorContainer = document.querySelector("#padreMenorSapiencia");
+                const padreMenorField = document.querySelector("select[name='padreMenorSapiencia']");
+                const padreSolteroContainer = document.querySelector("#padreSolteroSapiencia");
+                const padreSolteroField = document.querySelector("select[name='padreSolteroSapiencia']");
+                const tieneVulnerabilidadField = document.querySelector("select[name='vulnerabilidadSapiencia']");
+                const tipoVulnerabilidadContainer = document.querySelector("#tipoVulnerabilidad");
+                // const tipoVulnerabilidadField = ''
+                const tieneDiscapacidadField = document.querySelector("select[name='discapacidadSapiencia']");
+                const tipoDiscapacidadContainer = document.querySelector("#tipoDiscapacidadSapiencia");
+                const esAfrocolombianoField = document.querySelector("select[name='afrocolombianoSapiencia']");
+                const poblacionesAfrocolombianasContainer = document.querySelector("#poblacionesAfrocolombianasSapiencia");
+                const poblacionesAfrocolombianasField = document.querySelector("select[name='poblacionesAfrocolombianasSapiencia']");
+                const nombrePoblacionAfrocolombianaContainer = document.querySelector("#nombrePoblacionAfrodescendienteSapiencia");
+                const nombrePoblacionAfrocolombianaField = document.querySelector("input[name='nombrePoblacionAfrodescendienteSapiencia']");
+                const esIndigenaField = document.querySelector("select[name='etniaIndigenaSapiencia']");
+                const poblacionesIndigenasContainer = document.querySelector("#poblacionesIndigenasSapiencia");
+                const poblacionesIndigenasField = document.querySelector("select[name='poblacionesIndigenasSapiencia']");
+                const nombrePoblacionIndigenaContainer = document.querySelector("#nombrePoblacionIndigenaSapiencia");
+                const nombrePoblacionIndigenaField = document.querySelector("input[name='nombrePoblacionIndigenaSapiencia']");
+                const esLGBTIField = document.querySelector("select[name='lgbtiSapiencia']");
+                const tipoLGBTIContainer = document.querySelector("#tipoLGBTISapiencia");
+                const esEgresadoField = document.querySelector("select[name='egresadoSapiencia']");
+                const listaInstitucionesContainer = document.querySelector("#institucionSapiencia");
+                const listaInstitucionesField = document.querySelector("select[name='institucionSapiencia']");
+                const tipoInstitucionContainer = document.querySelector("#tipoInstitucionSapiencia");
+                const tipoInstitucionField = document.querySelector("select[name='tipoInstitucionSapiencia']");                
+                const tipoInstitucionSegundaOpcionContainer = document.querySelector("#tipoInstitucionSegundaOpcionSapiencia");
+                const tipoInstitucionSegundaOpcionField = document.querySelector("select[name='tipoInstitucionSegundaOpcionSapiencia']");
+                const nombreInstitucionContainer = document.querySelector("#nombreInstitucionSapiencia");
+                const nombreInstitucionField = document.querySelector("input[name='nombreInstitucionSapiencia']");
+                const municipioInstitucionContainer = document.querySelector("#municipioInstitucionSapiencia");
+                const municipioInstitucionField = document.querySelector("input[name='municipioInstitucionSapiencia']");
+                const estudioMediaTecnicaField = document.querySelector("select[name='mediaTecnicaSapiencia']");
+                const tituloMediaTecnicaContainer = document.querySelector("#tituloMediaTecnicaSapiencia");
+                const tituloMediaTecnicaField = document.querySelector("input[name='tituloMediaTecnicaSapiencia']");
+                const institucionMediaTecnicaContainer = document.querySelector("#institucionMediaTecnicaSapiencia");
+                const institucionMediaTecnicaField = document.querySelector("input[name='institucionMediaTecnicaSapiencia']");
+                const tieneTituloEducacionSuperiorField = document.querySelector("select[name='tieneTituloSuperiorSapiencia']");
+                const institucionEducacionSuperiorContainer = document.querySelector("#institucionSuperiorSapiencia");
+                const institucionEducacionSuperiorField = document.querySelector("input[name='institucionSuperiorSapiencia']");
+                const nombreProgramaEducacionSuperiorContainer = document.querySelector("#nombreProgramaSuperiorSapiencia");
+                const nombreProgramaEducacionSuperiorField = document.querySelector("input[name='nombreProgramaSuperiorSapiencia']");
+                const tituloProgramaEducacionSuperiorContainer = document.querySelector("#nombreTituloSuperiorSapiencia");
+                const tituloProgramaEducacionSuperiorField = document.querySelector("input[name='nombreTituloSuperiorSapiencia']");
+                const estudiaActualmenteEducacionSuperiorField = document.querySelector("select[name='estudiaActualmenteProgramaSuperiorSapiencia']");
+                const tipoProgramaSuperiorSapienciaContainer = document.querySelector("#tipoProgramaSuperiorSapiencia");
+                const tipoProgramaSuperiorSapienciaField = document.querySelector("select[name='tipoProgramaSuperiorSapiencia']");
+                const lugarEstudiosActualesContainer = document.querySelector("#institucionTituloSuperiorSapiencia");
+                const lugarEstudiosActualesField = document.querySelector("input[name='institucionTituloSuperiorSapiencia']");
+                const nombreEstudioActualContainer = document.querySelector("#nombreEstudioActualSuperiorSapiencia");
+                const nombreEstudioActualField = document.querySelector("input[name='nombreEstudioActualSuperiorSapiencia']");
+                const esBeneficiarioRecursosMunicipioField = document.querySelector("select[name='esBeneficiarioRecursosMunicipioSapiencia']");
+                const tipoProgramaRecursosContainer = document.querySelector("#tipoProgramaRecursosMunicipioSapiencia");
+                const tipoProgramaRecursosField = document.querySelector("select[name='tipoProgramaRecursosMunicipioSapiencia']");
+
+
+                /*-------------------------------------------- */
+
+                lugarNacimientoContainer.style.display = 'none';
+                lugarNacimientoContainer.dataset.show = '0';
+                lugarNacimientoField.required = false;
 
                 departamentoNacimientoContainer.style.display = 'none';
-
-                const municipioNacimientoContainer = document.querySelector("#municipioNacimientoSapiencia");
-                // const municipioNacimientoField = document.querySelector("select[name='municipioNacimientoSapiencia']");
+                departamentoNacimientoContainer.dataset.show = '0';
+                departamentoNacimientoField.required = false;
 
                 municipioNacimientoContainer.style.display = 'none';
-
-                const municipioResidenciaField = document.querySelector("select[name='municipioResidenciaSapiencia']");
-
-                const barriosListaContainer =  document.querySelector("#lugarResidenciaListaSapiencia");
-                // const barriosListaField = document.querySelector("select[name='lugarResidenciaListaSapiencia']");
+                municipioNacimientoContainer.dataset.show = '0';
+                municipioNacimientoField.required = false;
 
                 barriosListaContainer.style.display = 'none';
-
-                const barrioTextoContainer = document.querySelector("#lugarResidenciaTextoSapiencia");
-                // const barrioTextoField = document.querySelector("input[name='lugarResidenciaTextoSapiencia']");
+                barriosListaContainer.dataset.show = '0';
+                barriosListaField.required = false;
 
                 barrioTextoContainer.style.display = 'none';
-
-                // const tieneHijosContainer = document.querySelector("#tieneHijosSapiencia");
-                const tieneHijosField = document.querySelector("select[name='tieneHijosSapiencia']");
-
-                const cantidadHijosContainer = document.querySelector("#cantidadHijosSapiencia");
-                // const cantidadHijosField = document.querySelector("select[name='cantidadHijosSapiencia']");
+                barrioTextoContainer.dataset.show = '0';
+                barrioTextoField.required = false;
 
                 cantidadHijosContainer.style.display = 'none';
-
-                const padreMenorContainer = document.querySelector("#padreMenorSapiencia");
-                // const padreMenorField = document.querySelector("select[name='padreMenorSapiencia']");
+                cantidadHijosContainer.dataset.show = '0';
+                cantidadHijosField.required = false;
 
                 padreMenorContainer.style.display = 'none';
-
-                const padreSolteroContainer = document.querySelector("#padreSolteroSapiencia");
-                // const padreSolteroField = document.querySelector("select[name='padreSolteroSapiencia']");
+                padreMenorContainer.dataset.show = '0';
+                padreMenorField.required = false;
 
                 padreSolteroContainer.style.display = 'none';
-
-                // const tieneVulnerabilidadContainer = document.querySelector("#vulnerabilidadSapiencia");
-                const tieneVulnerabilidadField = document.querySelector("select[name='vulnerabilidadSapiencia']");
-
-                const tipoVulnerabilidadContainer = document.querySelector("#tipoVulnerabilidad");
-                // const tipoVulnerabilidadField = document.querySelector("se");
+                padreSolteroContainer.dataset.show = '0';
+                padreSolteroField.required = false;
 
                 tipoVulnerabilidadContainer.style.display = 'none';
-
-                // const tieneDiscapacidadContainer = document.querySelector("#discapacidadSapiencia");
-                const tieneDiscapacidadField = document.querySelector("select[name='discapacidadSapiencia']");
-
-                const tipoDiscapacidadContainer = document.querySelector("#tipoDiscapacidadSapiencia");
+                tipoVulnerabilidadContainer.dataset.show = '0';
+                // tipoVulnerabilidadContainer.required = false;
 
                 tipoDiscapacidadContainer.style.display = 'none';
-
-                // const esAfrocolombianoContainer = document.querySelector("#afrocolombianoSapiencia");
-                const esAfrocolombianoField = document.querySelector("select[name='afrocolombianoSapiencia']");
-
-                const poblacionesAfrocolombianasContainer = document.querySelector("#poblacionesAfrocolombianasSapiencia");
-                const polacionesAfrocolombianasField = document.querySelector("select[name='poblacionesAfrocolombianasSapiencia']");
-
-                poblacionesAfrocolombianasContainer.style.display = 'none';
-
-                const nombrePoblacionAfrocolombianaContainer = document.querySelector("#nombrePoblacionAfrodescendienteSapiencia");
+                tipoDiscapacidadContainer.dataset.show = '0';
+                // tipoDiscapacidadContainer.required = false;
 
                 nombrePoblacionAfrocolombianaContainer.style.display = 'none';
+                nombrePoblacionAfrocolombianaContainer.dataset.show = '0';
+                nombrePoblacionAfrocolombianaField.required = false;
 
-                const esIndigenaField = document.querySelector("select[name='etniaIndigenaSapiencia']");
-
-                const poblacionesIndigenasContainer = document.querySelector("#poblacionesIndigenasSapiencia");
                 poblacionesIndigenasContainer.style.display = 'none';
+                poblacionesIndigenasContainer.dataset.show = '0';
+                poblacionesIndigenasField.required = false;
 
-                const poblacionesIndigenasField = document.querySelector("select[name='poblacionesIndigenasSapiencia']");
-
-                const nombrePoblacionIndigenaContainer = document.querySelector("#nombrePoblacionIndigenaSapiencia");
                 nombrePoblacionIndigenaContainer.style.display = 'none';
+                nombrePoblacionIndigenaContainer.dataset.show = '0';
+                nombrePoblacionIndigenaField.required = false;
 
-                const esLGBTIField = document.querySelector("select[name='lgbtiSapiencia']");
-
-                const tipoLGBTIContainer = document.querySelector("#tipoLGBTISapiencia");
                 tipoLGBTIContainer.style.display = 'none';
+                tipoLGBTIContainer.dataset.show = '0';
+                // tipoLGBTIContainer.required = false;
 
-                const esEgresadoField = document.querySelector("select[name='egresadoSapiencia']");
-
-                const listaInstitucionesContainer = document.querySelector("#institucionSapiencia");
                 listaInstitucionesContainer.style.display = 'none';
+                listaInstitucionesContainer.dataset.show = '0';
+                listaInstitucionesField.required = false;
 
-                const listaInstitucionesField = document.querySelector("select[name='institucionSapiencia']");
-
-                const tipoInstitucionContainer = document.querySelector("#tipoInstitucionSapiencia");
                 tipoInstitucionContainer.style.display = 'none';
-                
-                const tipoInstitucionSegundaOpcionContainer = document.querySelector("#tipoInstitucionSegundaOpcionSapiencia");
+                tipoInstitucionContainer.dataset.show = '0';
+                tipoInstitucionField.required = false;
+
                 tipoInstitucionSegundaOpcionContainer.style.display = 'none';
+                tipoInstitucionSegundaOpcionContainer.dataset.show = '0';
+                tipoInstitucionSegundaOpcionField.required = false;
 
-                const nombreInstitucionContainer = document.querySelector("#nombreInstitucionSapiencia");
                 nombreInstitucionContainer.style.display = 'none';
+                nombreInstitucionContainer.dataset.show = '0';
+                nombreInstitucionField.required = false;
 
-                const municipioInstitucionContainer = document.querySelector("#municipioInstitucionSapiencia");
                 municipioInstitucionContainer.style.display = 'none';
-
-                const estudioMediaTecnicaField = document.querySelector("select[name='mediaTecnicaSapiencia']");
-
-                const tituloMediaTecnicaContainer = document.querySelector("#tituloMediaTecnicaSapiencia");
+                municipioInstitucionContainer.dataset.show = '0';
+                municipioInstitucionField.required = false;
+                
                 tituloMediaTecnicaContainer.style.display = 'none';
+                tituloMediaTecnicaContainer.dataset.show = '0';
+                tituloMediaTecnicaField.required = false;
 
-                const institucionMediaTecnicaContainer = document.querySelector("#institucionMediaTecnicaSapiencia");
                 institucionMediaTecnicaContainer.style.display = 'none';
-
-                const tieneTituloEducacionSuperiorField = document.querySelector("select[name='tieneTituloSuperiorSapiencia']");
-
-                const institucionEducacionSuperiorContainer = document.querySelector("#institucionSuperiorSapiencia");
+                institucionMediaTecnicaContainer.dataset.show = '0';
+                institucionMediaTecnicaField.required = false;
+            
                 institucionEducacionSuperiorContainer.style.display = 'none';
+                institucionEducacionSuperiorContainer.dataset.show = '0';
+                institucionEducacionSuperiorField.required = false;
 
-                const nombreProgramaEducacionSuperiorContainer = document.querySelector("#nombreProgramaSuperiorSapiencia");
                 nombreProgramaEducacionSuperiorContainer.style.display = 'none';
+                nombreProgramaEducacionSuperiorContainer.dataset.show = '0';
+                nombreProgramaEducacionSuperiorField.required = false;
 
-                const tituloProgramaEducacionSuperiorContainer = document.querySelector("#nombreTituloSuperiorSapiencia");
                 tituloProgramaEducacionSuperiorContainer.style.display = 'none';
+                tituloProgramaEducacionSuperiorContainer.dataset.show = '0';
+                tituloProgramaEducacionSuperiorField.required = false;
 
-                const estudiaActualmenteEducacionSuperiorField = document.querySelector("select[name='estudiaActualmenteProgramaSuperiorSapiencia']");
-
-                const tipoProgramaSuperiorSapienciaContainer = document.querySelector("#tipoProgramaSuperiorSapiencia");
                 tipoProgramaSuperiorSapienciaContainer.style.display = 'none';
+                tipoProgramaSuperiorSapienciaContainer.dataset.show = '0';
+                tipoProgramaSuperiorSapienciaField.required = false;
 
-                const lugarEstudiosActualesContainer = document.querySelector("#institucionTituloSuperiorSapiencia");
                 lugarEstudiosActualesContainer.style.display = 'none';
+                lugarEstudiosActualesContainer.dataset.show = '0';
+                lugarEstudiosActualesField.required = false;
 
-                const nombreEstudioActualContainer = document.querySelector("#nombreEstudioActualSuperiorSapiencia");
                 nombreEstudioActualContainer.style.display = 'none';
+                nombreEstudioActualContainer.dataset.show = '0';
+                nombreEstudioActualField.required = false;
 
-                const esBeneficiarioRecursosMunicipioField = document.querySelector("select[name='esBeneficiarioRecursosMunicipioSapiencia']");
-
-                const tipoProgramaRecursosContainer = document.querySelector("#tipoProgramaRecursosMunicipioSapiencia");
                 tipoProgramaRecursosContainer.style.display = 'none';
+                tipoProgramaRecursosContainer.dataset.show = '0';
+                tipoProgramaRecursosField.required = false;
+
+                /*------------------------------------------------------ */
 
                 paisNacimientoField.addEventListener('change', function(event){
 
@@ -569,16 +641,32 @@
                         // municipioNacimientoContainer.toggle('slow');
                         
                         lugarNacimientoContainer.style.display = 'none'
+                        lugarNacimientoContainer.dataset.show = '0';
+                        lugarNacimientoField.required = false;
+
                         departamentoNacimientoContainer.style.display = 'block';
-                        municipioNacimientoContainer.style.display = 'block'; 
+                        departamentoNacimientoContainer.dataset.show = '1';
+                        departamentoNacimientoField.required = true;
+
+                        municipioNacimientoContainer.style.display = 'block';
+                        municipioNacimientoContainer.dataset.show = '1';
+                        municipioNacimientoField.required = false;
 
                     }else{
                         
                         // departamentoNacimientoContainer.toggle('slow');
                         // municipioNacimientoContainer.toggle('slow');
                         lugarNacimientoContainer.style.display = 'block'
+                        lugarNacimientoContainer.dataset.show = '1';
+                        lugarNacimientoField.required = true;
+
                         departamentoNacimientoContainer.style.display = 'none';
-                        municipioNacimientoContainer.style.display = 'none';  
+                        departamentoNacimientoContainer.dataset.show = '0';
+                        departamentoNacimientoField.required = false;
+
+                        municipioNacimientoContainer.style.display = 'none'; 
+                        municipioNacimientoContainer.dataset.show = '0';
+                        municipioNacimientoField.required = false;
 
                     }
 
@@ -590,12 +678,22 @@
                     if(event.target.value == '1'){
 
                         barriosListaContainer.style.display = 'block';
+                        barriosListaContainer.dataset.show = '1';
+                        barriosListaField.required = true;
+
                         barrioTextoContainer.style.display = 'none';
+                        barrioTextoContainer.dataset.show = '0';
+                        barrioTextoField.required = false;
 
                     }else{
 
                         barriosListaContainer.style.display = 'none';
+                        barriosListaContainer.dataset.show = '0';
+                        barriosListaField.required = false;
+
                         barrioTextoContainer.style.display = 'block';
+                        barrioTextoContainer.dataset.show = '1';
+                        barrioTextoField.required = false;
                         
                     }
 
@@ -606,14 +704,30 @@
                     if(event.target.value == '1'){
 
                         cantidadHijosContainer.style.display = 'block';
+                        cantidadHijosContainer.dataset.show = '1';
+                        cantidadHijosField.required = true;
+
                         padreMenorContainer.style.display = 'block';
+                        padreMenorContainer.dataset.show = '1';
+                        padreMenorField.required = true;
+
                         padreSolteroContainer.style.display = 'block';
+                        padreSolteroContainer.dataset.show = '1';
+                        padreSolteroField.required = false;
 
                     }else{
 
                         cantidadHijosContainer.style.display = 'none';
+                        cantidadHijosContainer.dataset.show = '0';
+                        cantidadHijosField.required = false;
+
                         padreMenorContainer.style.display = 'none';
+                        padreMenorContainer.dataset.show = '0';
+                        padreMenorField.required = false;
+
                         padreSolteroContainer.style.display = 'none';
+                        padreSolteroContainer.dataset.show = '0';
+                        padreSolteroField.required = false;
                         
                     }                    
 
@@ -624,11 +738,14 @@
                     if(event.target.value == '1'){
 
                         tipoVulnerabilidadContainer.style.display = 'block';
+                        tipoVulnerabilidadContainer.dataset.show = '1';
+                        // tipoVulnerabilidadContainer.required = true;
 
                     }else{
 
                         tipoVulnerabilidadContainer.style.display = 'none';
-
+                        tipoVulnerabilidadContainer.dataset.show = '0';
+                        // tipoVulnerabilidadContainer.required = false;
 
                     }
 
@@ -640,10 +757,13 @@
                     if(event.target.value == '1'){
 
                         tipoDiscapacidadContainer.style.display = 'block';
+                        tipoDiscapacidadContainer.dataset.show = '1';
+                        // tipoDiscapacidadContainer.required = false;
 
                     }else{
 
                         tipoDiscapacidadContainer.style.display = 'none';
+                        tipoDiscapacidadContainer.dataset.show = '0';
 
                     }
 
@@ -655,25 +775,33 @@
                     if(event.target.value == '1'){
 
                         poblacionesAfrocolombianasContainer.style.display = 'block';
+                        poblacionesAfrocolombianasContainer.dataset.show = '1';
+                        poblacionesAfrocolombianasField.required = true;
 
                     }else{
 
                         poblacionesAfrocolombianasContainer.style.display = 'none';
+                        poblacionesAfrocolombianasContainer.dataset.show = '0';
+                        poblacionesAfrocolombianasField.required = false;
 
                     }
 
                 });
 
-                polacionesAfrocolombianasField.addEventListener('change', function(event){
+                poblacionesAfrocolombianasField.addEventListener('change', function(event){
 
 
                     if(event.target.value == '4'){
 
                         nombrePoblacionAfrocolombianaContainer.style.display = 'block';
+                        nombrePoblacionAfrocolombianaContainer.dataset.show = '1';
+                        nombrePoblacionAfrocolombianaField.required = true;
 
                     }else{
 
                         nombrePoblacionAfrocolombianaContainer.style.display = 'none';
+                        nombrePoblacionAfrocolombianaContainer.dataset.show = '0';
+                        nombrePoblacionAfrocolombianaField.required = true;
 
                     }
 
@@ -684,10 +812,14 @@
                     if(event.target.value == '1'){
 
                         poblacionesIndigenasContainer.style.display = 'block';
+                        poblacionesIndigenasContainer.dataset.show = '1';
+                        poblacionesIndigenasField.required = true;
 
                     }else{
 
                         poblacionesIndigenasContainer.style.display = 'none';
+                        poblacionesIndigenasContainer.dataset.show = '0';
+                        poblacionesIndigenasField.required = false;
 
                     }
 
@@ -698,10 +830,14 @@
                     if(event.target.value == '8'){
 
                         nombrePoblacionIndigenaContainer.style.display = 'block';
+                        nombrePoblacionIndigenaContainer.dataset.show = '1';
+                        nombrePoblacionIndigenaField.required = true;
 
                     }else{
 
                         nombrePoblacionIndigenaContainer.style.display = 'none';
+                        nombrePoblacionIndigenaContainer.dataset.show = '0';
+                        nombrePoblacionIndigenaField.required = false;
 
                     }
 
@@ -712,10 +848,12 @@
                     if(event.target.value == '1'){
 
                         tipoLGBTIContainer.style.display = 'block';
+                        tipoLGBTIContainer.dataset.show = '1';
 
                     }else{
 
                         tipoLGBTIContainer.style.display = 'none';
+                        tipoLGBTIContainer.dataset.show = '0';
 
                     }
 
@@ -726,20 +864,46 @@
                     if(event.target.value == '1'){
 
                         listaInstitucionesContainer.style.display = 'block';
+                        listaInstitucionesContainer.dataset.show = '1';
+                        listaInstitucionesField.required = true;
+
                         tipoInstitucionContainer.style.display = 'block';
+                        tipoInstitucionContainer.dataset.show = '1';
+                        tipoInstitucionField.required = true;
 
                         tipoInstitucionSegundaOpcionContainer.style.display = 'none';
+                        tipoInstitucionSegundaOpcionContainer.dataset.show = '0';
+                        tipoInstitucionSegundaOpcionField.required = false;
+
                         nombreInstitucionContainer.style.display = 'none';
+                        nombreInstitucionContainer.dataset.show = '0';
+                        nombreInstitucionField.required = false;
+
                         municipioInstitucionContainer.style.display = 'none';
+                        municipioInstitucionContainer.dataset.show = '0';
+                        municipioInstitucionField.required = false;
 
                     }else{
 
                         listaInstitucionesContainer.style.display = 'none';
+                        listaInstitucionesContainer.dataset.show = '0';
+                        listaInstitucionesField.required = false;
+
                         tipoInstitucionContainer.style.display = 'none';
+                        tipoInstitucionContainer.dataset.show = '0';
+                        tipoInstitucionField.required = false;
 
                         tipoInstitucionSegundaOpcionContainer.style.display = 'block';
+                        tipoInstitucionSegundaOpcionContainer.dataset.show = '1';
+                        tipoInstitucionSegundaOpcionField.required = true;
+
                         nombreInstitucionContainer.style.display = 'block';
+                        nombreInstitucionContainer.dataset.show = '1';
+                        nombreInstitucionField.required = true;
+
                         municipioInstitucionContainer.style.display = 'block';
+                        municipioInstitucionContainer.dataset.show = '1';
+                        municipioInstitucionField.required = true;
 
                     }
 
@@ -750,12 +914,22 @@
                     if(event.target.value == '1'){
 
                         tituloMediaTecnicaContainer.style.display = 'block';
+                        tituloMediaTecnicaContainer.dataset.show = '1';
+                        tituloMediaTecnicaField.required = true;
+
                         institucionMediaTecnicaContainer.style.display = 'block';
+                        institucionMediaTecnicaContainer.dataset.show = '1';
+                        institucionMediaTecnicaField.required = true;
 
                     }else{
 
                         tituloMediaTecnicaContainer.style.display = 'none';
+                        tituloMediaTecnicaContainer.dataset.show = '0';
+                        tituloMediaTecnicaField.required = false;
+
                         institucionMediaTecnicaContainer.style.display = 'none';
+                        institucionMediaTecnicaContainer.dataset.show = '0';
+                        institucionMediaTecnicaField.required = false;
 
                     }
 
@@ -766,18 +940,30 @@
                     if(event.target.value == '1'){
 
                         institucionEducacionSuperiorContainer.style.display = 'block';
+                        institucionEducacionSuperiorContainer.dataset.show = '1';
+                        institucionEducacionSuperiorField.required = true;
 
                         nombreProgramaEducacionSuperiorContainer.style.display = 'block';
+                        nombreProgramaEducacionSuperiorContainer.dataset.show = '1';
+                        nombreProgramaEducacionSuperiorField.required = true;
 
                         tituloProgramaEducacionSuperiorContainer.style.display = 'block';
+                        tituloProgramaEducacionSuperiorContainer.dataset.show = '1';
+                        tituloProgramaEducacionSuperiorField.required = true;
 
                     }else{
 
                         institucionEducacionSuperiorContainer.style.display = 'none';
+                        institucionEducacionSuperiorContainer.dataset.show = '0';
+                        institucionEducacionSuperiorField.required = false;
 
                         nombreProgramaEducacionSuperiorContainer.style.display = 'none';
+                        nombreProgramaEducacionSuperiorContainer.dataset.show = '0';
+                        nombreProgramaEducacionSuperiorField.required = false;
 
                         tituloProgramaEducacionSuperiorContainer.style.display = 'none';
+                        tituloProgramaEducacionSuperiorContainer.dataset.show = '0';
+                        tituloProgramaEducacionSuperiorField.required = false;
 
                     }
 
@@ -785,22 +971,34 @@
 
                 estudiaActualmenteEducacionSuperiorField.addEventListener('change', function(event){
 
-                    if(event.target.value){
+                    if(event.target.value == '1'){
 
                         tipoProgramaSuperiorSapienciaContainer.style.display = 'block';
+                        tipoProgramaSuperiorSapienciaContainer.dataset.show = '1';
+                        tipoProgramaSuperiorSapienciaField.required = true;
 
                         lugarEstudiosActualesContainer.style.display = 'block';
+                        lugarEstudiosActualesContainer.dataset.show = '1';
+                        lugarEstudiosActualesField.required = true;
 
                         nombreEstudioActualContainer.style.display = 'block';
+                        nombreEstudioActualContainer.dataset.show = '1';
+                        nombreEstudioActualField.required = true;
                         
 
                     }else{
 
                         tipoProgramaSuperiorSapienciaContainer.style.display = 'none';
+                        tipoProgramaSuperiorSapienciaContainer.dataset.show = '0';
+                        tipoProgramaSuperiorSapienciaField.required = false;
 
                         lugarEstudiosActualesContainer.style.display = 'none';
+                        lugarEstudiosActualesContainer.dataset.show = '0';
+                        lugarEstudiosActualesField.required = false;
 
                         nombreEstudioActualContainer.style.display = 'none';
+                        nombreEstudioActualContainer.dataset.show = '0';
+                        nombreEstudioActualField.required = false;
 
                     }
 
@@ -811,10 +1009,14 @@
                     if(event.target.value == '1'){
 
                         tipoProgramaRecursosContainer.style.display = 'block';
+                        tipoProgramaRecursosContainer.dataset.show = '1';
+                        tipoProgramaRecursosField.required = true;
 
                     }else{
 
                         tipoProgramaRecursosContainer.style.display = 'none';
+                        tipoProgramaRecursosContainer.dataset.show = '0';
+                        tipoProgramaRecursosField.required = false;
 
                     }
 

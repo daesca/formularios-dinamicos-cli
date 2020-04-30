@@ -1,5 +1,5 @@
 <template>
-    <div :id="configurations.name" :class="configurations.cssClass">
+    <div :id="configurations.name" :class="configurations.cssClass" :data-filter="idField">
         <label :for="configurations.name"><strong>{{ configurations.title }}</strong></label>
         <select v-model="answerAspirant" :name="configurations.name" class="form-control" :required=" configurations.required == '1' ? true:false">
             <option value="" default>{{ $languages.selectDefaultOptionText }}</option>

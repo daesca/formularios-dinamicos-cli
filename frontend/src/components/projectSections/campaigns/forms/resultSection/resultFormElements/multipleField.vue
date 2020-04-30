@@ -1,5 +1,5 @@
 <template>
-    <div :id="configurations.name" :class="configurations.cssClass">
+    <div :id="configurations.name" :class="configurations.cssClass" :data-filter="idField">
 
         <label for="resultado"><strong>{{ configurations.title }} </strong></label>
         <input v-if="configurations.type == 'text'" type="text" v-model="answerAspirant" :name="configurations.name" class="form-control" :required=" configurations.required == '1' ? true:false"/>

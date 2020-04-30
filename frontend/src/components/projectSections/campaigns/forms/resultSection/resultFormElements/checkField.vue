@@ -1,5 +1,5 @@
 <template>
-    <div :id="configurations.name" :class="configurations.cssClass">
+    <div :id="configurations.name" :class="configurations.cssClass" :data-filter="idField">
         <label for=""><strong>{{ configurations.title }}</strong></label>
         <br>
         <div v-for="(valueConfig, index) in configurations.options" :key="index" class="form-check">
