@@ -93,6 +93,9 @@ class InscriptionController extends Controller
                         "errors" => $errors
                     ]
                 ];
+
+                Document::find($document->id)->delete();
+
                 $response->getBody()->write(json_encode($message));
                 return $response->withHeader('Content-Type', 'application/json');
             }

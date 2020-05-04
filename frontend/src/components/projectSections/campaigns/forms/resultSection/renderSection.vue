@@ -385,17 +385,16 @@
 
                         console.log('Datos llenaos', response.body);
 
-                        this.setAnswersAspirant(response.body.data.configDefaultForm, 1);
-
-                        this.setAnswersAspirant(response.body.data.configForm, 1);
 
                         this.setRenderForm(response.body.data.configDefaultForm);
 
                         this.setRenderForm(response.body.data.configForm);
-
-                        this.setLogin(true);
                         
-                        this.initialRules();
+                        this.setAnswersAspirant(response.body.data.configDefaultForm, 1);
+
+                        this.setAnswersAspirant(response.body.data.configForm, 1);
+
+                         this.setLogin(true);
 
                         this.closeModal();
 

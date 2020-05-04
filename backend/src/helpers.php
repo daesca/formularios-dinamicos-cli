@@ -186,7 +186,10 @@ function getTypeField(object $field): ?array
         ],
         "schoolsField" => [
             "required"
-        ]
+        ],
+        "textBox" => [
+            "options", "required"
+        ],
     ];
 
     return $typeField[$field->typeField] ?? null;
