@@ -93,9 +93,9 @@ class InscriptionController extends Controller
                         "errors" => $errors
                     ]
                 ];
-
-                Document::find($document->id)->delete();
-
+                if($document->values()->get()->count() == 0) {
+                    $document->delete();
+                }
                 $response->getBody()->write(json_encode($message));
                 return $response->withHeader('Content-Type', 'application/json');
             }
@@ -135,6 +135,9 @@ class InscriptionController extends Controller
                     ->where('name', '=', $res->name)
                     ->where('defaultForm', '=', 1)
                     ->first();
+                if(is_null($aux)) {
+                    continue;
+                }
                 $arrayItem['typeField'] = $aux['typeField'];
                 unset($aux['typeField']);
                 unset($aux['created_at']);
