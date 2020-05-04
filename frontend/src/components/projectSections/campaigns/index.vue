@@ -1,9 +1,9 @@
 <template>
-    <div id="index-campaings-container" class="container-full">
+    <div id="index-campaings-container" class="container" style="max-width: 1300px">
 
         <div class="row">
 
-            <div class="col-12 col-sm-12 col-md-8 col-lg-8 mr-auto ml-auto">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 mr-auto ml-auto">
                 <h1>Modulo de Campañas</h1>
                 <div class="d-flex justify-content-start mb-2">
                     <router-link to="/main/createCampaign" class="add-campaign-button backPrimaryColor mr-2" :title="$languages.createCampaignText"> <i class="icon-plus"></i> </router-link>
@@ -33,9 +33,10 @@
                                 <td class="options-cell">
                                     <router-link :to="{ path: '/main/formsCreate/' + value.code, params: { codecampaign: value.code } }" class="btn-success mr-2" data-toggle="tooltip" data-placement="top" :title="value.renderDefault == null ? $languages.createFormText: $languages.editFormText"><i class="icon-doc"></i></router-link>
                                     <router-link :to="{ path: '/main/editCampaign/' + value.code, params:{ codecampaign: value.code } }" class="btn-info mr-2" data-toggle="tooltip" data-placement="top" :title="$languages.editButtonText"><i class="icon-pencil"></i></router-link>
-                                    <a href="javascript:void(0)" @click="copyCampaign(value.code)" class="btn-warning mr-2" data-toggle="tooltip" data-placement="top" :title="$languages.copyButtonText"><i class="icon-clone"></i></a>
                                     <a href="javascript:void(0)" @click="deleteCampaign(value.code)" class="btn-danger mr-2" data-toggle="tooltip" data-placement="top" :title="$languages.deleteButtonText"><i class="icon-trash-empty"></i></a>
-                                    <a href="javascript:void(0)" @click="shareCampaign(value.code)" class="btn-primary" data-toggle="modal" data-target="#shareModal" :title="$languages.shareButtonText"><i class="icon-export"></i></a>
+                                    <a href="javascript:void(0)" @click="copyCampaign(value.code)" :disabled="value.renderDefault == null" :class="(value.renderDefault == null ? 'btn-secondary mr-2':'btn-warning mr-2')" data-toggle="tooltip" data-placement="top" :title="$languages.copyButtonText"><i class="icon-clone"></i></a>
+                                    <a v-if="value.renderDefault != null" href="javascript:void(0)" @click="shareCampaign(value.code)" class="btn-primary" data-toggle="modal" data-target="#shareModal" :title="$languages.shareButtonText"><i class="icon-export"></i></a>
+                                    <a v-else href="javascript:void(0)"  disabled class="btn-secondary" :title="$languages.shareButtonText"><i class="icon-export"></i></a>
                                 </td>
                             </tr>
                         </tbody>

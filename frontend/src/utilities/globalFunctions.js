@@ -164,7 +164,8 @@ const globalFunctions = {
                 // let elementError = document.getElementById("error-" + errors[field]);
                 let elementError = document.getElementById(idError);
                 // console.log(msg);
-                elementError.append(msg);
+                elementError.innerHTML = msg
+                    // elementError.append(msg);
                 elementError.classList.add('show');
 
             }

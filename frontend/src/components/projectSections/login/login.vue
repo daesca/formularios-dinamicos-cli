@@ -7,7 +7,7 @@
             <div class="login-container__body">
 
                 <h3 class="font-weight-bold">{{ $languages.welcomeLoginMessageText }}</h3>
-                <div class="remember-credentials">
+                <div class="remember-credentials d-none">
                     
                    ¿Olvidaste tu <a href="javascript:void(0)">usuario</a> o <a href="javascript:void(0)">contraseña</a>?
 
@@ -31,7 +31,7 @@
                 </div>
 
             </div>
-            <div class="login-container__footer default-color-text">
+            <div class="login-container__footer default-color-text d-none">
                 <div class="login-container__footer-left">
                 
                     <i class="icon-wheelchair icon-wheelchair__styles"></i><a class="font-weight-bold accesibility" href="javascript:void(0)">Accesibilidad</a>
@@ -103,7 +103,7 @@ export default {
     }
     #login-container{
 
-        width: 370px;
+        /* width: 370px; */
         margin: 0em auto;
         top: 30%;
         left: 5%;
@@ -112,6 +112,16 @@ export default {
         background-color: #fff;
         overflow: hidden;
 
+    }
+
+    @media (max-width: 430px) {
+
+        #login-container{
+
+            right: 5%;
+
+        }  
+        
     }
 
     .login-container__header{

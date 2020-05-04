@@ -21,7 +21,7 @@
                             <router-link to="/main/campaigns" class="nav-link">Campañas</router-link>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Ponderados</a>
+                            <a href="javascript:void(0)" class="nav-link">Ponderados</a>
                         </li>
                     </ul>
                 </div>
@@ -33,6 +33,8 @@
     </div>
 </template>
 <script>
+
+
 export default {
     
 }

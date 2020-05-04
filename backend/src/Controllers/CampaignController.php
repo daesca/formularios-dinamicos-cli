@@ -122,7 +122,7 @@ class CampaignController extends Controller{
 
         try {
 
-        $campaign = Campaign::where('code',$args['code'])->first();
+        $campaign = Campaign::where('code',$args['code'])->get();
 
 
             $newCampaign = Campaign::create($campaign->toArray());
@@ -149,6 +149,23 @@ class CampaignController extends Controller{
 
 
     }
+
+    // public function copy(Request $request, $id){
+    //     $campaign = Campaign::find($id);
+
+    //     $copy = $campaign->replicate()->fill(
+    //         [
+    //             'code' => rand(100000, 999999)
+    //         ]
+    //     );
+
+    //     if ($copy->save()) {
+    //         $request->session()->flash('success', 'Good copy campaign');
+    //         return redirect(route('campaign.home'));
+    //     }
+    //     $request->session()->flash('errors', 'Errors copy campaign');
+    //     return redirect(route('campaign.home'));
+    // }
 
     public function remove(Request $request, Response $response, $args){
 
