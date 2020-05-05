@@ -909,7 +909,7 @@
                 });
 
                 estudioMediaTecnicaField.addEventListener('change', function(event){
-
+                    
                     if(event.target.value == '1'){
 
                         tituloMediaTecnicaContainer.style.display = 'block';
