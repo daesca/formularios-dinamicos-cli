@@ -5,6 +5,7 @@ import createCampaign from '../components/projectSections/campaigns/campaigns/cr
 import editCampaign from '../components/projectSections/campaigns/campaigns/editSection/editCampaign.vue';
 import mainForms from '../components/projectSections/campaigns/forms/mainForms.vue';
 import renderSection from '../components/projectSections/campaigns/forms/resultSection/renderSection.vue';
+import resultRender from '../components/projectSections/campaigns/forms/resultSection/resultRender.vue';
 
 const routes = [
 
@@ -61,6 +62,12 @@ const routes = [
         components: { main: renderSection, },
         props: { main: true }
     },
+    {
+        path: '/result',
+        components: {
+            resultRender
+        }
+    }
     // {
 
     //     path: '/campaigns',

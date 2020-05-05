@@ -310,11 +310,11 @@
 
                     if(response.body.code == 200){
 
-                        this.titleResultSaveAnswers = "Guardado exitoso";
+                        // this.titleResultSaveAnswers = "Guardado exitoso";
 
-                        this.bodyResultSaveAnswers = response.body.message;
+                        // this.bodyResultSaveAnswers = response.body.message;
 
-                   
+                        this.$router.push({ path:'result'});
 
                     }else{
 
@@ -800,7 +800,7 @@
 
                         nombrePoblacionAfrocolombianaContainer.style.display = 'none';
                         nombrePoblacionAfrocolombianaContainer.dataset.show = '0';
-                        nombrePoblacionAfrocolombianaField.required = true;
+                        nombrePoblacionAfrocolombianaField.required = false;
 
                     }
 
