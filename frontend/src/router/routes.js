@@ -64,9 +64,8 @@ const routes = [
     },
     {
         path: '/result',
-        components: {
-            resultRender
-        }
+        components: { main: resultRender }
+
     }
     // {
 

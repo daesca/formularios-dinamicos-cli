@@ -63,6 +63,7 @@
                 <button class="btn btn-success">Enviar</button>
             </div>
 
+
         </form>
 
         <!-- Modal -->
@@ -300,6 +301,7 @@
                 return filterAnswers;
 
             },
+
             sendAnswers(){
 
                 // console.log("Hola desde el metodo de envio");
@@ -314,7 +316,7 @@
 
                         // this.bodyResultSaveAnswers = response.body.message;
 
-                        this.$router.push({ path:'result'});
+                        this.$router.push({ path:'/result'});
 
                     }else{
 
@@ -322,11 +324,11 @@
 
                         this.bodyResultSaveAnswers = response.body.message;    
 
+                        this.setShowResultSaveAnswers(true);
+
+                        this.showModal();
+
                     }
-
-                    this.setShowResultSaveAnswers(true);
-
-                    this.showModal();
 
                 }, response =>{
 
@@ -909,7 +911,7 @@
                 });
 
                 estudioMediaTecnicaField.addEventListener('change', function(event){
-                    
+
                     if(event.target.value == '1'){
 
                         tituloMediaTecnicaContainer.style.display = 'block';
