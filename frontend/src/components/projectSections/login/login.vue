@@ -71,7 +71,7 @@ export default {
 
             if(this.user == 'admin' && this.password == "admin"){
 
-                this.$router.push('main');
+                this.$router.push('/main/campaigns');
 
             }else{
 
