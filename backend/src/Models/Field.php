@@ -11,6 +11,10 @@ class Field extends Model
 
     protected $fillable = ["id","title", "weight", "name", "min", "max", "deleted", "defaultForm", "typeField", "type", "options", "required", "defaultValue", "cssClass"];
 
+    protected $hidden = [
+        "created_at", "updated_at"
+    ];
+
     public function campaigns(){
 
         return $this->belongsToMany('App\Models\Campaign');

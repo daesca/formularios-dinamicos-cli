@@ -127,27 +127,25 @@ class InscriptionController extends Controller
         $arrayItem = null;
         $campagin = Campaign::where('code', $request->getParsedBody()['code'])->first();
         $document = Document::where('document', $request->getParsedBody()['document'])->first();
-        $fields = collect($campagin->fields->toArray());
-
+        $values = collect($document->values->toArray());
         if (! is_null($campagin) and !is_null($document)) {
-            foreach ($document->values as $res) {
-                $aux = $fields
-                    ->where('name', '=', $res->name)
-                    ->where('defaultForm', '=', 1)
-                    ->first();
-                if(is_null($aux)) {
-                    continue;
+            foreach ($campagin->fields as $field) {
+                $aux = $values->where('name', '=', $field->name)
+                    ->last();
+                $arrayItem['typeField'] = $field->typeField;
+                $arrayItem['idField'] = $field->id;
+                unset($field['typeField']);
+                unset($field['pivot']);
+                unset($field['id']);
+                $field = $field->toArray();
+                $arrayItem['configurations'] = $field;
+                if(!is_array($aux)) {
+                    $arrayItem['configurations']['defaultValue'] = "";
+                }else {
+                    $arrayItem['configurations']['defaultValue'] = $aux['value'];
                 }
-                $arrayItem['typeField'] = $aux['typeField'];
-                unset($aux['typeField']);
-                unset($aux['created_at']);
-                unset($aux['updated_at']);
-                unset($aux['pivot']);
-                $arrayItem['configurations'] = $aux;
-                $arrayItem['configurations']['defaultValue'] = $res->value;
-                $arrayItem['idField'] = $aux['id'];
-                unset($arrayItem['configurations']['id']);
                 array_push($arrayRender, $arrayItem);
+
             }
             $message = [
                 "code" => 200,
