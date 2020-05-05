@@ -13,22 +13,25 @@
 
                 </div>
 
-                <div class="form-group">
-                    <!-- <label for="user">Usuario</label> -->
-                    <input type="email" name="user" class="login-container__body-input" :placeholder="$languages.userPlaceholderInput" v-model="user">
-                </div>
-                <div class="form-group">
-                    <!-- <label for="exampleInputPassword1">Password</label> -->
-                    <input type="password" class="login-container__body-input" :placeholder="$languages.passwordPlaceholderInput" v-model="password">
-                </div>
-                <div class="text-center access-button-container">
+                <form @submit="credentialsVerification">
 
-                    <div v-if="showAlert" class="errorLogin error-color-text">
-                        {{ alertMsg }}
+                    <div class="form-group">
+                        <!-- <label for="user">Usuario</label> -->
+                        <input type="text" @keyup.enter="submit" name="user" class="login-container__body-input" :placeholder="$languages.userPlaceholderInput" v-model="user" required>
                     </div>
+                    <div class="form-group">
+                        <!-- <label for="exampleInputPassword1">Password</label> -->
+                        <input type="password" @keyup.enter="submit" name="password" class="login-container__body-input" :placeholder="$languages.passwordPlaceholderInput" v-model="password" required>
+                    </div>
+                    <div class="text-center access-button-container">
 
-                    <button class="ovalButton backPrimaryColor" @click="credentialsVerification">{{ $languages.accessButtonText }}</button>
-                </div>
+                        <div v-if="showAlert" class="errorLogin error-color-text">
+                            {{ alertMsg }}
+                        </div>
+
+                        <button class="ovalButton backPrimaryColor">{{ $languages.accessButtonText }}</button>
+                    </div>
+                </form>
 
             </div>
             <div class="login-container__footer default-color-text d-none">
