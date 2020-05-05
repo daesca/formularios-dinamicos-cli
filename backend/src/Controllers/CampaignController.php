@@ -122,11 +122,13 @@ class CampaignController extends Controller{
 
         try {
 
-        $campaign = Campaign::where('code',$args['code'])->get();
+            $campaign = Campaign::find($args['id']);
 
-
-            $newCampaign = Campaign::create($campaign->toArray());
-            $newCampaign->code = rand(0, 99999);
+            $newCampaign = $campaign->replicate()->fill(
+                [
+                    'code' => rand(100000, 999999)
+                ]
+            );
 
             $result = array('code' => 200, 'status' => true, 'message' => 'Campaign copy saved succefully');
 
