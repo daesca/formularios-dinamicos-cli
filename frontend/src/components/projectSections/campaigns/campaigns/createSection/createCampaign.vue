@@ -2,7 +2,7 @@
     <div id="create-campaign-container" class="container">
         <div class="form-group">
             <label for="title">Nombre</label>
-            <input type="text" name="title" class="form-control" maxlength="5" v-model="campaignInfo.name"/>
+            <input type="text" name="title" class="form-control" maxlength="200" v-model="campaignInfo.name"/>
             <div id="error-name" class="error-block"></div>
         </div>
         <div class="form-group">
@@ -32,7 +32,7 @@
         </div>
         <div class="form-group">
             <label for="totalAspirants">Total de aspirantes</label>
-            <input type="number" min="1" name="totalAspirants" class="form-control" v-model="campaignInfo.totalAspirants"/>
+            <input type="number" min="1" max="99999" name="totalAspirants" class="form-control" v-model="campaignInfo.totalAspirants"/>
             <div id="error-totalAspirants" class="error-block"></div>
         </div>
         <div>
