@@ -133,6 +133,7 @@ class InscriptionController extends Controller
                 if ($field->deleted == 1) {
                     continue;
                 }
+
                 $aux = $values->where('name', '=', $field->name)
                     ->last();
                 $arrayItem['typeField'] = $field->typeField;
