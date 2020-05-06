@@ -8,7 +8,7 @@
         <div class="form-group">
             <label for="category">Area de conocimiento</label>
             <select name="category" class="form-control" v-model="campaignInfo.category">
-                <option selected>Seleccione una opcion</option>
+                <option value="" selected>Seleccione una opcion</option>
                 <option value="1">Agronomía, Veterinaria y afines</option>
                 <option value="2">Bellas Artes</option>
                 <option value="3">Ciencias de la Educación</option>
