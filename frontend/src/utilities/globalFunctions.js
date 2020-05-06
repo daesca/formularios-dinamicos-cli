@@ -367,6 +367,34 @@ const globalFunctions = {
 
     },
 
+    validateDates(startDate, finalDate) {
+
+        let result = true;
+
+        let formalDate1 = new Date(startDate);
+        let formalDate2 = new Date(finalDate);
+
+        // console.log("Fecha1: ", formalDate1.getTime);
+        // console.log("Fecha2: ", formalDate2.getTime);
+
+        let error = document.getElementById("error-startDate");
+
+        if (formalDate1 > formalDate2) {
+
+            // console.log("Entra al metodo");
+
+            // error.innerHTML = "La fecha inicial debe ser menor a la fecha final";
+
+            // error.classList.add('show');
+
+            result = false;
+
+        }
+
+        return result;
+
+    },
+
     /* SelectField Function*/
 
     newOption() {

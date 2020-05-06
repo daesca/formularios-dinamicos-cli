@@ -2,16 +2,21 @@
     <div id="create-campaign-container" class="container">
         <div class="form-group">
             <label for="title">Nombre</label>
-            <input type="text" name="title" class="form-control" v-model="campaignInfo.name"/>
+            <input type="text" name="title" class="form-control" maxlength="5" v-model="campaignInfo.name"/>
             <div id="error-name" class="error-block"></div>
         </div>
         <div class="form-group">
             <label for="category">Area de conocimiento</label>
             <select name="category" class="form-control" v-model="campaignInfo.category">
                 <option selected>Seleccione una opcion</option>
-                <option value="0">Categoria 1</option>
-                <option value="1">Categoria 2</option>
-                <option value="2">Categoria 3</option>
+                <option value="1">Agronomía, Veterinaria y afines</option>
+                <option value="2">Bellas Artes</option>
+                <option value="3">Ciencias de la Educación</option>
+                <option value="4">Ciencias de la Salud</option>
+                <option value="5">Ciencias Sociales y Humanas</option>
+                <option value="6">Economía, Administración, Contaduría y afines</option>
+                <option value="7">Ingeniería, Arquitectura, Urbanismo y afines</option>
+                <option value="8">Matemáticas y Ciencias Naturales</option>
             </select>
             <div id="error-category" class="error-block"></div>
         </div>
@@ -53,14 +58,67 @@ export default {
 
     },
     methods:{
+        // validateDates(startDate, finalDate){
+
+        //     let result = true;
+
+        //     let formalDate1 = new Date(startDate);
+        //     let formalDate2 = new Date(finalDate);
+
+        //     // console.log("Fecha1: ", formalDate1.getTime);
+        //     // console.log("Fecha2: ", formalDate2.getTime);
+
+        //     let error = document.getElementById("error-startDate");
+
+        //     if(formalDate1 > formalDate2){
+
+        //         console.log("Entra al metodo");
+
+                
+                
+        //         error.innerHTML = "La fecha inicial debe ser menor a la fecha final";
+
+        //         error.classList.add('show');
+
+        //         result = false;
+
+        //     }else{
+
+        //         error.classList.remove('show');
+
+        //     }
+
+        //     return result;
+
+        // },
         validateFields(){
+
+            let result = false;
 
             let resultValidate = this.$globalFunctions.emptyFields(this.campaignInfo);
 
+            let validateDates = this.$globalFunctions.validateDates(this.campaignInfo.startDate, this.campaignInfo.finalDate)
+            
+            this.$globalFunctions.clearErrors();
+
             this.$globalFunctions.showErrors(resultValidate.emptyFields, this.$languages.errorFieldEmptyMessage);
 
+            if(validateDates == false){
+
+                this.$globalFunctions.showErrors(['startDate'], "La fecha inicial debe ser menor a la fecha final");
+
+            }
+
+            if(validateDates && resultValidate.state){
+
+                result = true;
+
+            }
+
+            
+
             // console.log('Estado de la validacion', resultValidate.state);
-            return resultValidate.state;
+            return result;
 
         },
         saveOption(){

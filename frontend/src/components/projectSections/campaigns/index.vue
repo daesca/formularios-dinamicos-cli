@@ -80,7 +80,17 @@ export default {
 
             campaigns: '',
             linkShareCampaign: '',
-            categories:["Categoria 1", "Categoria 2", "Categoria 3"]
+            categories:{
+
+                1: "Agronomía, Veterinaria y afines",
+                2: "Bellas Artes",
+                3: "Ciencias de la Educación",
+                4: "Ciencias de la Salud",
+                5: "Ciencias Sociales y Humanas",
+                6: "Economía, Administración, Contaduría y afines",
+                7: "Ingeniería, Arquitectura, Urbanismo y afines",
+                8: "Matemáticas y Ciencias Naturales",
+            }
 
         }
 

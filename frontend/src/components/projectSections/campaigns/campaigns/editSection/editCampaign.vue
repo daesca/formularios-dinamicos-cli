@@ -8,22 +8,27 @@
         <div class="form-group">
             <label for="category">Area de conocimiento</label>
             <select name="category" class="form-control" v-model="mutableCampaignInfo.category">
-                <option value="" selected>Seleccione una opcion</option>
-                <option value="0">Categoria 1</option>
-                <option value="1">Categoria 2</option>
-                <option value="2">Categoria 3</option>
+                <option value="">Seleccione una opcion</option>
+                <option value="1">Agronomía, Veterinaria y afines</option>
+                <option value="2">Bellas Artes</option>
+                <option value="3">Ciencias de la Educación</option>
+                <option value="4">Ciencias de la Salud</option>
+                <option value="5">Ciencias Sociales y Humanas</option>
+                <option value="6">Economía, Administración, Contaduría y afines</option>
+                <option value="7">Ingeniería, Arquitectura, Urbanismo y afines</option>
+                <option value="8">Matemáticas y Ciencias Naturales</option>
             </select>
             <div id="error-category" class="error-block"></div>
         </div>
         <div class="form-group">
             <label for="dateInit">Fecha Inicio</label>
             <input type="date" name="dateInit" class="form-control" v-model="mutableCampaignInfo.startDate"/>
-            <div id="error-dateInit" class="error-block"></div>
+            <div id="error-startDate" class="error-block"></div>
         </div>
         <div class="form-group">
             <label for="dateFinal">Fecha fin</label>
             <input type="date" name="dateFinal" class="form-control" v-model="mutableCampaignInfo.finalDate"/>
-            <div id="error-dateFinal" class="error-block"></div>
+            <div id="error-finalDate" class="error-block"></div>
         </div>
         <div class="form-group">
             <label for="totalAspirants">Total de aspirantes</label>
@@ -85,25 +90,34 @@ export default {
     methods:{
         validateFields(){
 
-            // let options = {
-
-            //     name: this.mutableCampaignInfo.name,
-            //     category: this.mutableCampaignInfo.category,
-            //     dateInit: this.mutableCampaignInfo.startDate,
-            //     dateFinal: this.mutableCampaignInfo.finalDate,
-            //     totalAspirants: this.mutableCampaignInfo.totalAspirants
-            // }
+            let result = false;
 
             let emptyFieldsException = this.$globalFunctions.excludeFieldsValidation(this.mutableCampaignInfo, ['renderDefault', 'render']);
 
             let resultValidate = this.$globalFunctions.emptyFields(emptyFieldsException);
 
-            console.log("Resultado de la edicion: ", resultValidate);
+            // console.log("Resultado de la edicion: ", resultValidate);
+            
+            let validateDates = this.$globalFunctions.validateDates(this.mutableCampaignInfo.startDate, this.mutableCampaignInfo.finalDate)
 
+            this.$globalFunctions.clearErrors();
+            
             this.$globalFunctions.showErrors(resultValidate.emptyFields, this.$languages.errorFieldEmptyMessage);
 
+            if(validateDates == false){
+
+                this.$globalFunctions.showErrors(['startDate'], "La fecha inicial debe ser menor a la fecha final");
+
+            }
+
+            if(validateDates && resultValidate.state){
+
+                result = true;
+
+            }
+
             // console.log('Estado de la validacion', resultValidate.state);
-            return resultValidate.state;
+            return result;
 
         },
     
