@@ -50,8 +50,8 @@ const textos = {
     textElementLabelForm: 'Texto',
     valueElementLabelForm: 'Valor',
     saveModalTitleForm: 'Titulo del formulario',
-    minLabelForm: 'Limite minimo',
-    maxLabelForm: 'Limite máximo',
+    minLabelForm: 'Límite mínimo',
+    maxLabelForm: 'Límite máximo',
     cssClassLabelForm: 'Clases Css',
     cssClassSmallForm: 'Ingrese las clases separandolas entre sí con espacios',
     requiredLabelForm: 'Campo requerido',
@@ -77,6 +77,9 @@ const textos = {
     copyButtonText: 'Copiar',
     shareButtonText: 'Compartir',
     accessButtonText: 'Acceder',
+
+    editCampaignButtonText: 'Editar campaña',
+    copyCampaignButtonText: 'Duplicar campaña',
 
     createCampaignText: 'Crear campaña',
     createFormText: 'Crear Formulario',
