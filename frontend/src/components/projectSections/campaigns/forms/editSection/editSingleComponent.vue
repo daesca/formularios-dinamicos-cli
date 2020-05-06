@@ -179,8 +179,10 @@ export default {
         this.$store.commit("deleteElementDefaultForm", this.keyarray);
         
       }else{
-          
-          this.$store.commit("deleteElementForm", this.keyarray);
+
+        console.log("Entrando en el delete");
+
+        this.$store.commit("deleteElementForm", this.keyarray);
 
       }
 

@@ -1,5 +1,5 @@
 <template>
-    <div id="checkField-create-section">
+    <div id="checkField-create-section" class="default-box">
         <div class="form-group">
             <label for="title">{{ $languages.titleLabelForm }}</label>
             <input type="text" class="form-control" name="title" v-model="configurations.title"/>
@@ -38,7 +38,7 @@
 
         <div class="form-group">
             <label for="">{{ $languages.elementsLabelForm }}</label>
-            <div id="elements-container" class="default-box">
+            <div id="elements-container">
                 <div v-for="(value, index) in configurations.options" :key="index" class="d-flex justify-content-between">
                     <div class="form-group">
                         <label for="element-text">{{ $languages.textElementLabelForm }}</label>

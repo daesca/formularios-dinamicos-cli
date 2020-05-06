@@ -32,7 +32,7 @@
         </div>
         <div class="form-group">
             <label for="totalAspirants">Total de aspirantes</label>
-            <input type="number" min="1" max="99999" name="totalAspirants" class="form-control" v-model="mutableCampaignInfo.totalAspirants"/>
+            <input type="number" min="1" maxlength="6" name="totalAspirants" class="form-control" v-model="mutableCampaignInfo.totalAspirants"/>
             <div id="error-totalAspirants" class="error-block"></div>
         </div>
         <div>

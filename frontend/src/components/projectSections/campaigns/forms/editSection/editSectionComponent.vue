@@ -14,13 +14,14 @@
                 <div id="collapseOneEdit" class="collapse" aria-labelledby="headingOneEdit" data-parent="#accordionExample">
                 <div class="card-body">
                     <ul>
-                        
-                            <li v-for="(value, key) in $store.getters.configMutableDefaultForm" :key="key" >
-                                <strong>Index del elemento: {{ key }} </strong>
+                        <template v-for="(value, key) in $store.getters.configMutableDefaultForm">
+                            <li v-if="value.deleted != '1'" :key="key" >
+                                
+                                <!-- <strong>Index del elemento: {{ key }} </strong> -->
                                 <edit-single-component :configurations="value.configurations" :typeField="value.typeField" :keyarray="key" :noEdit="true"></edit-single-component>
 
                             </li>
-                      
+                        </template>
                     </ul>
                 </div>
                 </div>
@@ -36,14 +37,14 @@
                 <div id="collapseTwoEdit" class="collapse" aria-labelledby="headingTwoEdit" data-parent="#accordionExample">
                 <div class="card-body">
                     <ul>
-                      
-                            <li v-for="(value, key) in $store.getters.configForm" :key="key" >
+                        <template v-for="(value, key) in $store.getters.configForm">
+                            <li v-if="value.deleted != '1'" :key="key">
 
-                                <strong>Index del elemento: {{ key }} </strong>
+                                <!-- <strong>Index del elemento: {{ key }} </strong> -->
                                 <edit-single-component :configurations="value.configurations" :typeField="value.typeField" :keyarray="key" :noEdit="false"></edit-single-component>
 
                             </li>
-                   
+                        </template>
                     </ul>
                 </div>
                 </div>
@@ -64,14 +65,6 @@ export default {
        'edit-single-component': editSingleComponent
 
    },
-   data(){
 
-       return{
-
-           deleted: this
-
-       }
-
-   }
 }
 </script>

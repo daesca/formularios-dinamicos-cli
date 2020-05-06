@@ -29,8 +29,8 @@
 
         </div>
 
-        <form v-show="login" @submit.prevent="sendAnswers">
-            <h3 class="text-center">Campaña {{ codecampaign }}</h3>
+        <form v-show="login" @submit.prevent="sendAnswers" id="renderForm">
+            <h3 class="text-center" style="width: 100%">Campaña {{ codecampaign }}</h3>
 
                 <component 
                     v-for="(value, key, index) in renderForm"
@@ -67,37 +67,40 @@
         </form>
 
         <!-- Modal -->
-        <div class="modal fade" id="loginModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
+                    <div class="modal-header" style="border-bottom: none">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
 
-                <div class="modal-body">
+                        <login3 
+                            v-show="!showResultSaveAnswers"
+                            :document="documentAspirant"  
+                            @loginSuccessfull="setAllData"
+                        >
 
-                    <login3 
-                        v-show="!showResultSaveAnswers"
-                        :document="documentAspirant"  
-                        @loginSuccessfull="setAllData"
-                    >
+                        </login3>
 
-                    </login3>
+                        <div v-show="showResultSaveAnswers">
 
-                    <div v-show="showResultSaveAnswers">
+                            <h2>{{ titleResultSaveAnswers }}</h2>
 
-                        <h2>{{ titleResultSaveAnswers }}</h2>
+                            {{ bodyResultSaveAnswers }}
 
-                        {{ bodyResultSaveAnswers }}
+                            <div class="text-center">
+                                
+                                <button class="btn btn-success" @click="closeModal">Aceptar</button>
 
-                        <div class="text-center">
-                            
-                            <button class="btn btn-success" @click="closeModal">Aceptar</button>
+                            </div>
+
 
                         </div>
 
-
                     </div>
-
-                </div>
-
                 </div>
             </div>
         </div>
@@ -236,7 +239,10 @@
 
                             if(JSONForm[i].typeField === 'checkField'){
 
-                                initialValue = initialValue.split(",");
+                                if(JSONForm[i].configurations.defaultValue != undefined && JSONForm[i].configurations.defaultValue != ''){
+
+                                    initialValue = initialValue.split(",");
+                                }
 
                             }
 
@@ -562,6 +568,11 @@
                 nombrePoblacionAfrocolombianaContainer.style.display = 'none';
                 nombrePoblacionAfrocolombianaContainer.dataset.show = '0';
                 nombrePoblacionAfrocolombianaField.required = false;
+
+                poblacionesAfrocolombianasContainer.style.display = 'none';
+                poblacionesAfrocolombianasContainer.dataset.show = '0';
+                poblacionesAfrocolombianasField.required = false;
+
 
                 poblacionesIndigenasContainer.style.display = 'none';
                 poblacionesIndigenasContainer.dataset.show = '0';
@@ -1034,6 +1045,32 @@
 
 </script>
 <style>
+
+    /* #renderResult-container{
+
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        background-color: aliceblue;
+        box-shadow: 0px 0px 10px #F2f2f2;
+
+    } */
+
+    #renderForm{
+
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        background-color: aliceblue;
+        box-shadow: 0px 0px 10px #F2f2f2;
+
+    }
+
+    #renderForm > div {
+
+        width: 45%;
+        margin: 2%;
+    }
 
     .loginBox{
 

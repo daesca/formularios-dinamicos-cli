@@ -6,7 +6,7 @@
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 mr-auto ml-auto">
                 <h1>Modulo de Campañas</h1>
                 <div class="d-flex justify-content-start mb-2">
-                    <router-link to="/main/createCampaign" class="add-campaign-button backPrimaryColor mr-2" :title="$languages.createCampaignText"> <i class="icon-plus"></i> </router-link>
+                    <router-link to="/main/createCampaign" class="ovalButton backPrimaryColor mr-2"><i class="icon-plus"></i> {{ $languages.createCampaignText }}</router-link>
                 </div>
 
                 <div class="table-responsive">
@@ -31,11 +31,11 @@
                                 <td>{{ value.finalDate }}</td>
                                 <td>{{ value.totalAspirants }}</td>
                                 <td class="options-cell">
-                                    <router-link :to="{ path: '/main/editCampaign/' + value.code, params:{ codecampaign: value.code } }" class="btn-info mr-2" data-toggle="tooltip" data-placement="top" :title="$languages.editCampaignButtonText"><i class="icon-pencil"></i></router-link>
-                                    <router-link :to="{ path: '/main/formsCreate/' + value.code, params: { codecampaign: value.code } }" :class="value.renderDefault == null ? 'btn-success mr-2':'btn-form-edit mr-2'" data-toggle="tooltip" data-placement="top" :title="value.renderDefault == null ? $languages.createFormText: $languages.editFormText"><i :class="value.renderDefault == null ? 'icon-doc':'icon-edit'"></i></router-link>
-                                    <a href="javascript:void(0)" @click="value.renderDefault == null ? '':copyCampaign(value.id)" :disabled="value.renderDefault == null" :class="(value.renderDefault == null ? 'btn-secondary mr-2':'btn-warning mr-2')" data-toggle="tooltip" data-placement="top" :title="$languages.copyCampaignButtonText"><i class="icon-clone"></i></a>
-                                    <a href="javascript:void(0)" @click="deleteCampaign(value.code)" class="btn-danger mr-2" data-toggle="tooltip" data-placement="top" :title="$languages.deleteButtonText"><i class="icon-trash-empty"></i></a>
-                                    <a v-if="value.renderDefault != null" href="javascript:void(0)" @click="shareCampaign(value.code)" class="btn-primary" data-toggle="modal" data-target="#shareModal" :title="$languages.shareButtonText"><i class="icon-export"></i></a>
+                                    <router-link :to="{ path: '/main/editCampaign/' + value.code, params:{ codecampaign: value.code } }" class="backPrimaryColor mr-2" data-toggle="tooltip" data-placement="top" :title="$languages.editCampaignButtonText"><i class="icon-pencil"></i></router-link>
+                                    <router-link :to="{ path: '/main/formsCreate/' + value.code, params: { codecampaign: value.code } }" :class="value.renderDefault == null ? 'backPrimaryColor mr-2':'backPrimaryColor mr-2'" data-toggle="tooltip" data-placement="top" :title="value.renderDefault == null ? $languages.createFormText: $languages.editFormText"><i :class="value.renderDefault == null ? 'icon-doc':'icon-edit'"></i></router-link>
+                                    <a href="javascript:void(0)" @click="value.renderDefault == null ? '':copyCampaign(value.id)" :disabled="value.renderDefault == null" :class="(value.renderDefault == null ? 'btn-secondary mr-2':'backPrimaryColor mr-2')" data-toggle="tooltip" data-placement="top" :title="$languages.copyCampaignButtonText"><i class="icon-clone"></i></a>
+                                    <a href="javascript:void(0)" @click="deleteCampaign(value.code)" class="backPrimaryColor mr-2" data-toggle="tooltip" data-placement="top" :title="$languages.deleteButtonText"><i class="icon-trash-empty"></i></a>
+                                    <a v-if="value.renderDefault != null" href="javascript:void(0)" @click="shareCampaign(value.code)" class="backPrimaryColor" data-toggle="modal" data-target="#shareModal" :title="$languages.shareButtonText"><i class="icon-export"></i></a>
                                     <a v-else href="javascript:void(0)"  disabled class="btn-secondary" :title="$languages.shareButtonText"><i class="icon-export"></i></a>
                                 </td>
                             </tr>
@@ -242,6 +242,13 @@ export default {
 
         padding: .5em .4em;
         border-radius: 50%;
+        color: #fff;
+
+    }
+
+    #table-campaigns tbody tr td.options-cell > a:hover{
+
+        text-decoration: none;
 
     }
 

@@ -14,7 +14,7 @@
         </div>
 
         <div class="form-group">
-            <label for="weight">{{ $languages.valueLabelForm }}</label>
+            <label for="weight">{{ $languages.weightLabelForm }}</label>
             <input type="text" class="form-control" name="weight" v-model="mutableConfigurations.weight"/>
             <div id="error-weight" class="error-block"></div>
         </div>

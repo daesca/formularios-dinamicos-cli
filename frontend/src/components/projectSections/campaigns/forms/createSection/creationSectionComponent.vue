@@ -3,19 +3,21 @@
 
         <h3 class="text-center">{{ $languages.creationSectionTitle }}</h3>
 
-        Selected: {{ selected }}
-
         <br>
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label for="listFields">Seleccione un tipo de campo</label>
+                    <select v-model="selected" class="form-control" name="listFields">
+                            
+                        <option disabled value="">{{ $languages.defaultSelect }}</option>
+                        <option v-for="(value, key, index) in $store.getters.avalibleFormElemets" :key="index" :value="key">{{ value }}</option>
 
-        <select v-model="selected">
+                    </select>
                 
-            <option disabled value="">{{ $languages.defaultSelect }}</option>
-            <option v-for="(value, key, index) in $store.getters.avalibleFormElemets" :key="index" :value="key">{{ value }}</option>
-
-        </select>
-
-        <br>
-
+                </div>
+            </div>
+        </div>
         <hr>
 
         <defaulted v-show="selected == ''"></defaulted>
@@ -27,7 +29,7 @@
                 <!-- <component :is="selected" :activateSaveOption ="saveOption"></component> -->
 
         </div>
-
+        <br>
         <div v-show="selected != ''" class="text-right">
 
             <button @click="saveOption = true" class="btn btn-primary mr-1">{{ $languages.saveButtonText }}</button>

@@ -119,6 +119,13 @@ export default {
       
   }
 
+  .ovalButton:hover{
+
+    text-decoration:none;
+    color: #fff;
+
+  }
+
   .backPrimaryColor{
 
     background-color: #007DF6;
