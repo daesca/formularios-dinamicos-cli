@@ -130,6 +130,9 @@ class InscriptionController extends Controller
         $values = collect($document->values->toArray());
         if (! is_null($campagin) and !is_null($document)) {
             foreach ($campagin->fields as $field) {
+                if ($field->deleted == 1) {
+                    continue;
+                }
                 $aux = $values->where('name', '=', $field->name)
                     ->last();
                 $arrayItem['typeField'] = $field->typeField;
