@@ -79,16 +79,14 @@ export default {
     flex-wrap: wrap;
     justify-content: center;
     flex-direction:column;
-    visibility: hidden;
     opacity: 0;
-    transition: visibility .1s, opacity 1s ease;
-    transition-delay: .8s;
+    transition: opacity .5s ease;
+    transition-delay: .5s;
 
   }
   #preload.show{
 
     display: flex !important;
-    visibility: visible;
     /* transition: opacity 1s ease; */
     opacity: 1;
 
