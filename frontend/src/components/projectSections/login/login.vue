@@ -13,7 +13,7 @@
 
                 </div>
 
-                <form @submit="credentialsVerification">
+                <form @submit.prevent="credentialsVerification">
 
                     <div class="form-group">
                         <!-- <label for="user">Usuario</label> -->

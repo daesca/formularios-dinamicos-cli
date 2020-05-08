@@ -7,6 +7,9 @@
                 <input type="number" name="document" class="form-control" v-model="document" required/>
 
             </div>
+            <div v-show="showAlert" class="alert alert-danger text-center">
+                {{ alertMsg }}
+            </div>
             <div v-show="!processing" class="button-group text-center">
                 <button type="submit" class="">Continuar</button>
             </div>
@@ -24,11 +27,14 @@
 <script>
 export default {
 
+    props:['codecampaign'],
+
     data(){
 
         return{
 
             showAlert: false,
+            alertMsg: '',
             document: '',
             processing: false,
 
@@ -40,11 +46,13 @@ export default {
 
         sendInfoLogin1(){
 
+            this.showAlert = false;
+
             this.processing = true;
 
             this.$emit('document-aspirant', this.document);
 
-            this.$http.post('inscription/validate/document',{document: this.document}).then(response => {
+            this.$http.post('inscription/validate/document',{document: this.document, codecampaign: this.codecampaign}).then(response => {
 
                 // console.log('Desde login1: ', response);
 
@@ -60,9 +68,16 @@ export default {
 
                 }else if(response.body.code == 501){
 
+                    this.alertMsg = response.body.message;
                     this.showAlert = true;
                 
-                }else{
+                }else if(response.body.code == 503){
+
+                    this.alertMsg = response.body.message;
+                    this.showAlert = true;
+
+                }
+                else{
 
                     console.log('No hay informacion previa');
 

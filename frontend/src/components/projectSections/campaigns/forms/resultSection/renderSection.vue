@@ -14,6 +14,7 @@
                         :is="typeLogin"
                         :document="documentAspirant"
                         :email="emailAspirant"
+                        :codecampaign="codecampaign"
                         @document-aspirant="setDocumentAspirant"
                         @email-aspirant="setEmailAspirant"
                         @changeLogin="setTypeLogin"
@@ -59,7 +60,7 @@
                 >
                 </component> -->
 
-            <div class="text-right mt-2">
+            <div class="text-right mt-2" style="width: 100%">
                 <button class="btn btn-success">Enviar</button>
             </div>
 
@@ -169,19 +170,6 @@
             
 
         },
-        // mounted(){
-
-        //     const paisNacimientoContainer = document.querySelector("#paisNacimientoSapiencia");
-        //     const paisNacimientoField = document.querySelector("select[name='paisNacimientoSapiencia']");
-
-        //     paisNacimientoField.addEventListener('change', function(event){
-
-        //         console.log("Valor del pais:", event.target.value);
-
-        //     });
-
-
-        // },
         methods:{
 
             setTypeLogin(val){
@@ -207,50 +195,51 @@
 
                     for (let i = 0; i < JSONForm.length; i++) {
 
-                        // console.log("Indice:", JSONForm[i].idField);
+                        if(JSONForm[i].deleted != '1'){
 
-                        let newIndex = JSONForm[i].idField;
+                            // console.log("Indice:", JSONForm[i].idField);
 
-                        // console.log('El indes', newIndex);
+                            let newIndex = JSONForm[i].idField;
 
-                        let initialValue = '';
+                            // console.log('El indes', JSONForm[0]);
 
-                        if(JSONForm[i].typeField === 'checkField'){
+                            let initialValue = '';
 
-                            initialValue = [];
+                            if(JSONForm[i].typeField == 'checkField'){
 
-                        }
-
-                        if(JSONForm[i].configurations.defaultValue != undefined && JSONForm[i].configurations.defaultValue != ''){
-
-                            initialValue = JSONForm[i].configurations.defaultValue;
-
-                        }
-
-                        if(precharge != 0){
-
-                            if(typeof(JSONForm[i].configurations.options) == 'string'){
-
-                                JSONForm[i].configurations.options = JSON.parse(JSONForm[i].configurations.options);
-
-                                
+                                initialValue = [];
 
                             }
 
-                            if(JSONForm[i].typeField === 'checkField'){
+                            if(JSONForm[i].configurations.defaultValue != undefined && JSONForm[i].configurations.defaultValue != ''){
 
-                                if(JSONForm[i].configurations.defaultValue != undefined && JSONForm[i].configurations.defaultValue != ''){
+                                initialValue = JSONForm[i].configurations.defaultValue;
 
-                                    initialValue = initialValue.split(",");
+                            }
+
+                            if(precharge != 0){
+
+                                if(typeof(JSONForm[i].configurations.options) == 'string'){
+
+                                    JSONForm[i].configurations.options = JSON.parse(JSONForm[i].configurations.options);
+
+                                    
+
+                                }
+
+                                if(JSONForm[i].typeField === 'checkField'){
+
+                                    if(JSONForm[i].configurations.defaultValue != undefined && JSONForm[i].configurations.defaultValue != ''){
+
+                                        initialValue = initialValue.split(",");
+                                    }
+
                                 }
 
                             }
 
+                            this.answersAspirant[newIndex] = { answer: initialValue };
                         }
-
-
-
-                        this.answersAspirant[newIndex] = { answer: initialValue };
 
                     }
 
@@ -263,16 +252,27 @@
 
                     for (let i = 0; i < JSONForm.length; i++) {
 
-                        if(JSONForm[i].deleted != 1){
+
+                        if(JSONForm[i].deleted != '1'){
+
+                            // if(this.nextIndex == 66){
+
+                                // console.log("Dato descarriado:", this.nextIndex);
+
+                            // }
 
                             this.renderForm[this.nextIndex] = JSONForm[i];
 
+                            this.nextIndex ++;
+
                         }
 
-                        this.nextIndex ++;
+                        
                     }
 
                 }
+
+                // console.log("Desde Answers:", JSONForm);
 
             },
             changeValue(options){
@@ -286,7 +286,7 @@
 
                 let filterAnswers = JSON.parse(JSON.stringify(this.answersAspirant));
 
-                console.log("Variable filterAnswers", filterAnswers);
+                // console.log("Variable filterAnswers", filterAnswers);
 
                 let allFields = document.querySelectorAll("div#renderResult-container > form > div");
 
@@ -367,15 +367,24 @@
 
                     this.$http.get('campaign/render/' + this.codecampaign).then(response => {
 
-                        // console.log(response);
+                        // console.log(JSON.parse(response.body.configDefaultForm));
+
+                        // console.log("------------------------------------------");
+
+                        
 
                         this.setAnswersAspirant(JSON.parse(response.body.configDefaultForm));
 
                         this.setAnswersAspirant(JSON.parse(response.body.configForm));
+                        
     
                         this.setRenderForm(JSON.parse(response.body.configDefaultForm));
 
+                            // console.log(JSON.parse(response.body.configForm));
+
                         this.setRenderForm(JSON.parse(response.body.configForm));
+
+                        
 
                         this.setLogin(true);
 
@@ -391,7 +400,7 @@
 
                     this.$http.post('inscription/get/data/document', { code: this.codecampaign, document: this.documentAspirant }).then(response => {
 
-                        console.log('Datos llenaos', response.body);
+                        // console.log('Datos llenaos', response.body);
 
 
                         this.setRenderForm(response.body.data.configDefaultForm);
@@ -402,9 +411,17 @@
 
                         this.setAnswersAspirant(response.body.data.configForm, 1);
 
-                         this.setLogin(true);
+                        this.setLogin(true);
 
-                        this.closeModal();
+                        let modal = document.getElementsByClassName('modal-backdrop')[0];
+
+                        // console.log("Modal: ", modal);
+
+                        if( modal != undefined){
+                            
+                            this.closeModal();
+
+                        }
 
 
                     }, response =>{

@@ -2,6 +2,36 @@
   <div id="app">
     <router-view name="loginView"></router-view>
     <router-view name="main"></router-view>
+    <div id="preload">
+      <div class="dots-container">
+        <div class="spinner-grow text-primary" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow text-primary" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow text-primary" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow text-primary" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow text-primary" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow text-primary" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow text-primary" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow text-primary" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        
+      </div>
+      <div class="text-preload">Procesando...</div>
+    </div>
   </div>
 </template>
 
@@ -37,6 +67,47 @@ export default {
 
   }
 
+  #preload{
+
+    background-color: rgba(220, 213, 213, 0.5);
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    display: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction:column;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility .1s, opacity 1s ease;
+    transition-delay: .8s;
+
+  }
+  #preload.show{
+
+    display: flex !important;
+    visibility: visible;
+    /* transition: opacity 1s ease; */
+    opacity: 1;
+
+  }
+  #preload .dots-container{
+
+    display: flex;
+    justify-content: center;
+
+
+  }
+  #preload .text-preload{
+
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    width: 100%;
+
+  }
   
   button:focus{
 

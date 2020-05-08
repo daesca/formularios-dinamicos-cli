@@ -6,6 +6,7 @@ namespace App\Controllers;
 
 use App\Models\Codes;
 use App\Models\Document;
+use App\Models\Campaign;
 use App\Models\ResponseCampagin;
 use Carbon\Carbon;
 use Carbon\CarbonImmutable;
@@ -19,8 +20,28 @@ class DocumentController extends Controller
     function validateDocument(Request $request, Response $response, $args)
     {
         $doc = $request->getParsedBody()["document"];
+        $codeCampaign = $request->getParsedBody()["codecampaign"];
+
+        $idCampaign = Campaign::select('id')->where('code', $codeCampaign);
         $document = Document::where('document', $doc)->first();
+
         if (!is_null($document)) {
+
+            if(ResponseCampagin::where('id_campaign', $idCampaign)->where('id_document', $document->id)){
+
+                $this->messages = [
+                    "code" => 503,
+                    "message" => "Ya se ha realizado una preinscripcion a esta campaña con este documento.",
+                    
+                ];
+
+
+                $response->getBody()->write(json_encode($this->messages));
+
+                return $response->withHeader('Content-Type', 'application/json');
+
+            }
+
             $values = $document->values()->where("name", "email")->first();
             $user = [
                 "document" => $document->document,

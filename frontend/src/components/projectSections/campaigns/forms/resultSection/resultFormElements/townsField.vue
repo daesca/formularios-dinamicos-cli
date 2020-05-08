@@ -53,7 +53,8 @@ export default {
                 this.$http.get('sapiencia/get/towns/all/' + val).then(response => {
 
                     this.towns = response.body;
-                    this.answerAspirant;
+                    this.answerAspirant = this.defaultValue;
+                    // this.answerAspirant;
 
                 }, response =>{
 
@@ -75,7 +76,7 @@ export default {
                 this.$http.get('sapiencia/get/towns/all/' + val).then(response => {
 
                     this.towns = response.body;
-                    this.answerAspirant ='';
+                    this.answerAspirant = this.defaultValue;
 
                 }, response =>{
 

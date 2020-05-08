@@ -76,29 +76,32 @@ export default {
 
     saveForm(){
 
+      document.getElementById("preload").classList.add("show");
+
       this.$http.post('field/store', { codecampaign: this.codecampaign, configForm: this.$store.getters.configForm, configDefaultForm: this.$store.getters.configMutableDefaultForm}).then(response => {
 
-
-          console.log("Too bn", response);
+          // console.log("Too bn", response);
 
           if(response.body.code == 200){
-
+            
             alert("Formulario guardado exitosamente");
             
             return this.$router.go(-1);
 
           }else{
-
+            
             alert("Error al guardar. Contacte al administrador");
 
           }
 
       }, response =>{
-
-          alert("Algo ha fallado. Contacte con el administrador");
+        
+        alert("Algo ha fallado. Contacte con el administrador");
           // return console.log('Too mal', response);
 
       });
+        
+        document.getElementById("preload").classList.remove("show");
 
     },
     cancelForm(){

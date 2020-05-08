@@ -125,6 +125,8 @@ export default {
 
             if(this.validateFields()){
 
+                document.getElementById("preload").classList.add("show");
+
                 this.$http.post('campaign/store', this.campaignInfo).then(response => {
 
                     // console.log("Too bn", response);          
@@ -147,6 +149,8 @@ export default {
                     return console.log('Too mal', response);
 
                 });
+
+                document.getElementById("preload").classList.remove("show");
                 
 
             }
