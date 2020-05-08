@@ -22,12 +22,12 @@ class DocumentController extends Controller
         $doc = $request->getParsedBody()["document"];
         $codeCampaign = $request->getParsedBody()["codecampaign"];
 
-        $idCampaign = Campaign::select('id')->where('code', $codeCampaign);
+        $idCampaign = Campaign::select('id')->where('code', $codeCampaign)->first();
         $document = Document::where('document', $doc)->first();
 
         if (!is_null($document)) {
 
-            if(ResponseCampagin::where('id_campaign', $idCampaign)->where('id_document', $document->id)){
+            if($document->values()->where('campaign_id', $idCampaign->id)->get()->count() > 0){
 
                 $this->messages = [
                     "code" => 503,
